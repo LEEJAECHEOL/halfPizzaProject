@@ -1,7 +1,7 @@
 package com.cos.halfPizza.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import javax.servlet.http.HttpSession;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
@@ -11,9 +11,9 @@ import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 public class AuthController {
 	
 	@RequestMapping("/auth/login")
-	public void login(LoginReqDto dto,HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("login() : " + req.getParameter("username"));
+	public String login(LoginReqDto dto, HttpSession session) {
 		System.out.println("login()");
+		return "/auth/loginForm.jsp";
 	}
 	@RequestMapping("/auth/loginProc")
 	public void loginProc() {

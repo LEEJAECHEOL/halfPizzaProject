@@ -39,7 +39,7 @@
                     <a href="#a">배송정보를 입력해 주세요</a>
                 </div>
                 <div class="login">
-                    <a href="#a">로그인</a>
+                    <a href="${pageContext.request.contextPath}/auth/login">로그인</a>
                     <a href="#a" class="cart"><img src="/halfPizza/images/common/ico_common_cart.png" alt=""></a>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layouts/header.jsp" %>
-	<main>
+	<main  class="index">
         <div class="container">
     <!--베너-->
             <div class="banner">

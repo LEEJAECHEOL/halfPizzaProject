@@ -32,7 +32,13 @@ public class Dispatcher implements Filter {
 		HttpServletResponse resp = (HttpServletResponse)response;
 		
 		String endPoint = req.getRequestURI().replaceAll(req.getContextPath(), "");
-		System.out.println("엔드포인트 : " + endPoint);
+//		System.out.println("엔드포인트 : " + endPoint);
+		
+		if(exclusionUri(endPoint)) {
+			chain.doFilter(request, response);
+			return;
+		} 
+		
 		
 		List<Class> controllerList = componentScan();
 //		System.out.println("ControllerList : " + controllerList);
@@ -51,15 +57,33 @@ public class Dispatcher implements Filter {
 //							System.out.println("requestMapping value() : " + requestMapping.value());
 							if(requestMapping.value().equals(endPoint)) {
 								Parameter[] params = method.getParameters();
+								
+								String path;
 								if (params.length != 0) {
-									Object dtoInstance = params[0].getType().getDeclaredConstructor().newInstance();
-									setData(dtoInstance, request); 
-									System.out.println(dtoInstance.toString());
-									method.invoke(controllerInstance, dtoInstance, req, resp);
+									Object[] callParameter = new Object[params.length];
+									
+									for(int i = 0; i < params.length; i++) {
+										String paramName = params[i].getType().getSimpleName();
+										if(paramName.equals("HttpSession")) {
+											callParameter[i] = req.getSession();
+										}else if(paramName.equals("HttpServletRequest")) {
+											callParameter[i] = req;
+										}else if(paramName.equals("HttpServletResponse")) {
+											callParameter[i] = resp;
+										}else {
+											Object dtoInstance = params[0].getType().getDeclaredConstructor().newInstance();
+											setData(dtoInstance, request);
+											callParameter[i] = dtoInstance;
+										}
+									}
+//									System.out.println(callParameter[1].getClass().getName());
+									path = (String) method.invoke(controllerInstance, callParameter);
 								} else {
-									method.invoke(controllerInstance);
+									path = (String) method.invoke(controllerInstance);
 								}
-
+								RequestDispatcher dis = request.getRequestDispatcher(path);
+								dis.forward(request, response);
+								
 								break;
 							}
 						}	// methods end
@@ -72,7 +96,21 @@ public class Dispatcher implements Filter {
 
 		} // controllerList end
 		
-		chain.doFilter(request, response);
+//		chain.doFilter(request, response);
+		
+	}
+	
+	private boolean exclusionUri(String endPoint) {
+		String[] exclusions  = { "/js", "/css", "/font", "/images"};
+		if(endPoint.length() == 1){
+			return true;
+		}
+		for (String exclusion : exclusions) {
+			if(endPoint.contains(exclusion)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private String keyToMethodKey(String key) {
@@ -82,7 +120,7 @@ public class Dispatcher implements Filter {
 	}
 
 	private <T> void setData(T dtoInstance, ServletRequest request) {
-		System.out.println("인스턴스 타입 : " + dtoInstance.getClass());
+//		System.out.println("인스턴스 타입 : " + dtoInstance.getClass());
 		Enumeration<String> params = request.getParameterNames();
 
 		while (params.hasMoreElements()) {
