@@ -39,7 +39,6 @@ public class Dispatcher implements Filter {
 			return;
 		} 
 		
-		
 		List<Class> controllerList = componentScan();
 //		System.out.println("ControllerList : " + controllerList);
 		for (Class controller : controllerList) {
@@ -61,7 +60,6 @@ public class Dispatcher implements Filter {
 								String path;
 								if (params.length != 0) {
 									Object[] callParameter = new Object[params.length];
-									
 									for(int i = 0; i < params.length; i++) {
 										String paramName = params[i].getType().getSimpleName();
 										if(paramName.equals("HttpSession")) {
@@ -71,16 +69,16 @@ public class Dispatcher implements Filter {
 										}else if(paramName.equals("HttpServletResponse")) {
 											callParameter[i] = resp;
 										}else {
-											Object dtoInstance = params[0].getType().getDeclaredConstructor().newInstance();
+											Object dtoInstance = params[i].getType().getDeclaredConstructor().newInstance();
 											setData(dtoInstance, request);
 											callParameter[i] = dtoInstance;
 										}
 									}
-//									System.out.println(callParameter[1].getClass().getName());
 									path = (String) method.invoke(controllerInstance, callParameter);
 								} else {
 									path = (String) method.invoke(controllerInstance);
 								}
+								System.out.println(path);
 								RequestDispatcher dis = request.getRequestDispatcher(path);
 								dis.forward(request, response);
 								

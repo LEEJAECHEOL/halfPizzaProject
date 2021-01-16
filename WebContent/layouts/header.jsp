@@ -25,6 +25,8 @@
     <!--slick-->
     <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+    <script defer src="${pageContext.request.contextPath}/js/pop.js" charset="utf-8"></script>
    	
 </head>
 
@@ -49,7 +51,7 @@
         <nav class="nav-list">
             <ul class="main-menu">
                 <div class="container">
-                    <a href="#a"><img src="/halfPizza/images/common/img_logo.png" alt=""></a>
+                    <a href="${pageContext.request.contextPath}/"><img src="/halfPizza/images/common/img_logo.png" alt=""></a>
                     <li class="nav-item"><a href="#a">메뉴</a></li>
                     <li class="nav-item"><a href="#a">E쿠폰</a></li>
                     <li class="nav-item"><a href="#a">스토어</a></li>

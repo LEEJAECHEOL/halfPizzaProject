@@ -12,12 +12,17 @@ public class AuthController {
 	
 	@RequestMapping("/auth/login")
 	public String login(LoginReqDto dto, HttpSession session) {
-		System.out.println("login()");
 		return "/auth/loginForm.jsp";
 	}
 	@RequestMapping("/auth/loginProc")
 	public void loginProc() {
 		System.out.println("loginProc()");
+	}
+	
+	@RequestMapping("/auth/registerTerms")
+	public String registerTerms() {
+		System.out.println("registerTerms()");
+		return "/auth/registerTerms.jsp";
 	}
 	
 	@RequestMapping("/auth/register")
