@@ -17,8 +17,11 @@ public class CharsetFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse)response;
+
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html;charset=utf-8;");
 		
-		System.out.println(request.getParameter("test"));
+		chain.doFilter(req, resp);
 		
 	}
 
