@@ -1,11 +1,14 @@
 package com.cos.halfPizza.web;
 
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
+import com.cos.halfPizza.domain.auth.User;
 import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
 import com.cos.halfPizza.service.AuthService;
@@ -21,8 +24,16 @@ public class AuthController {
 		return "/auth/loginForm.jsp";
 	}
 	@RequestMapping("/auth/loginProc")
-	public void loginProc(LoginReqDto dto, HttpSession session) {
-		System.out.println("loginProc()");
+	public void loginProc(LoginReqDto dto, HttpSession session, HttpServletResponse response) {
+//		System.out.println("loginProc()");
+		try {
+			User user = authService.findByUsernameAndPassword(dto);
+			session.setAttribute("user", user);
+			System.out.println(user);
+			response.sendRedirect("/halfPizza/");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping("/auth/registerTerms")
@@ -37,17 +48,28 @@ public class AuthController {
 	}
 
 	@RequestMapping("/auth/registerProc")
-	public String registerProc(RegisterReqDto dto, HttpServletResponse response) {
+	public void registerProc(RegisterReqDto dto, HttpServletResponse response) {
 //		System.out.println("registerProc() dto : " + dto);
 		int result = authService.save(dto);
 		if(result == 1) {
-			return "/auth/loginForm.jsp";
+			try {
+				response.sendRedirect("/halfPizza/");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}else {
 			Script.back(response, "입력정보를 다시 확인해주세요.");
-			return null;
 		}
 	}
-	
+	@RequestMapping("/auth/logout")
+	public void loginout(HttpSession session, HttpServletResponse response) {
+		try {
+			session.invalidate();
+			response.sendRedirect("/halfPizza/");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@RequestMapping("/auth/findPassword")
 	public void findPassword() {

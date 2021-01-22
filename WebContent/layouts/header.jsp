@@ -40,10 +40,23 @@
                     <img src="${pageContext.request.contextPath}/images/common/ico_gnb_location.png" alt="">
                     <a href="#a">배송정보를 입력해 주세요</a>
                 </div>
-                <div class="login">
-                    <a href="${pageContext.request.contextPath}/auth/login">로그인</a>
-                    <a href="#a" class="cart"><img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""></a>
-                </div>
+                <c:choose>
+				  	<c:when test="${sessionScope.user!=null}">
+				  		<div class="login">
+				  			<span>${sessionScope.user.name}님 환영합니다.</span>
+				  			<a href="">마이페이지</a>
+				  			<a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a>
+		                    <a href="#a" class="cart"><img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""></a>
+		                </div>
+				  	
+				  	</c:when>
+				  	<c:otherwise>
+		                <div class="login">
+		                    <a href="${pageContext.request.contextPath}/auth/login">로그인</a>
+		                    <a href="#a" class="cart"><img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""></a>
+		                </div>
+				  	</c:otherwise>
+				  </c:choose>
             </div>
         </div>
 

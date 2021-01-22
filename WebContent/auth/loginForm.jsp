@@ -10,8 +10,8 @@
             </div>
             <div class="subpage-box">
                 <div class="login-form">
-                    <form>
-                        <input type="text" name="id" placeholder="ID">
+                    <form method="post" action="${pageContext.request.contextPath}/auth/loginProc">
+                        <input type="text" name="username" placeholder="ID">
                         <input type="password" name="password" placeholder="PW">
 
                         <label class="checkbox">

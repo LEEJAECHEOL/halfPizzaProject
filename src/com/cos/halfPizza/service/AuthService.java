@@ -1,6 +1,8 @@
 package com.cos.halfPizza.service;
 
 import com.cos.halfPizza.domain.auth.AuthRepository;
+import com.cos.halfPizza.domain.auth.User;
+import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
 import com.cos.halfPizza.domain.auth.dto.UsernameCheckReqDto;
 
@@ -18,8 +20,8 @@ public class AuthService {
 	public String findByUsername(UsernameCheckReqDto dto) {
 		return authRepository.findByUsername(dto);
 	}
-	public void findByIdAndPassword() {
-		
+	public User findByUsernameAndPassword(LoginReqDto dto) {
+		return authRepository.findByUsernameAndPassword(dto);
 	}
 
 }

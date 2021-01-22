@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 
 import com.cos.halfPizza.config.DBConn;
 import com.cos.halfPizza.domain.CommonDto;
+import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
 import com.cos.halfPizza.domain.auth.dto.UsernameCheckReqDto;
 import com.google.gson.Gson;
@@ -66,7 +67,36 @@ public class AuthRepository {
 		responseDto.setStatusCode(400);
 		return gson.toJson(responseDto);
 	}
-	public void findByIdAndPassword() {
-		
+	public User findByUsernameAndPassword(LoginReqDto dto) {
+		String sql = "SELECT id, name, username, birth, phone, email, role, emailAd, smsAd, createDate, updateDate FROM users WHERE username=? AND password=?";
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getUsername());
+			pstmt.setString(2, dto.getPassword());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return User.builder()
+						.id(rs.getInt("id"))
+						.name(rs.getString("name"))
+						.username(rs.getString("username"))
+						.birth(rs.getDate("birth"))
+						.phone(rs.getString("phone"))
+						.email(rs.getString("email"))
+						.role(rs.getString("role"))
+						.emailAd(rs.getInt("emailAd"))
+						.smsAd(rs.getInt("smsAd"))
+						.createDate(rs.getTimestamp("createDate"))
+						.updateDate(rs.getTimestamp("updateDate"))
+						.build();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {	// 항상 실행
+			DBConn.close(conn, pstmt, rs);
+		}
+		return null;
 	}
 }

@@ -133,7 +133,7 @@ public class Dispatcher implements Filter {
 	}
 	
 	private boolean exclusionUri(String endPoint) {
-		String[] exclusions  = { "/js", "/css", "/font", "/images"};
+		String[] exclusions  = { "/js", "/css", "/font", "/images", "/index.jsp"};
 		if(endPoint.length() == 1){
 			return true;
 		}
