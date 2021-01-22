@@ -176,14 +176,16 @@ main .container .subpage-box{height: 546px; width: 100%; background: #fff; displ
 .join-box .userIdCheck{width: 150px; height: 50px; border-radius: 50px; border: none; color: #000; background: #ffe100; font-family: inherit; letter-spacing: 1px; font-weight: bold}
 .join-box .phone,
 .join-box .email{margin-bottom: 50px;}
-.join-box .email input[type='email']{height: 50px; width: 150px;}
-.join-box .email select{height: 50px; width: 100px; border-radius: 50px; border-color: grey;}
+.join-box .email input{height: 50px; width: 150px;}
+.join-box .email select{height: 50px; width: 120px; border-radius: 50px; border-color: grey;padding-left:20px;}
 .join-box .marketing{margin-bottom: 30px}
 .join-box .marketing .lbl{margin-right: 20px;}
 .join-box .marketing .lbl:before{top: -2px;}
 .join-box .marketing .lbl:after{top: -1px;}
 .join-box .marketing .checkbox input:checked +.lbl:after{top:10px;}
-
+.join-box .btn-blue{display: block; margin: 0 auto;}
+.join-box p.warning {padding-left:90px;color:red;margin-bottom:5px;display:none;}
+.join-box p.good {padding-left:90px;color:#009900;margin-bottom:5px;display:none;}
 
 
 /*login*//*login*//*login*//*login*//*login*/

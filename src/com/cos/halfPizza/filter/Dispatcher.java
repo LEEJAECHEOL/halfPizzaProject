@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
+import com.cos.halfPizza.anno.RestController;
+import com.cos.halfPizza.domain.CommonDto;
+import com.cos.halfPizza.util.Script;
 
 
 public class Dispatcher implements Filter {
@@ -79,9 +82,40 @@ public class Dispatcher implements Filter {
 									path = (String) method.invoke(controllerInstance);
 								}
 								System.out.println(path);
+								if(path == null) {
+									break;
+								}
 								RequestDispatcher dis = request.getRequestDispatcher(path);
-								dis.forward(request, response);
+								dis.forward(req, resp);
 								
+								break;
+							}
+						}	// methods end
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}else if(controllerAnnotation instanceof RestController) {
+					try {
+						Object controllerInstance = controller.getDeclaredConstructor().newInstance();
+						Method[] methods = controller.getDeclaredMethods();
+						
+						for (Method method : methods) {
+							Annotation annotation = method.getDeclaredAnnotation(RequestMapping.class);
+							RequestMapping requestMapping = (RequestMapping) annotation;
+							
+							if(requestMapping.value().equals(endPoint)) {
+								Parameter[] params = method.getParameters();
+								
+								String data;
+								if (params.length != 0) {
+									Object dtoInstance = params[0].getType().getDeclaredConstructor().newInstance();
+									setData(dtoInstance, request);
+									data = (String)method.invoke(controllerInstance, dtoInstance);
+								} else {
+									data = (String)method.invoke(controllerInstance);
+								}
+								Script.responseData(resp, data);
 								break;
 							}
 						}	// methods end

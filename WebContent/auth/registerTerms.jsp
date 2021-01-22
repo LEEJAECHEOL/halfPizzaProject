@@ -43,16 +43,35 @@
                             인증 이외의 용도로 이용 또는 저장하지 않습니다.
                         </p>
                     </div>
-                    <a href="" class="btn-blue">휴대폰 인증</a>
+                    <a href="" class="btn-blue" id="nextBtn">휴대폰 인증</a>
                 </div>
 
             </div>
         </div>
     </main>
+	<script>
+		document.querySelector('#allCheck').addEventListener('click', function(){
+			if(this.checked){
+				document.querySelectorAll('input[name="allCheck"]').forEach((checkbox)=> checkbox.checked=true);
+			}else {
+				document.querySelectorAll('input[name="allCheck"]').forEach((checkbox)=> checkbox.checked=false);
+			}
+		});
+		document.querySelector('#nextBtn').addEventListener('click', function(e) {
+			e.preventDefault();
+			if(document.querySelector('#Check1').checked && document.querySelector('#Check2').checked){
+				location.href='${pageContext.request.contextPath}/auth/register';
+			}else{
+				alert('홈페이지 이용약관은 필수 동의 항목 입니다.');
+			}
+			
+
+		});
+			
+			
+	</script>
 
 <%@ include file="../layouts/footer.jsp" %>
-
-
     <!--   팝업1-->
     <div class="popup">
         <h2>이용약관</h2>
