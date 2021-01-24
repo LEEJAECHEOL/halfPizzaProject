@@ -82,7 +82,7 @@
                     <li>
                         <img src="${pageContext.request.contextPath}/images/common/ico_gnb_menu1.png" alt="">
                         <h3>메뉴</h3>
-                        <a href="#a">피자</a>
+                        <a href="${pageContext.request.contextPath}/menu">피자</a>
                         <a href="#a">1+1</a>
                         <a href="#a">세트</a>
                         <a href="#a">사이드</a>
