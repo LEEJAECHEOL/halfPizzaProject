@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
 import com.cos.halfPizza.anno.RestController;
-import com.cos.halfPizza.domain.CommonDto;
 import com.cos.halfPizza.util.Script;
+import com.oreilly.servlet.MultipartRequest;
 
 
 public class Dispatcher implements Filter {
@@ -71,6 +71,8 @@ public class Dispatcher implements Filter {
 											callParameter[i] = req;
 										}else if(paramName.equals("HttpServletResponse")) {
 											callParameter[i] = resp;
+										}else if(paramName.equals("MultipartRequest")){
+											callParameter[i] = req;
 										}else {
 											Object dtoInstance = params[i].getType().getDeclaredConstructor().newInstance();
 											setData(dtoInstance, request);
@@ -152,9 +154,15 @@ public class Dispatcher implements Filter {
 	}
 
 	private <T> void setData(T dtoInstance, ServletRequest request) {
-//		System.out.println("인스턴스 타입 : " + dtoInstance.getClass());
-		Enumeration<String> params = request.getParameterNames();
-
+		String contentType = (request.getContentType()).split(";")[0];
+//		System.out.println("setData() : " + contentType);
+		Enumeration<String> params = null;
+		if(contentType.equals("multipart/form-data")) {
+			params = request.getAttributeNames();
+		}else {
+			params = request.getParameterNames();
+		}
+		
 		while (params.hasMoreElements()) {
 			String key = (String) params.nextElement();
 			String methodKey = keyToMethodKey(key);
@@ -163,7 +171,12 @@ public class Dispatcher implements Filter {
 			for (Method m : methods) {
 				if (m.getName().equals(methodKey)) {
 					try {
-						m.invoke(dtoInstance, request.getParameter(key));
+						if(contentType.equals("multipart/form-data")) {
+							m.invoke(dtoInstance, request.getAttribute(key));
+							request.removeAttribute(key);
+						}else {
+							m.invoke(dtoInstance, request.getParameter(key));
+						}								
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

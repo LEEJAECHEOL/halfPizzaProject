@@ -13,6 +13,7 @@
 - 인코딩 utf-8
 - git
 - lucy
+- cos
 
 
 ## MySQL 데이터베이스 생성 및 사용자 생성

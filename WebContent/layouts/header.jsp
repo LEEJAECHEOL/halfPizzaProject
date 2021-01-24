@@ -44,6 +44,9 @@
 				  	<c:when test="${sessionScope.user!=null}">
 				  		<div class="login">
 				  			<span>${sessionScope.user.name}님 환영합니다.</span>
+				  			<c:if test="${sessionScope.user.role eq 'ADMIN'}">
+				  				<a href="">관리페이지</a>
+				  			</c:if>
 				  			<a href="">마이페이지</a>
 				  			<a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a>
 		                    <a href="#a" class="cart"><img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""></a>
