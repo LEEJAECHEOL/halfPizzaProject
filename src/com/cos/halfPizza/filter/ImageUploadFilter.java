@@ -43,7 +43,7 @@ public class ImageUploadFilter implements Filter {
 			// 이미지 업로드
 			try {
 				MultipartRequest multi = new MultipartRequest(req, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
-				String kind = multi.getParameter("kind");
+				String gubun = multi.getParameter("gubun");
 				
 				Enumeration<?> params = multi.getParameterNames();
 				while(params.hasMoreElements()) {
@@ -51,12 +51,12 @@ public class ImageUploadFilter implements Filter {
 					req.setAttribute(param, multi.getParameter(param));
 				}
 				Enumeration<?> files = multi.getFileNames();
-		        String fname = (String)files.nextElement();
-		        String fileName = multi.getFilesystemName(fname);
+		        String file = (String)files.nextElement();
+		        String fileName = multi.getFilesystemName(file);
 		        SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		        Calendar time = Calendar.getInstance();   
-		        String type = (multi.getContentType(fname)).split("/")[1]; 
-		        String newFileName = kind + "_" + format.format(time.getTime()) + '.' + type;
+		        String type = (multi.getContentType(file)).split("/")[1]; 
+		        String newFileName = gubun + "_" + format.format(time.getTime()) + '.' + type;
 		        File oldFile = new File(uploadPath + fileName);
 		        File newFile = new File(uploadPath + newFileName);
 		        oldFile.renameTo(newFile); 

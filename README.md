@@ -42,4 +42,16 @@ create table users(
     createDate timestamp,
     updateDate timestamp
 );
+create table menu(
+    id int primary key auto_increment,
+    gubun varchar(10),
+    originFileName varchar(200) null,
+    changeFileName varchar(100) null,
+    path varchar(100) null,
+    title varchar(100) not null,
+    content text null,
+    price int not null,
+    isR boolean,
+    createDate timestamp
+);
 ```

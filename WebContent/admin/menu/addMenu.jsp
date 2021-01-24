@@ -9,8 +9,14 @@
 <body>
 	<form action="/halfPizza/admin/menu/registProc" method="post" enctype="multipart/form-data">
 		<label>상품 이미지</label>
-		<input type="hidden" name="kind" value="pizza">
 		<input type="file" name="file">
+		<select name="gubun">
+			<option value="pizza">피자</option>
+			<option value="banban">반반피자</option>
+			<option value="plusOne">원플러스원피자</option>
+			<option value="set">세트</option>
+			<option value="side">사이드</option>
+		</select>
 		<label>상품 명 : </label><input type="text" name="title">
 		<label>상품 설명 : </label><textarea name="content" rows="3" cols=""></textarea>
 		<label>가격 : </label><input type="text" name="price">

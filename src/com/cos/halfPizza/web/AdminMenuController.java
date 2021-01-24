@@ -3,6 +3,7 @@ package com.cos.halfPizza.web;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cos.halfPizza.anno.Controller;
@@ -27,7 +28,7 @@ public class AdminMenuController {
 	}
 	
 	@RequestMapping("/admin/menu/registProc")
-	public void registProc(RegistMenuReqDto dto, HttpServletResponse resp) {
+	public void registProc(RegistMenuReqDto dto, HttpServletResponse resp, HttpServletRequest req) {
 		int result = adminMenuService.save(dto);
 		if(result == 1) {
 			try {
@@ -37,7 +38,7 @@ public class AdminMenuController {
 			}
 		}else {
 			// 디비에 정보를 넣기전에 이미지는 이미 업로드가 되기때문이 지워주어야 함.
-			File file = new File(dto.getPath() + dto.getChangeFileName());
+			File file = new File(req.getSession().getServletContext().getRealPath(dto.getPath()) + dto.getChangeFileName());
 			if(file.exists()) {
 				file.delete();
 			}

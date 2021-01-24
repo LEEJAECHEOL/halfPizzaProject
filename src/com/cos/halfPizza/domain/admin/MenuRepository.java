@@ -10,20 +10,21 @@ public class MenuRepository {
 	
 	public int save(RegistMenuReqDto dto) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("INSERT INTO menu(originFileName, changeFileName, path, title, content, price, isR, createDate) ");
-		sb.append("VALUES(?, ?, ?, ?, ?, ?, ?, now())");
+		sb.append("INSERT INTO menu(gubun, originFileName, changeFileName, path, title, content, price, isR, createDate) ");
+		sb.append("VALUES(?, ?, ?, ?, ?, ?, ?, ?, now())");
 		String sql = sb.toString();
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getOriginFileName());
-			pstmt.setString(2, dto.getChangeFileName());
-			pstmt.setString(3, dto.getPath());
-			pstmt.setString(4, dto.getTitle());
-			pstmt.setString(5, dto.getContent());
-			pstmt.setInt(6, dto.getPrice());
-			pstmt.setInt(7, dto.getIsR());
+			pstmt.setString(1, dto.getGubun());
+			pstmt.setString(2, dto.getOriginFileName());
+			pstmt.setString(3, dto.getChangeFileName());
+			pstmt.setString(4, dto.getPath());
+			pstmt.setString(5, dto.getTitle());
+			pstmt.setString(6, dto.getContent());
+			pstmt.setInt(7, dto.getPrice());
+			pstmt.setInt(8, dto.getIsR());
 			
 			int result = pstmt.executeUpdate();
 			return result;
