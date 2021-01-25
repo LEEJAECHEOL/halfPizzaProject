@@ -54,4 +54,9 @@ create table menu(
     isR boolean,
     createDate timestamp
 );
+create table optional(
+    id int primary key auto_increment,
+    title varchar(100) not null,
+    price int not null
+);
 ```

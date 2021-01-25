@@ -47,7 +47,7 @@
 				  		<div class="login">
 				  			<span>${sessionScope.user.name}님 환영합니다.</span>
 				  			<c:if test="${sessionScope.user.role eq 'ADMIN'}">
-				  				<a href="">관리페이지</a>
+				  				<a href="${pageContext.request.contextPath}/admin">관리페이지</a>
 				  			</c:if>
 				  			<a href="">마이페이지</a>
 				  			<a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a>

@@ -1,4 +1,4 @@
-package com.cos.halfPizza.service;
+package com.cos.halfPizza.service.admin;
 
 import com.cos.halfPizza.domain.admin.AdminRepository;
 

@@ -19,6 +19,7 @@ public class MenuController {
 	@RequestMapping("/menu")
 	public String index(HttpServletRequest req) {
 		List<MenuListRespDto> menu = menuService.findAll();
+		
 		req.setAttribute("menu", menu);
 		return "/menu/index.jsp";
 	}

@@ -11,13 +11,13 @@ import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
 import com.cos.halfPizza.domain.admin.dto.RegistMenuReqDto;
 import com.cos.halfPizza.domain.menu.Menu;
-import com.cos.halfPizza.service.AdminMenuService;
+import com.cos.halfPizza.service.admin.MenuService;
 import com.cos.halfPizza.util.Script;
 
 @Controller
 public class AdminMenuController {
 	
-	private AdminMenuService adminMenuService = new AdminMenuService();
+	private MenuService adminMenuService = new MenuService();
 	
 	@RequestMapping("/admin/menu/list")
 	public String index(HttpServletRequest req) {
@@ -28,7 +28,7 @@ public class AdminMenuController {
 	
 	@RequestMapping("/admin/menu/regist")
 	public String regist() {
-		return "/admin/menu/addMenu.jsp";
+		return "/admin/menu/registForm.jsp";
 	}
 	
 	@RequestMapping("/admin/menu/registProc")
