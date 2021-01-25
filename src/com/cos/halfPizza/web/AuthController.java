@@ -29,9 +29,12 @@ public class AuthController {
 //		System.out.println("loginProc()");
 		try {
 			User user = authService.findByUsernameAndPassword(dto);
-			session.setAttribute("user", user);
-			System.out.println(user);
-			response.sendRedirect("/halfPizza/");
+			if(user != null) {
+				session.setAttribute("user", user);
+				response.sendRedirect("/halfPizza/");
+			}else {
+				Script.back(response, "아이디 또는 비밀번호를 확인해주세요.");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

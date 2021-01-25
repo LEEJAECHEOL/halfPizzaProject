@@ -154,7 +154,10 @@ public class Dispatcher implements Filter {
 	}
 
 	private <T> void setData(T dtoInstance, ServletRequest request) {
-		String contentType = (request.getContentType()).split(";")[0];
+		String contentType = "";
+		if(request.getContentType() != null) {
+			contentType = (request.getContentType()).split(";")[0];
+		}
 //		System.out.println("setData() : " + contentType);
 		Enumeration<String> params = null;
 		if(contentType.equals("multipart/form-data")) {
@@ -162,7 +165,6 @@ public class Dispatcher implements Filter {
 		}else {
 			params = request.getParameterNames();
 		}
-		
 		while (params.hasMoreElements()) {
 			String key = (String) params.nextElement();
 			String methodKey = keyToMethodKey(key);
