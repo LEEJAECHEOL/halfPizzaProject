@@ -3,7 +3,7 @@ package com.cos.halfPizza.domain.admin.dto;
 import lombok.Data;
 
 @Data
-public class OptionalRegistReqDto {
+public class RegistOptionalReqDto {
 	private String title;
 	private int price;
 	

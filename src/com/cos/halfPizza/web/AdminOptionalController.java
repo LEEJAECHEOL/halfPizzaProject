@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
-import com.cos.halfPizza.domain.admin.dto.OptionalRegistReqDto;
+import com.cos.halfPizza.domain.admin.dto.RegistOptionalReqDto;
 import com.cos.halfPizza.domain.menu.Menu;
 import com.cos.halfPizza.domain.menu.Optional;
 import com.cos.halfPizza.service.admin.OptionalService;
@@ -32,7 +32,7 @@ public class AdminOptionalController {
 		return "/admin/optional/registForm.jsp";
 	}
 	@RequestMapping("/admin/optional/registProc")
-	public void registProc(OptionalRegistReqDto dto, HttpServletResponse resp) {
+	public void registProc(RegistOptionalReqDto dto, HttpServletResponse resp) {
 		int result = optionalService.추가선택등록하기(dto);
 		if(result == 1) {
 			try {

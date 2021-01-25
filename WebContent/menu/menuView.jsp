@@ -58,41 +58,98 @@
                         </table>
                     </div>
                     <div class="choice-menu-detail-left-bottom">
-                        <h4><span>더블포크쉬림프 콘치즈피자</span><b>20,900 원</b></h4>
-                        <p><span>+ Regular</span><b>0 원</b></p>
-                        <h5><span>총 주문금액</span><b>20,900원</b></h5>
+                        <div class="menu-request">
+                       		<h4 data-id=${menu.id} data-title=${menu.title} data-price=${menu.price - 2000 }><span>${menu.title }</span><b><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" /> 원</b></h4>
+                        	<p id="size" data-size="R" data-price="0"><span>+ Regular</span><b>0 원</b></p>
+                        </div>
+                        <h5><span>총 주문금액</span><b id="totalPrice" data-total=${menu.price - 2000 }><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" />원</b></h5>
                         <button>담기</button>
                     </div>
                 </div>
                 <div class="choice-menu-detail-right">
                     <div class="choice-menu-detail-right-top">
                         <h3>[필수]기본</h3>
-                        <ul>
-                            <li class="selected">Regular</li>
-                            <li>Large</li>
+                        <ul class="choice-size">
+                            <li class="selected" data-size="R" data-price=0>Regular</li>
+                            <li data-size="L" data-price=2000>Large</li>
                         </ul>
                     </div>
                     <div class="choice-menu-detail-right-bottom">
                         <h3>추가선택</h3>
-                        <div class="choice-menu-detail-right-bottom-list">
-                            <span class="selected">치즈추가</span>
-                            <span>코카콜라 500ML</span>
-                            <span>코카콜라 1.25L</span>
-                            <span>스프라이트 500ML</span>
-                            <span>스프라이트 1.5L</span>
-                            <span>특제 갈릭소스</span>
-                            <span>수제피클</span>
-                            <span>THE 맛있는 핫소스</span>
-                            <span>오븐 스파게티</span>
-                            <span>치킨텐더(4조각)</span>
-                            <span>훈제치킨(한마리)</span>
-                            <span>THE 매운 훈제치킨(한마리)</span>
+                        <div class="choice-menu-detail-right-bottom-list choice-option">
+                        <c:choose>
+						  	<c:when test="${optional!=null}">
+								<c:forEach var="opt" items="${optional}">
+									<span data-id=${opt.id} data-price=${opt.price}>${opt.title}</span>
+								</c:forEach>
+						  	</c:when>
+						  	<c:otherwise>
+						  		<h3>등록된 메뉴가 없습니다.</h3>
+						  	</c:otherwise>
+					  	</c:choose>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <script>
+		document.querySelector('.choice-size').addEventListener('click', function(e){
+			if(e.target && e.target.tagName==="LI"){
+				let _li = e.target;
+				document.querySelector('.choice-size li.selected').classList.remove('selected');
+				_li.classList.add('selected');
+				let _p =document.querySelector('.menu-request #size');
+				let _size = _li.dataset.size;
+				let _totalPrice = document.querySelector('#totalPrice');
+				if(_size === 'R'){
+					if(_p.dataset.size === 'L'){
+						_totalPrice.dataset.total = Number(_totalPrice.dataset.total) - 2000;
+					}
+					_p.children[0].textContent = "+ Regular";
+					_p.children[1].textContent = "0 원";
+				}else{
+					if(_p.dataset.size === 'R'){
+						_totalPrice.dataset.total = Number(_totalPrice.dataset.total) + 2000;
+					}
+					_p.children[0].textContent = "+ Large";
+					_p.children[1].textContent = "2,000 원";
+				}
+				_p.dataset.size = _li.dataset.size;
+				_p.dataset.price = _li.dataset.price;
+				_totalPrice.textContent = moneyComma(_totalPrice.dataset.total);
+			}
+		});
+		
+		document.querySelector('.choice-option').addEventListener('click', function(e){
+			if(e.target && e.target.tagName==="SPAN"){
+				let _span = e.target;
+				_span.classList.toggle('selected');
+				let _id = _span.dataset.id;
+				let _price = _span.dataset.price;
+				let _totalPrice = document.querySelector('#totalPrice');
+				if(_span.classList.contains('selected')){
+					let _text = _span.textContent;
+					let _request = document.querySelector('.menu-request');
+					let _content = "<p data-id='" + _id + "' data-price='" + _price + "'><span>+ " + _text + "</span><b>" + moneyComma(_price) + "</b></p> ";
+					_request.insertAdjacentHTML("beforeend", _content);
+					_totalPrice.dataset.total = Number(_totalPrice.dataset.total) + Number(_price);
+				}else{
+					let _request = document.querySelectorAll('.menu-request p');
+					_request.forEach(function(e) {
+						if(e.dataset.id === _id){
+							e.remove();
+							_totalPrice.dataset.total = Number(_totalPrice.dataset.total) - Number(_price);
+						}
+					});
+				}
+				_totalPrice.textContent = moneyComma(_totalPrice.dataset.total);
+			}
+		});
+		function moneyComma(val){
+			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+		}
+    </script>
 
 
 <%@ include file="../layouts/footer.jsp" %>

@@ -259,14 +259,15 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .choice-menu-detail .choice-menu-detail-left .choice-menu-detail-left-bottom h4{display: flex; justify-content: space-between; margin-bottom: 10px;}
 .choice-menu-detail .choice-menu-detail-left .choice-menu-detail-left-bottom h4 span{font-size: 16px; font-weight: normal; color: #494949;}
 .choice-menu-detail .choice-menu-detail-left .choice-menu-detail-left-bottom h4 b{font-size: 16px;}
-.choice-menu-detail .choice-menu-detail-left .choice-menu-detail-left-bottom p{display: flex; justify-content: space-between; color: #494949; font-size: 16px; margin-bottom: 20px;}
+.choice-menu-detail .choice-menu-detail-left .choice-menu-detail-left-bottom p{display: flex; justify-content: space-between; color: #494949; font-size: 16px; margin-bottom:4px;}
+.choice-menu-detail .choice-menu-detail-left .choice-menu-detail-left-bottom > div {margin-bottom: 20px;}
 .choice-menu-detail .choice-menu-detail-left .choice-menu-detail-left-bottom h5{display: flex; justify-content: space-between; font-size: 20px; color: #00a0e9;}
 .choice-menu-detail .choice-menu-detail-left .choice-menu-detail-left-bottom button{display: block; position: absolute; left: 50%; bottom: -30px; transform: translateX(-50%); width: 180px; height: 60px; border-radius: 50px; border: none; background: #00a0e9; color: #fff; font-weight: bold; font-size: 20px;}
 .choice-menu-detail .choice-menu-detail-right{margin-left: 20px; padding: 50px 40px 100px; background: #ffe100; border-radius: 50px; height: 626px;}
 .choice-menu-detail .choice-menu-detail-right .choice-menu-detail-right-top{padding-top: 40px; font-weight: bold;}
 .choice-menu-detail .choice-menu-detail-right .choice-menu-detail-right-top h3{font-size: 18px; margin-bottom: 15px;}
 .choice-menu-detail .choice-menu-detail-right .choice-menu-detail-right-top ul{display: flex; width: 450px; height: 70px;background: #fff; border-radius: 50px; align-items: center; padding: 10px;}
-.choice-menu-detail .choice-menu-detail-right .choice-menu-detail-right-top ul li{display: block; flex: 1; width: 100%;text-align: center; height: 100%; line-height: 50px; margin-right: 10px;}
+.choice-menu-detail .choice-menu-detail-right .choice-menu-detail-right-top ul li{display: block; flex: 1; width: 100%;text-align: center; height: 100%; line-height: 50px; margin-right: 10px;cursor:pointer;}
 .choice-menu-detail .choice-menu-detail-right .choice-menu-detail-right-top ul li:last-child{margin: 0;}
 .choice-menu-detail .choice-menu-detail-right .choice-menu-detail-right-top ul li.selected{background: #ffe100; border-radius: 50px;}
 .choice-menu-detail .choice-menu-detail-right .choice-menu-detail-right-bottom{padding-top: 40px;}
