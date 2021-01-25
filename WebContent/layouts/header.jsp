@@ -58,13 +58,14 @@
 				  	<c:otherwise>
 		                <div class="login">
 		                    <a href="${pageContext.request.contextPath}/auth/login">로그인</a>
-		                    <a href="#a" class="cart"><img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""></a>
+		                    <a href="${pageContext.request.contextPath}/cart" class="cart">
+		                    <img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""><b id="cartNum">${cartCount == 0 ? '' : cartCount }</b>
+		                    </a>
 		                </div>
 				  	</c:otherwise>
 				  </c:choose>
             </div>
         </div>
-
     <!--네비게이션-->
         <nav class="nav-list">
             <ul class="main-menu">

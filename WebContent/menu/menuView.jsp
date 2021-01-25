@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -63,7 +64,7 @@
                         	<p id="size" data-size="R" data-price="0"><span>+ Regular</span><b>0 원</b></p>
                         </div>
                         <h5><span>총 주문금액</span><b id="totalPrice" data-total=${menu.price - 2000 }><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" />원</b></h5>
-                        <button>담기</button>
+                        <button type="button" id="cartBtn">담기</button>
                     </div>
                 </div>
                 <div class="choice-menu-detail-right">
@@ -93,6 +94,7 @@
             </div>
         </div>
     </main>
+    
     <script>
 		document.querySelector('.choice-size').addEventListener('click', function(e){
 			if(e.target && e.target.tagName==="LI"){
@@ -149,6 +151,69 @@
 		function moneyComma(val){
 			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
 		}
+		document.querySelector('#cartBtn').addEventListener('click', function(){
+			let _menu = document.querySelector('.menu-request h4');
+			let _size = document.querySelector('.menu-request p#size');
+			let _option = document.querySelectorAll('.menu-request p');
+			let _total = document.querySelector('#totalPrice');
+		
+			let optionArray = [];
+			for(let i = 1; i < _option.length; i++){
+				let content = {
+					id : _option[i].dataset.id,
+					price : _option[i].dataset.price,
+					text : _option[i].children[0].textContent
+				}
+				optionArray.push(content);
+			}
+			let request = {
+				menu : {
+					id : _menu.dataset.id,
+					title : _menu.dataset.title,
+					price : _menu.dataset.price,
+					src : "${pageContext.request.contextPath}${menu.path}${menu.changeFileName}"
+				},
+				size : {
+					size : _size.dataset.size,
+					price : _size.dataset.price,
+					text : _size.children[0].textContent
+				},
+				option : optionArray,
+				totalPrice : _total.dataset.total
+			}
+			SetCookie("cart", JSON.stringify(request), null);
+		});
+		function SetCookie( strName, strValue, iSecond )
+		{
+			let i = 1;
+			for(i = 1; i <= 5; i++){
+				if(getCookie(strName + i) === null){
+					strName = strName + i;
+					break;
+				}
+			}
+			if(i > 5){
+				alert("최대 5개까지 장바구니에 추가하실 수 있습니다."); return;
+			}
+			var strCookie = strName + "=" + encodeURIComponent(strValue);
+			strCookie += "path=/halfPizza";
+			if( typeof iSecond === "number" )
+			{
+				strCookie += "; max-age=" + iSecond;
+			}
+			strCookie += "; path=/halfPizza";
+			document.cookie = strCookie;
+			let num = document.querySelector("#cartNum").textContent === "" ? 0 : Number(document.querySelector("#cartNum").textContent);
+			document.querySelector("#cartNum").textContent = num + 1;
+			if(confirm("장바구니에 제품이 담겼습니다.\n장바구니로 이동하시겠습니까?")){
+				location.href="/halfPizza/cart";
+			}
+		}
+		function getCookie(name) {
+			  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+			  return value? value[2] : null;
+		}
+		console.log(decodeURIComponent(getCookie('cart2')));
     </script>
 
 
