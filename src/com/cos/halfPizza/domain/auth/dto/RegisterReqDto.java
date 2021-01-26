@@ -1,7 +1,5 @@
 package com.cos.halfPizza.domain.auth.dto;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data

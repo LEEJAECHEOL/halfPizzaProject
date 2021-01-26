@@ -213,19 +213,32 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 
 
 /*menu*//*menu*//*menu*//*menu*//*menu*/
-.menu-list{width: 100%;}
-.menu-list ul{display: flex; height: 50px; align-items: center; margin-bottom: 80px;}
-.menu-list ul li{flex: 1; height: 100%; line-height: 50px; text-align: center; margin-right:50px;}
-.menu-list ul li:last-child{margin-right: 0;}
-.menu-list ul li a{display: inline-block; width: 100%; height: 100%; background: #fff; color: #000; font-family: NR; font-weight: bold; position: relative;}
+.menu-list,
+.mypage-list{width: 100%;}
+.menu-list ul,
+.mypage-list ul{display: flex; height: 50px; align-items: center; margin-bottom: 80px;}
+.menu-list ul li,
+.mypage-list ul li{flex: 1; height: 100%; line-height: 50px; text-align: center; margin-right:50px;}
+.menu-list ul li:last-child,
+.mypage-list ul li:last-child{margin-right: 0;}
+.menu-list ul li a,
+.mypage-list ul li a{display: inline-block; width: 100%; height: 100%; background: #fff; color: #000; font-family: NR; font-weight: bold; position: relative;}
 
-.menu-list ul li a.selected{background: #ffe100;  box-shadow: 0px 15px 40px -13px rgba(0, 0, 0, 0.4);}
-.menu-list ul li:last-child a:after{display: none;}
-.menu-list ul li:first-child a:before{display: none;}
+.menu-list ul li a.selected,
+.mypage-list ul li a.selected{background: #ffe100;  box-shadow: 0px 15px 40px -13px rgba(0, 0, 0, 0.4);}
+.menu-list ul li:last-child a:after,
+.mypage-list ul li:last-child a:after{display: none;}
+.menu-list ul li:first-child a:before,
+.mypage-list ul li:first-child a:before{display: none;}
 .menu-list ul li a.selected:after,
-.menu-list ul li a.selected:before{background: #ffe100;}
-.menu-list ul li a:before{content: ''; position: absolute; left: -20px; top: 0; width: 80px; height: 50px; background: #fff; transform: skewX(-25deg);}
-.menu-list ul li a:after{content: ''; position: absolute; right: -20px; top: 0; width: 80px; height: 50px; background: #fff; transform: skewX(-25deg);}
+.menu-list ul li a.selected:before,
+.mypage-list ul li a.selected:after,
+.mypage-list ul li a.selected:before{background: #ffe100;}
+.menu-list ul li a:before,
+.mypage-list ul li a:before{content: ''; position: absolute; left: -20px; top: 0; width: 80px; height: 50px; background: #fff; transform: skewX(-25deg);}
+.menu-list ul li a:after,
+.mypage-list ul li a:after{content: ''; position: absolute; right: -20px; top: 0; width: 80px; height: 50px; background: #fff; transform: skewX(-25deg);}
+
 
 .pizza-list{display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 50px;}
 .pizza-list .pizza-item{display: flex; flex-direction: column; align-items: center; background: #fff; padding: 0 20px 50px; border-radius: 50px; font-family: NR; transition: all .5s;}
@@ -308,7 +321,7 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .notice-box .notice-item a span{color: #929292;}
 .notice-box .notice-item a span b{font-weight: normal;}
 .notice-box .notice-item:nth-child(5) a{border: none;}
-.notice-box .notice-more{width: 190px; height: 60px; border-radius: 50px; border: none; background: #929292; color: #fff; position: absolute; left: 50%; bottom: -6%; transform: translate(-50%);}
+.notice-box .notice-more{width: 190px; height: 60px; border-radius: 50px; border: none; background: #929292; color: #fff; position: absolute; left: 50%; bottom: -30px; transform: translate(-50%);}
 
 .faq-item{height: 72.5px; overflow: hidden; transition: all .5s;}
 .faq-item.full{height: 135px;}
@@ -333,53 +346,58 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .agree-conten-1{width: 490px; height: 400px; overflow-y: scroll;}
 .agree-conten-1{color: #666;}
 
+.order-lookup,
+.order-info{background: #fff; padding: 50px 40px; border-radius: 50px; font-family: NR; margin-bottom: 30px;}
+.order-info{position: relative;}
+.order-lookup h3{font-size: 22px; margin-bottom: 30px;}
+.order-lookup span{margin-right: 20px;}
+.order-lookup input{width: 400px; height: 70px; border-radius: 50px; border: 1px solid #666; text-indent: 10px; padding: 0 20px;}
+.order-lookup button{display: block; width: 400px; height: 50px; border-radius: 50px; border: none; background: #00a0e9; color: #fff; margin: 50px auto 0; font-weight: bold;}
+.order-info h3{font-size: 22px; margin-bottom: 20px;} 
+.order-info .order-info-detail{display: flex; justify-content: space-between; padding-right: 80px; margin-bottom: 50px;}
+.order-info .order-info-detail table th{border-bottom: 20px solid transparent; text-align: left; font-weight: normal;}
+.order-info .order-info-detail table td{font-weight: bold;}
+.order-info .order-info-detail button{width: 50px; height: 50px; color: #fff; border: none; background: #00a0e9; border-radius: 50%;}
+.order-info .order-list-more{width: 200px; height: 50px; position: absolute; left: 50%; bottom: -25px; transform: translateX(-50%); border-radius: 50px; border: none; background: #666; color: #fff;}
 
+.mypage-passwordCk{display: flex; flex-direction: column; width: 500px; font-family: NR;}
+.mypage-passwordCk h3{font-size: 22px; margin-bottom: 30px;}
+.mypage-passwordCk form{width:100%;} 
+.mypage-passwordCk input{height: 70px; width:100%; border-radius: 50px; border: 1px solid #ddd; text-indent: 30px; margin-bottom: 30px;}
+.mypage-passwordCk .passwordCk-warning{display: flex; flex-direction: column; margin-bottom: 60px;}
+.mypage-passwordCk .passwordCk-warning >*{margin-bottom: 10px;}
+.mypage-passwordCk .passCk{display: block; width: 400px; height: 60px; margin: 0 auto; border: none; border-radius: 50px; color: #fff; background: #00a0e9;}
 
-/*order*//*order*//*order*//*order*//*order*/
-.my-address{display: flex; justify-content: space-between; font-family: NR;align-items:center;}
-.my-address span{font-size: 22px; color: #000;}
-.my-address a{width: 120px; height: 50px;line-height: 50px;text-align:center; padding: 0 10px; border-radius: 50px; border: none; background: #b2b2b2; color: #fff;}
+.mypage-update-box{width: 100%; background: #fff; padding: 70px; border-radius: 50px; font-family: NR;}
+.mypage-update-box .update-form-top{margin-bottom: 50px;}
+.mypage-update-box .update-form-top h3,
+.mypage-update-box .update-form-middle h3,
+.mypage-update-box .update-form-bottom h3{font-size: 20px; padding-bottom: 40px;}
+.mypage-update-box .update-form-top p{height: 60px; line-height: 60px; margin-bottom: 20px;}
+.mypage-update-box .update-form-top p span{display: inline-block; width: 100px;}
+.mypage-update-box .update-form-top p input{height: 60px; padding: 0 30px; border-radius: 50px; border: 1px solid #bfbfbf;}
+.mypage-update-box .update-form-top p input:-moz-read-only {background-color: #f3f3f3;}
+.mypage-update-box .update-form-top p input:read-only {background-color: #f3f3f3;}  
+.mypage-update-box .update-form-top .update-name input,
+.mypage-update-box .update-form-top .update-id input{width: 380px;}
+.mypage-update-box .update-form-top .update-password input{width: 450px;}
+.mypage-update-box .update-form-top .update-phone input{width: 400px;}
+.mypage-update-box .update-form-top .update-phone a{display:inline-block; width: 160px; height: 60px; border-radius: 50px; border: none; background: #ffe100; font-weight: bold; text-align: center;}
+.mypage-update-box .update-form-top .update-email input,
+.mypage-update-box .update-form-top .update-email select{width: 220px;}
+.mypage-update-box .update-form-top .update-email select{height: 60px; padding: 0 30px; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 50px; border: 1px solid #bfbfbf;}
 
-.order-box{background: #fff; margin-top: 20px; display: flex; padding: 60px 70px; border-radius: 50px; font-family: NR; margin-bottom: 40px;position:relative;}
-.order-box .order-content{padding:0 150px 0 50px; width: 100%;}
-.order-box .order-content .pizza-info{display: flex; justify-content: space-between;}
-.order-box .order-content .pizza-info h3{font-size: 25px;}
-.order-box .order-content .pizza-info span{font-size: 25px; color: #00a0e9; font-weight: bold;}
-.order-box .order-content .other-thing {font-size: 18px; margin: 20px 0 40px;; color: #777;}
-.order-box .order-content .other-thing table {width:100%;}
-.order-box .order-content .other-thing td{border-bottom: 10px solid transparent;}
-.order-box .order-content .other-thing td:last-child {text-align:right}
-.order-box .order-content .pizza-count{display: flex; justify-content: space-between;}
-.order-box .order-content .pizza-count span{color: #000; font-weight: bold; font-size: 18px;}
-.order-box .order-content .pizza-count div{width: 100px; height: 38px; position: relative; }
-.order-box .order-content .pizza-count div button{position: absolute; width: 30px; height: 100%; background: #d9d9d9; color: #fff; font-size: 25px; border: none;}
-.order-box .order-content .pizza-count div .qtyminus{left: 0; top: 0; border-radius: 50px 0 0 50px;}
-.order-box .order-content .pizza-count div .qtyplus{right: 0; top: 0; border-radius: 0px 50px 50px 0;}
-.order-box .order-content .pizza-count div input{width: 100%; height: 100%; text-align: center; padding-left: 15px; border: none;}
-.order-box .order-content .pizza-price{text-align: right; margin-top: 30px; font-weight: bold; color: #00a0e9; font-size: 30px;}
-.order-box .delete-cart {position:absolute; right:80px;background-color:transparent;border:0;font-size:30px;}
-.total-price{padding: 30px 70px; background: #fff; border-radius: 50px; display: flex; justify-content: space-between;  font-family: NR;}
-.total-price h3{font-size: 25px; color: #000; line-height: 2;}
-.total-price span{font-size: 40px; color: #00a0e9; font-weight: bold;}
+.mypage-update-box .update-form-middle{margin-bottom: 50px;}
+.mypage-update-box .update-form-middle p{margin-bottom: 16px; font-size: 16px;}
+.mypage-update-box .update-form-middle .lbl:before{top: 0px;}
+.mypage-update-box .update-form-middle .lbl:after{top: 1px;}
+.mypage-update-box .update-form-middle label:nth-of-type(1){margin-right: 80px;}
+.mypage-update-box .update-form-bottom{margin-bottom: 50px;}
+.mypage-update-box .update-form-bottom p{height: 60px; width: 70%; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
+.mypage-update-box .update-form-bottom p button{width: 180px; height: 60px; border-radius: 50px; border: 1px solid #bfbfbf; background: #fff; display: flex; justify-content: center; align-items: center;}
+.mypage-update-box .update-form-bottom p button img{margin-right: 25px;}
+.mypage-update-box .update-form-bottom p button b{ font-weight: normal;}
+.mypage-update-box form > a{color: #000; margin-bottom: 50px; display: block; position: relative;}
+.mypage-update-box form > a:after{content: ''; position: absolute; left: 0; bottom: -3px; width: 65px; height: 1px; background: #000;}
+.mypage-update-box form > button{display: block; width: 460px; height: 60px; margin: 0 auto; border-radius: 50px; border: none; color: #fff; background: #00a0e9; font-weight: bold; font-size: 20px;}
 
-.order-button{margin-top: 50px; padding: 0 70px; display: flex; justify-content: space-between;}
-.order-button button{width: 460px; height: 70px; border-radius: 50px; border: none; font-size: 20px; font-family: NR; color: #fff;}
-.order-button .add-menu{background: #6b6b6b;}
-.order-button .order-start{background: #00a0e9;}
-
-.address-box{background: #fff; margin-top: 20px; padding: 60px 70px; border-radius: 50px; font-family: NR;}
-.address-box h3{font-size: 22px; margin-top: 20px; display: flex; justify-content: space-between;align-items:center; padding-bottom: 15px; border-bottom: 1px solid #999;}
-.address-box h3 button{display: inline-block; padding: 15px; border-radius: 50px; border: none;background: #b2b2b2; color: #fff; font-size: 18px; font-weight: bold;}
-.address-box ul li{padding: 40px 20px 40px; text-align: center; border-bottom: 1px solid #999;display: flex;justify-content: space-between;align-items:center;}
-.address-box ul li span {cursor:pointer; border:2px solid #FFE100;border-radius:50%;width:30px;height:30px;line-height:30px;}
-.address-box ul li button {background-color:#fff; border:0;font-size:20px;}
-.address-box > button{display: block; margin: 0 auto; margin-top: 90px; width: 460px; height: 70px; border: none; border-radius: 50px; background: #00a0e9; color: #fff; font-size: 20px;}
-
-#layer .detail {display:none;width:100%; height:100%;background-color:#fff;flex-direction:column;padding:40px;}
-#layer .detail h3 {font-size:26px;}
-#layer .detail span {margin-top:10px;font-size:20px;}
-#layer .detail div {display:flex;margin-top:15px}
-#layer .detail #detailInput {height:50px;margin-top:5px;border-radius:30px;border:1px solid #ccc;padding:0 20px;}
-#layer .detail div button {width:50%;height:50px;border:0; border-radius:30px;color:#fff;font-size:20px;}
-#layer .detail div button:first-child {background-color:#6B6B6B;margin-right:10px;}
-#layer .detail div button:last-child {background-color:#03A1E9;}

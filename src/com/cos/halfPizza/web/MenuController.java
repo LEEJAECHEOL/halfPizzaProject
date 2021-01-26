@@ -27,8 +27,8 @@ public class MenuController {
 	}
 	@RequestMapping("/menu/menuView")
 	public String detail(MenuViewReqDto dto, HttpServletRequest req) {
-		MenuViewRespDto respDto = menuService.ë©”ë‰´ìƒì„¸ë³´ê¸°(dto);
-		List<Optional> opt = OptionalService.ì¶”ê°€ì„ íƒëª©ë¡ê°€ì ¸ì˜¤ê¸°();
+		MenuViewRespDto respDto = menuService.¸Ş´º»ó¼¼º¸±â(dto);
+		List<Optional> opt = OptionalService.Ãß°¡¼±ÅÃ¸ñ·Ï°¡Á®¿À±â();
 		req.setAttribute("menu", respDto);
 		req.setAttribute("optional", opt);
 		return "/menu/menuView.jsp";

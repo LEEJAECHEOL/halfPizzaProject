@@ -36,7 +36,7 @@
                     </div>
                     <div class="phone">
                         <span>휴대전화</span>
-                        <input type="text" name="phone"id ="phone" required>
+                        <input type="text" name="phone" id ="phone" required>
                     </div>
 
                     <h3>이메일정보 입력</h3>
@@ -75,6 +75,7 @@
 		document.querySelector('#emailAd').addEventListener('click', function(){
 			console.log(this);
 		});
+		
 		document.querySelector('#eSelect').addEventListener("change", function(){
 			let _value = this.value;
 			let _emailBack = document.querySelector('#emailBack');
@@ -87,16 +88,20 @@
 			}
 			inputEmail();
 		});
+		
 		document.querySelector('#emailFront').addEventListener("change", function(){
 			inputEmail();
 		});
+		
 		document.querySelector('#emailBack').addEventListener("change", function(){
 			inputEmail();
 		});
+		
 		document.querySelector('#phone').addEventListener("blur", function(){
 			let val = this.value;
 			this.value = val.substr(0,3) + '-' + val.substr(3,4) + '-' + val.substr(7);
 		});
+		
 		document.querySelector('#phone').addEventListener("focus", function(){
 			this.value = this.value.replace(/[^0-9]/g,'');
 		});

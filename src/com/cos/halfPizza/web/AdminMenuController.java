@@ -21,7 +21,7 @@ public class AdminMenuController {
 	
 	@RequestMapping("/admin/menu/list")
 	public String index(HttpServletRequest req) {
-		List<Menu> menu = adminMenuService.ë©”ë‰´ëª©ë¡ê°€ì ¸ì˜¤ê¸°();
+		List<Menu> menu = adminMenuService.¸Ş´º¸ñ·Ï°¡Á®¿À±â();
 		req.setAttribute("menu", menu);
 		return "/admin/menu/index.jsp";
 	}
@@ -33,7 +33,7 @@ public class AdminMenuController {
 	
 	@RequestMapping("/admin/menu/registProc")
 	public void registProc(RegistMenuReqDto dto, HttpServletResponse resp, HttpServletRequest req) {
-		int result = adminMenuService.ë©”ë‰´ë“±ë¡í•˜ê¸°(dto);
+		int result = adminMenuService.¸Ş´ºµî·ÏÇÏ±â(dto);
 		if(result == 1) {
 			try {
 				resp.sendRedirect("/halfPizza/admin/menu/list");
@@ -41,12 +41,12 @@ public class AdminMenuController {
 				e.printStackTrace();
 			}
 		}else {
-			// ë””ë¹„ì— ì •ë³´ë¥¼ ë„£ê¸°ì „ì— ì´ë¯¸ì§€ëŠ” ì´ë¯¸ ì—…ë¡œë“œê°€ ë˜ê¸°ë•Œë¬¸ì´ ì§€ì›Œì£¼ì–´ì•¼ í•¨.
+			// µğºñ¿¡ Á¤º¸¸¦ ³Ö±âÀü¿¡ ÀÌ¹ÌÁö´Â ÀÌ¹Ì ¾÷·Îµå°¡ µÇ±â¶§¹®ÀÌ Áö¿öÁÖ¾î¾ß ÇÔ.
 			File file = new File(req.getSession().getServletContext().getRealPath(dto.getPath()) + dto.getChangeFileName());
 			if(file.exists()) {
 				file.delete();
 			}
-			Script.back(resp, "ì…ë ¥í•˜ì‹  ì •ë³´ë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.");
+			Script.back(resp, "ÀÔ·ÂÇÏ½Å Á¤º¸¸¦ ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.");
 		}
 	}
 	

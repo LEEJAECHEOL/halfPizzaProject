@@ -19,13 +19,10 @@
 </style>
 </head>
 <body>
-	<div>
-		<a href="${pageContext.request.contextPath}/">Home</a>
-		<a href="${pageContext.request.contextPath}/admin/menu/list">메뉴관리</a>
-		<a href="${pageContext.request.contextPath}/admin/optional">추가선택관리</a>
-		<a href="">공지사항관리</a>
-		<a href="">QnA관리</a>
-		<a href="">이벤트관리</a>
-	</div>
+	<a href="${pageContext.request.contextPath}/admin/menu/list">메뉴관리</a>
+	<a href="${pageContext.request.contextPath}/admin/optional">추가선택관리</a>
+	<a href="${pageContext.request.contextPath}/admin/notice/list">공지사항관리</a>
+	<a href="${pageContext.request.contextPath}/admin/faq/list">FAQ관리</a>
+	<a href="${pageContext.request.contextPath}/admin/event/list">이벤트관리</a>
 </body>
 </html>

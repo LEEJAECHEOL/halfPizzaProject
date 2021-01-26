@@ -107,7 +107,7 @@
 				  			<c:if test="${sessionScope.user.role eq 'ADMIN'}">
 				  				<a href="${pageContext.request.contextPath}/admin">관리페이지</a>
 				  			</c:if>
-				  			<a href="">마이페이지</a>
+				  			<a href="${pageContext.request.contextPath}/auth/myPage?id=${user.id}">마이페이지</a>
 				  			<a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a>
 		                    <a href="#a" class="cart"><img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""></a>
 		                </div>
@@ -159,9 +159,9 @@
                     <li>
                         <img src="${pageContext.request.contextPath}/images/common/ico_gnb_menu4.png" alt="">
                         <h3>커뮤니티</h3>
-                        <a href="#a">이벤트</a>
-                        <a href="#a">공지사항</a>
-                        <a href="#a">FAQ</a>
+                        <a href="${pageContext.request.contextPath}/community/event">이벤트</a>
+                        <a href="${pageContext.request.contextPath}/community/notice">공지사항</a>
+                        <a href="${pageContext.request.contextPath}/community/faq">FAQ</a>
                         <a href="#a">고객의 소리</a>
                         <a href="#a">채용하기</a>
                     </li>

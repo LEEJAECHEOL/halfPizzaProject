@@ -22,7 +22,7 @@ public class AdminOptionalController {
 	
 	@RequestMapping("/admin/optional")
 	public String index(HttpServletRequest req) {
-		List<Optional> opt = optionalService.ì¶”ê°€ì„ íƒëª©ë¡ê°€ì ¸ì˜¤ê¸°();
+		List<Optional> opt = optionalService.Ãß°¡¼±ÅÃ¸ñ·Ï°¡Á®¿À±â();
 		req.setAttribute("optional", opt);
 		
 		return "/admin/optional/index.jsp";
@@ -33,7 +33,7 @@ public class AdminOptionalController {
 	}
 	@RequestMapping("/admin/optional/registProc")
 	public void registProc(RegistOptionalReqDto dto, HttpServletResponse resp) {
-		int result = optionalService.ì¶”ê°€ì„ íƒë“±ë¡í•˜ê¸°(dto);
+		int result = optionalService.Ãß°¡¼±ÅÃµî·ÏÇÏ±â(dto);
 		if(result == 1) {
 			try {
 				resp.sendRedirect("/halfPizza/admin/optional");
@@ -41,7 +41,7 @@ public class AdminOptionalController {
 				e.printStackTrace();
 			}
 		}else {
-			Script.back(resp, "ì…ë ¥í•˜ì‹  ì •ë³´ë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.");
+			Script.back(resp, "ÀÔ·ÂÇÏ½Å Á¤º¸¸¦ ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.");
 		}
 	}
 }

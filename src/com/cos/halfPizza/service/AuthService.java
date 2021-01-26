@@ -4,6 +4,8 @@ import com.cos.halfPizza.domain.auth.AuthRepository;
 import com.cos.halfPizza.domain.auth.User;
 import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
+import com.cos.halfPizza.domain.auth.dto.UpdateChkReqDto;
+import com.cos.halfPizza.domain.auth.dto.UpdateReqDto;
 import com.cos.halfPizza.domain.auth.dto.UsernameCheckReqDto;
 
 public class AuthService {
@@ -23,5 +25,10 @@ public class AuthService {
 	public User findByUsernameAndPassword(LoginReqDto dto) {
 		return authRepository.findByUsernameAndPassword(dto);
 	}
-
+	public int findByIdAndPassword(UpdateChkReqDto dto) {
+		return authRepository.findByIdAndPassword(dto);
+	}
+	public int update(UpdateReqDto dto) {
+		return authRepository.update(dto);
+	}
 }

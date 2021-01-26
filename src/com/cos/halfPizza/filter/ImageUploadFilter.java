@@ -39,8 +39,12 @@ public class ImageUploadFilter implements Filter {
 			if(endPoint.equals("/admin/menu/registProc")) {
 				path = "/images/menu/";
 			}
+			else if(endPoint.equals("/admin/event/registProc")) {
+				path = "/images/event/";
+			}
 			String uploadPath = req.getSession().getServletContext().getRealPath(path);
-			// 이미지 업로드
+			System.out.println("업로드 패스: "+uploadPath);
+			// �씠誘몄� �뾽濡쒕뱶
 			try {
 				MultipartRequest multi = new MultipartRequest(req, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 				String gubun = multi.getParameter("gubun");
@@ -50,6 +54,7 @@ public class ImageUploadFilter implements Filter {
 					String param = (String)params.nextElement();
 					req.setAttribute(param, multi.getParameter(param));
 				}
+				
 				Enumeration<?> files = multi.getFileNames();
 		        String file = (String)files.nextElement();
 		        String fileName = multi.getFilesystemName(file);
@@ -65,7 +70,7 @@ public class ImageUploadFilter implements Filter {
 		        req.setAttribute("path", path);
 		        
 			} catch (Exception e) {
-				Script.back(resp, "파일크기가 너무 큽니다.");
+				Script.back(resp, "파일의 크기가 너무 큽니다.");
 			}
 		
 		}
