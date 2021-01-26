@@ -50,7 +50,7 @@
 			                        </div>
 			                    </div>
 			                    <div class="pizza-price">
-			                        <span class="partPrice" data-price=${item.totalPrice} data-count=1><fmt:formatNumber value="${item.totalPrice}" pattern="#,###" />원</span>
+			                        <span class="partPrice" data-price=${item.totalPrice} data-count=${item.count}><fmt:formatNumber value="${item.totalPrice}" pattern="#,###" />원</span>
 			                    </div>
 			                </div>
 			               	<button class="delete-cart" onClick="deleteCart('${item.name}')" ><i class="fas fa-times"></i></button>

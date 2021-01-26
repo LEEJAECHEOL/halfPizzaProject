@@ -191,7 +191,8 @@
 					text : _size.children[0].textContent
 				},
 				option : optionArray,
-				totalPrice : _total.dataset.total
+				totalPrice : _total.dataset.total,
+				count : 1
 			}
 			SetCookie(cookieName , JSON.stringify(request), null);
 		});
