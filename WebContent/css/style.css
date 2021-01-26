@@ -439,6 +439,7 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .address-box h3 button{display: inline-block; padding: 15px; border-radius: 50px; border: none;background: #b2b2b2; color: #fff; font-size: 18px; font-weight: bold;}
 .address-box ul li{padding: 40px 20px 40px; text-align: center; border-bottom: 1px solid #999;display: flex;justify-content: space-between;align-items:center;}
 .address-box ul li span {cursor:pointer; border:2px solid #FFE100;border-radius:50%;width:30px;height:30px;line-height:30px;}
+.address-box ul li span.selected {background-color:#FFE100;}
 .address-box ul li button {background-color:#fff; border:0;font-size:20px;}
 .address-box > button{display: block; margin: 0 auto; margin-top: 90px; width: 460px; height: 70px; border: none; border-radius: 50px; background: #00a0e9; color: #fff; font-size: 20px;}
 

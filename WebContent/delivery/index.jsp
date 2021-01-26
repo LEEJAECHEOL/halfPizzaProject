@@ -16,7 +16,7 @@
 				  	<c:when test="${addr!=null}">
 						<c:forEach var="ad" items="${addr}">
 	           				<li class="${ad.name}">
-	           					<span><i class='fas fa-check'></i></span>
+	           					<span onClick="selectedAddr('${ad.name}')"><i class='fas fa-check'></i></span>
 	           					${ad.addr}
 	           					<button type="button" onClick="deleteAddr('${ad.name}')"><i class='fas fa-times'></i></button></li>
 						</c:forEach>
@@ -147,10 +147,10 @@
 				addr : addrValue + " " + detailValue
 			}
 			SetCookie(cookieName , JSON.stringify(addr), null);
-			let content = "<li><span><i class='fas fa-check'></i></span>";
+			let content = "<li class='" + cookieName + "'><span onClick=\"selectedAddr('" + cookieName +"')\"><i class='fas fa-check'></i></span>";
 			content += (addrValue + " " + detailValue);
-			content += "<button><i class='fas fa-times'></i></button></li>";
-			document.querySelector('.no-addr').remove();
+			content += "<button onClick=\"deleteAddr('" + cookieName + "')\"><i class='fas fa-times'></i></button></li>";
+			document.querySelector('.no-addr') ? document.querySelector('.no-addr').remove():null;
 			document.querySelector('.address-list').insertAdjacentHTML("beforeend", content);
 			element_layer.style.display = 'none';
 			
@@ -180,7 +180,18 @@
 		function deleteCookie(name) {
 			document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 		}
-		
+		function selectedAddr(val){
+			let _li = document.querySelector('.' + val);
+			let _span = _li.children[0];
+			removeSelectedAddr();
+			_span.classList.toggle('selected');
+		}
+		function removeSelectedAddr(){
+			let lis = document.querySelectorAll('.address-list li');
+			lis.forEach(function(li){
+				li.children[0].classList.remove('selected');
+			});
+		}
 	</script>
 <%@ include file="../layouts/footer.jsp" %>
 </body>
