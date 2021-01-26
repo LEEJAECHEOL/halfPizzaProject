@@ -166,7 +166,19 @@
 				}
 				optionArray.push(content);
 			}
+			let cookieName = "cart";
+			let i = 1;
+			for(i = 1; i <= 5; i++){
+				if(getCookie(cookieName + i) === null){
+					cookieName = cookieName + i;
+					break;
+				}
+			}
+			if(i > 5){
+				alert("최대 5개까지 장바구니에 추가하실 수 있습니다."); return;
+			}
 			let request = {
+				name : cookieName,
 				menu : {
 					id : _menu.dataset.id,
 					title : _menu.dataset.title,
@@ -181,20 +193,10 @@
 				option : optionArray,
 				totalPrice : _total.dataset.total
 			}
-			SetCookie("cart", JSON.stringify(request), null);
+			SetCookie(cookieName , JSON.stringify(request), null);
 		});
 		function SetCookie( strName, strValue, iSecond )
 		{
-			let i = 1;
-			for(i = 1; i <= 5; i++){
-				if(getCookie(strName + i) === null){
-					strName = strName + i;
-					break;
-				}
-			}
-			if(i > 5){
-				alert("최대 5개까지 장바구니에 추가하실 수 있습니다."); return;
-			}
 			var strCookie = strName + "=" + encodeURIComponent(strValue);
 			strCookie += "path=/halfPizza";
 			if( typeof iSecond === "number" )
@@ -213,7 +215,7 @@
 			  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
 			  return value? value[2] : null;
 		}
-		console.log(decodeURIComponent(getCookie('cart2')));
+		/* console.log(decodeURIComponent(getCookie('cart2'))); */
     </script>
 
 

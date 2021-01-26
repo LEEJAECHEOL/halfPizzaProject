@@ -8,13 +8,13 @@
                 <h3 class="underLine"><span>주문서</span></h3>
             </div>
             <div class="my-address">
-                <span>부산 남구 문현동 800-18 1층</span>
-                <button>변경</button>
+                <span>배송지를 선택해주세요.</span>
+                <a href="${pageContext.request.contextPath}/delivery">변경</a>
             </div>
             <c:choose>
 			  	<c:when test="${cart!=null}">
-					<c:forEach var="item" items="${cart}" varStatus="status">
-           				<div class="order-box" data-cartNo=${status.index + 1 }>
+					<c:forEach var="item" items="${cart}">
+           				<div class="order-box ${item.name}">
            					<div class="order-menu">
 			                    <img src="${item.menu.src}" alt="">
 			                </div>
@@ -29,12 +29,12 @@
 			                                <col width="80%">
 			                                <col width="20%">
 			                            </colgroup>
-			                            <tr>
+			                            <tr class="size">
 			                                <td>${item.size.text}</td>
 			                                <td><fmt:formatNumber value="${item.size.price}" pattern="#,###" />원</td>
 			                            </tr>
 			                            <c:forEach var="option" items="${item.option}" varStatus="status">
-			                            	<tr>
+			                            	<tr class="option">
 				                                <td>${option.text}</td>
 				                                <td><fmt:formatNumber value="${option.price}" pattern="#,###" />원</td>
 				                            </tr>
@@ -45,14 +45,15 @@
 			                        <span>수량</span>
 			                        <div>
 			                            <button class="qtyminus" field="quantity">-</button>
-			                            <input id="qty" type="number" name="quantity" value="1" class="qty" />
+			                            <input id="qty" type="number" name="quantity" value="1" class="qty" readonly />
 			                            <button class="qtyplus" field="quantity">+</button>
 			                        </div>
 			                    </div>
 			                    <div class="pizza-price">
-			                        <span class="partPrice"><fmt:formatNumber value="${item.totalPrice}" pattern="#,###" />원</span>
+			                        <span class="partPrice" data-price=${item.totalPrice} data-count=1><fmt:formatNumber value="${item.totalPrice}" pattern="#,###" />원</span>
 			                    </div>
 			                </div>
+			               	<button class="delete-cart" onClick="deleteCart('${item.name}')" ><i class="fas fa-times"></i></button>
            				</div>
 					</c:forEach>
 			  	</c:when>
@@ -62,7 +63,7 @@
 		  	</c:choose>
             <div class="total-price">
                 <h3>총 주문금액</h3>
-                <span>25,400</span>
+                <span id="cartToltalPrice">0원</span>
             </div>
             <div class="order-button">
                 <button class="add-menu">메뉴추가</button>
@@ -71,44 +72,67 @@
         </div>
     </main>
     <script>
-		console.log(document.querySelectorAll('.partPrice'));
+		function deleteCart(cartNo){
+			document.querySelector("." + cartNo).remove();
+			deleteCookie(cartNo);
+		}
+		function deleteCookie(name) {
+			document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+		}
+		function moneyComma(val){
+			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+		}
+		window.addEventListener('DOMContentLoaded', function() {
+			let prices = document.querySelectorAll('.partPrice');
+			let price = 0;
+			prices.forEach(function(p){
+				price += Number(p.dataset.price);
+			});
+			document.querySelector('#cartToltalPrice').dataset.price = price;
+			document.querySelector('#cartToltalPrice').textContent = moneyComma(price);
+		});
+
     </script>
     <script>
         $(function() {
-            // This button will increment the value
             $('.qtyplus').click(function(e) {
-                // Stop acting like a button
                 e.preventDefault();
-                // Get the field name
                 fieldName = $(this).attr('field');
-                // Get its current value
                 var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-                // If is not undefined
                 if (!isNaN(currentVal)) {
-                    // Increment
                     $('input[name=' + fieldName + ']').val(currentVal + 1);
+                    let priceSpan = $(this)[0].parentElement.parentElement.nextElementSibling.children[0];
+                    priceSpan.dataset.count = Number(priceSpan.dataset.count) + 1;
+                    priceSpan.textContent = moneyComma(priceSpan.dataset.price * priceSpan.dataset.count);
+                    totalPriceUpdate();
                 } else {
-                    // Otherwise put a 0 there
                     $('input[name=' + fieldName + ']').val(0);
                 }
             });
-            // This button will decrement the value till 0
             $(".qtyminus").click(function(e) {
-                // Stop acting like a button
                 e.preventDefault();
-                // Get the field name
                 fieldName = $(this).attr('field');
-                // Get its current value
                 var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-                // If it isn't undefined or its greater than 0
                 if (!isNaN(currentVal) && currentVal > 1) {
-                    // Decrement one
                     $('input[name=' + fieldName + ']').val(currentVal - 1);
+                    let priceSpan = $(this)[0].parentElement.parentElement.nextElementSibling.children[0];
+                    priceSpan.dataset.count = Number(priceSpan.dataset.count) - 1;
+                    priceSpan.textContent = moneyComma(priceSpan.dataset.price * priceSpan.dataset.count);
+                    totalPriceUpdate();
                 } else {
-                    // Otherwise put a 0 there
                     $('input[name=' + fieldName + ']').val(1);
                 }
             });
+
+            function totalPriceUpdate(){
+            	let prices = document.querySelectorAll('.partPrice');
+    			let price = 0;
+    			prices.forEach(function(p){
+    				price += Number(p.dataset.price) * p.dataset.count;
+    			});
+    			document.querySelector('#cartToltalPrice').dataset.price = price;
+    			document.querySelector('#cartToltalPrice').textContent = moneyComma(price);
+            }
 
         });
     </script>
