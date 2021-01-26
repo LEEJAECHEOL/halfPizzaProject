@@ -59,4 +59,30 @@ create table optional(
     title varchar(100) not null,
     price int not null
 );
+
+create table faq(
+    id int primary key auto_increment,
+    gubun varchar(100),
+    title varchar(100),
+    content text null,
+    createDate timestamp,
+    updateDate timestamp
+);
+create table event(
+    id int primary key auto_increment,
+    title varchar(100),
+    content text null,
+    fromDate date,
+    toDate date,
+    originFileName varchar(100),
+    changeFileName varchar(100),
+    path varchar(100)
+);
+create table notice(
+    id int primary key auto_increment,
+    title varchar(100),
+    content text null,
+    createDate timestamp,
+    updateDate timestamp
+);
 ```

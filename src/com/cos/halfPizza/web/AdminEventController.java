@@ -18,7 +18,7 @@ public class AdminEventController {
 	
 	@RequestMapping("/admin/event/list")
 	public String index(HttpServletRequest req) {
-		List<Event> events = EventService.ÀÌº¥Æ®¸ñ·Ï°¡Á®¿À±â();
+		List<Event> events = EventService.ì´ë²¤íŠ¸ëª©ë¡ê°€ì ¸ì˜¤ê¸°();
 		req.setAttribute("events", events);
 		return "/admin/event/index.jsp";
 	}
@@ -30,7 +30,7 @@ public class AdminEventController {
 	
 	@RequestMapping("/admin/event/registProc")
 	public void registProc(RegistEventReqDto dto, HttpServletResponse resp, HttpServletRequest req) {		
-		int result = EventService.ÀÌº¥Æ®µî·ÏÇÏ±â(dto);
+		int result = EventService.ì´ë²¤íŠ¸ë“±ë¡í•˜ê¸°(dto);
 		if(result == 1) {
 			try {
 				resp.sendRedirect("/halfPizza/admin/event/list");
@@ -38,12 +38,12 @@ public class AdminEventController {
 				e.printStackTrace();
 			}
 		}else {
-			// µğºñ¿¡ Á¤º¸¸¦ ³Ö±âÀü¿¡ ÀÌ¹ÌÁö´Â ÀÌ¹Ì ¾÷·Îµå°¡ µÇ±â¶§¹®ÀÌ Áö¿öÁÖ¾î¾ß ÇÔ.
+			// ë””ë¹„ì— ì •ë³´ë¥¼ ë„£ê¸°ì „ì— ì´ë¯¸ì§€ëŠ” ì´ë¯¸ ì—…ë¡œë“œê°€ ë˜ê¸°ë•Œë¬¸ì´ ì§€ì›Œì£¼ì–´ì•¼ í•¨.
 			File file = new File(req.getSession().getServletContext().getRealPath(dto.getPath()) + dto.getChangeFileName());
 			if(file.exists()) {
 				file.delete();
 			}
-			Script.back(resp, "ÀÔ·ÂÇÏ½Å Á¤º¸¸¦ ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.");
+			Script.back(resp, "ì…ë ¥í•˜ì‹  ì •ë³´ë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.");
 		}
 	}
 }

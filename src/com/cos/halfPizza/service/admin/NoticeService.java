@@ -11,10 +11,10 @@ public class NoticeService {
 	public NoticeService() {
 		this.noticeRepository = new NoticeRepository();
 	}
-	public int °øÁöµî·ÏÇÏ±â(RegistNoticeReqDto dto) {
+	public int ê³µì§€ë“±ë¡í•˜ê¸°(RegistNoticeReqDto dto) {
 		return noticeRepository.save(dto);
 	}
-	public List<Notice> °øÁö¸ñ·Ï°¡Á®¿À±â() {
+	public List<Notice> ê³µì§€ëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
 		return noticeRepository.findAll();
 	}
 }

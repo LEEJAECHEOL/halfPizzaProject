@@ -14,7 +14,7 @@ public class MenuService {
 	public List<MenuListRespDto> findAll(){
 		return menuRepository.findAll();
 	}
-	public MenuViewRespDto ∏ﬁ¥∫ªÛºº∫∏±‚(MenuViewReqDto dto) {
+	public MenuViewRespDto Î©îÎâ¥ÏÉÅÏÑ∏Î≥¥Í∏∞(MenuViewReqDto dto) {
 		return menuRepository.findById(dto);
 	}
 	

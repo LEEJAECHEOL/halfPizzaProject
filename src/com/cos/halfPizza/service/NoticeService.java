@@ -10,7 +10,7 @@ import com.cos.halfPizza.domain.notice.NoticeRepository;
 public class NoticeService {
 	private NoticeRepository noticeRepository = new NoticeRepository();
 	
-	public List<Notice> °øÁö¸ñ·Ï°¡Á®¿À±â() {
+	public List<Notice> ê³µì§€ëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
 		return noticeRepository.findAll();
 	}
 }

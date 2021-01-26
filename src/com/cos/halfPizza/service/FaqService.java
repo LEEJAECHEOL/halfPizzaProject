@@ -8,7 +8,7 @@ import com.cos.halfPizza.domain.faq.FaqRepository;
 public class FaqService {
 	private FaqRepository faqRepository = new FaqRepository();
 	
-	public List<Faq> FAQ¸ñ·Ï°¡Á®¿À±â() {
+	public List<Faq> FAQëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
 		return faqRepository.findAll();
 	}
 }

@@ -12,10 +12,10 @@ private EventRepository eventRepository;
 	public EventService() {
 		this.eventRepository = new EventRepository();
 	}
-	public int ÀÌº¥Æ®µî·ÏÇÏ±â(RegistEventReqDto dto) {
+	public int ì´ë²¤íŠ¸ë“±ë¡í•˜ê¸°(RegistEventReqDto dto) {
 		return eventRepository.save(dto);
 	}
-	public List<Event> ÀÌº¥Æ®¸ñ·Ï°¡Á®¿À±â() {
+	public List<Event> ì´ë²¤íŠ¸ëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
 		return eventRepository.findAll();
 	}
 }

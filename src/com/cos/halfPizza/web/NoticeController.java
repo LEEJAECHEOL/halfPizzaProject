@@ -17,7 +17,7 @@ public class NoticeController {
 	
 	@RequestMapping("/community/notice")
 	public String list(HttpServletRequest req) {
-		List<Notice> notices = noticeService.°øÁö¸ñ·Ï°¡Á®¿À±â();
+		List<Notice> notices = noticeService.ê³µì§€ëª©ë¡ê°€ì ¸ì˜¤ê¸°();
 		req.setAttribute("notices", notices);
 		return "/community/notice.jsp";
 	}

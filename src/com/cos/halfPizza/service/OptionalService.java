@@ -8,7 +8,7 @@ import com.cos.halfPizza.domain.menu.OptionalRepository;
 public class OptionalService {
 	private OptionalRepository optionalRepository = new OptionalRepository();
 	
-	public List<Optional> Ãß°¡¼±ÅÃ¸ñ·Ï°¡Á®¿À±â() {
+	public List<Optional> ì¶”ê°€ì„ íƒëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
 		return optionalRepository.findAll();
 	}
 	

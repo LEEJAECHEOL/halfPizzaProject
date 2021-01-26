@@ -15,7 +15,7 @@ public class FaqController {
 	
 	@RequestMapping("/community/faq")
 	public String list(HttpServletRequest req) {
-		List<Faq> faqs = faqService.FAQ¸ñ·Ï°¡Á®¿À±â();
+		List<Faq> faqs = faqService.FAQëª©ë¡ê°€ì ¸ì˜¤ê¸°();
 		req.setAttribute("faqs", faqs);
 		return "/community/faq.jsp";
 	}

@@ -12,10 +12,10 @@ public class MenuService {
 	public MenuService() {
 		this.menuRepository = new MenuRepository();
 	}
-	public int ¸Ş´ºµî·ÏÇÏ±â(RegistMenuReqDto dto) {
+	public int ë©”ë‰´ë“±ë¡í•˜ê¸°(RegistMenuReqDto dto) {
 		return menuRepository.save(dto);
 	}
-	public List<Menu> ¸Ş´º¸ñ·Ï°¡Á®¿À±â() {
+	public List<Menu> ë©”ë‰´ëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
 		return menuRepository.findAll();
 	}
 

@@ -13,11 +13,11 @@ public class FaqService {
 		this.faqRepository = new FaqRepository();
 	}
 	
-	public int FAQµî·ÏÇÏ±â(RegistFaqReqDto dto) {
+	public int FAQë“±ë¡í•˜ê¸°(RegistFaqReqDto dto) {
 		return faqRepository.save(dto);
 	}
 	
-	public List<Faq> FAQ¸ñ·Ï°¡Á®¿À±â() {
+	public List<Faq> FAQëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
 		return faqRepository.findAll();
 	}
 }

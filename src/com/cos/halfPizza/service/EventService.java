@@ -8,7 +8,7 @@ import com.cos.halfPizza.domain.event.EventRepository;
 public class EventService {
 	private EventRepository eventRepository = new EventRepository();
 	
-	public List<Event> ÀÌº¥Æ®¸ñ·Ï°¡Á®¿À±â() {
+	public List<Event> ì´ë²¤íŠ¸ëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
 		return eventRepository.findAll();
 	}
 }

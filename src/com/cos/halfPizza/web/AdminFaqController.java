@@ -19,7 +19,7 @@ public class AdminFaqController {
 
 	@RequestMapping("/admin/faq/list")
 	public String index(HttpServletRequest req) {
-		List<Faq> faqs = faqService.FAQ¸ñ·Ï°¡Á®¿À±â();
+		List<Faq> faqs = faqService.FAQëª©ë¡ê°€ì ¸ì˜¤ê¸°();
 		req.setAttribute("faqs", faqs);
 		return "/admin/faq/index.jsp";
 	}
@@ -31,7 +31,7 @@ public class AdminFaqController {
 
 	@RequestMapping("/admin/faq/registProc")
 	public void registProc(RegistFaqReqDto dto, HttpServletResponse resp, HttpServletRequest req) {
-		int result = faqService.FAQµî·ÏÇÏ±â(dto);
+		int result = faqService.FAQë“±ë¡í•˜ê¸°(dto);
 		if (result == 1) {
 			try {
 				resp.sendRedirect("/halfPizza/admin/faq/list");
@@ -39,7 +39,7 @@ public class AdminFaqController {
 				e.printStackTrace();
 			}
 		} else {
-			Script.back(resp, "ÀÔ·Â½ÇÆĞ");
+			Script.back(resp, "ì…ë ¥ì‹¤íŒ¨");
 		}
 	}
 }

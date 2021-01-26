@@ -1,3 +1,4 @@
+  
 package com.cos.halfPizza.web;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class EventController {
 	
 	@RequestMapping("/community/event")
 	public String list(HttpServletRequest req) {
-		List<Event> events = eventService.ÀÌº¥Æ®¸ñ·Ï°¡Á®¿À±â();
+		List<Event> events = eventService.ì´ë²¤íŠ¸ëª©ë¡ê°€ì ¸ì˜¤ê¸°();
 		req.setAttribute("events", events);
 		return "/community/event.jsp";
 	}

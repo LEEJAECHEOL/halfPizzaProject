@@ -21,7 +21,7 @@ public class AdminNoticeController {
 	
 	@RequestMapping("/admin/notice/list")
 	public String index(HttpServletRequest req) {
-		List<Notice> notices = noticeService.°øÁö¸ñ·Ï°¡Á®¿À±â();
+		List<Notice> notices = noticeService.ê³µì§€ëª©ë¡ê°€ì ¸ì˜¤ê¸°();
 		req.setAttribute("notices", notices);
 		return "/admin/notice/index.jsp";
 	}
@@ -33,7 +33,7 @@ public class AdminNoticeController {
 
 	@RequestMapping("/admin/notice/registProc")
 	public void registProc(RegistNoticeReqDto dto, HttpServletResponse resp, HttpServletRequest req) {
-		int result = noticeService.°øÁöµî·ÏÇÏ±â(dto);
+		int result = noticeService.ê³µì§€ë“±ë¡í•˜ê¸°(dto);
 		if (result == 1) {
 			try {
 				resp.sendRedirect("/halfPizza/admin/notice/list");
@@ -41,7 +41,7 @@ public class AdminNoticeController {
 				e.printStackTrace();
 			}
 		} else {
-			Script.back(resp, "ÀÔ·Â½ÇÆĞ");
+			Script.back(resp, "ì…ë ¥ì‹¤íŒ¨");
 		}
 	}
 }
