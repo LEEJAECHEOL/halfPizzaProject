@@ -2,7 +2,9 @@ package com.cos.halfPizza.web;
 
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,8 @@ import com.cos.halfPizza.anno.RequestMapping;
 import com.cos.halfPizza.domain.auth.User;
 import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
+import com.cos.halfPizza.domain.auth.dto.UpdateChkReqDto;
+import com.cos.halfPizza.domain.auth.dto.UpdateReqDto;
 import com.cos.halfPizza.service.AuthService;
 import com.cos.halfPizza.util.Script;
 
@@ -24,16 +28,63 @@ public class AuthController {
 	public String login() {
 		return "/auth/loginForm.jsp";
 	}
+	
+	@RequestMapping("/auth/myPage")
+	public String myPage(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		if(session!=null) {
+			User user = (User)session.getAttribute("user");
+//			int id = user.getId();
+//			System.out.println(user);
+//			System.out.println(id);
+			return "/auth/myPageOrder.jsp";
+		}
+		else {
+			Script.back(response, "로그인 해주세요");
+			return "/auth/login";
+		}		
+	}
+	
+	@RequestMapping("/auth/updateChk")
+	public String updateChk() {
+		return "/auth/updateChkForm.jsp";
+	}
+	
+	@RequestMapping("/auth/updateProc")
+	public String updateProc(UpdateReqDto dto) {
+		System.out.println("아이디 : "+dto.getId());
+		System.out.println(dto.getEmail());
+		System.out.println(dto.getPassword());
+		System.out.println(dto.getEmailAd());
+		System.out.println(dto.getSmsAd());
+		return null;
+	}
+	
+	
+	@RequestMapping("/auth/updateChkProc")
+	public String updateChkProc(UpdateChkReqDto dto, HttpServletRequest request, HttpServletResponse response) {
+		int result = authService.findByIdAndPassword(dto);
+		if(result == 1) {
+			try {
+				return "/auth/update.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+			Script.back(response, "비밀번호를 확인해주세요");
+		}
+		return null;
+	}
+	
 	@RequestMapping("/auth/loginProc")
 	public void loginProc(LoginReqDto dto, HttpSession session, HttpServletResponse response) {
-//		System.out.println("loginProc()");
 		try {
 			User user = authService.findByUsernameAndPassword(dto);
 			if(user != null) {
 				session.setAttribute("user", user);
 				response.sendRedirect("/halfPizza/");
 			}else {
-				Script.back(response, "아이디 또는 비밀번호를 확인해주세요.");
+				Script.back(response, "로그인 실패.");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -62,7 +113,7 @@ public class AuthController {
 				e.printStackTrace();
 			}
 		}else {
-			Script.back(response, "입력정보를 다시 확인해주세요.");
+			Script.back(response, "회원가입실패.");
 		}
 	}
 	@RequestMapping("/auth/logout")

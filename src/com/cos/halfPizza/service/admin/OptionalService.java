@@ -10,11 +10,11 @@ public class OptionalService {
 	
 	OptionalRepository optionalRepository = new OptionalRepository();
 	
-	public int ì¶”ê°€ì„ íƒë“±ë¡í•˜ê¸°(RegistOptionalReqDto dto) {
+	public int Ãß°¡¼±ÅÃµî·ÏÇÏ±â(RegistOptionalReqDto dto) {
 		return optionalRepository.save(dto);
 	}
 
-	public List<Optional> ì¶”ê°€ì„ íƒëª©ë¡ê°€ì ¸ì˜¤ê¸°() {
+	public List<Optional> Ãß°¡¼±ÅÃ¸ñ·Ï°¡Á®¿À±â() {
 		return optionalRepository.findAll();
 	}
 

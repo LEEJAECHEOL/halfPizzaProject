@@ -8,6 +8,8 @@ import com.cos.halfPizza.config.DBConn;
 import com.cos.halfPizza.domain.CommonDto;
 import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
+import com.cos.halfPizza.domain.auth.dto.UpdateChkReqDto;
+import com.cos.halfPizza.domain.auth.dto.UpdateReqDto;
 import com.cos.halfPizza.domain.auth.dto.UsernameCheckReqDto;
 import com.google.gson.Gson;
 
@@ -40,6 +42,32 @@ public class AuthRepository {
 		}
 		return -1;
 	}
+	
+	public int update(UpdateReqDto dto) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("UPDATE users set password = ?, email = ?, emailAd = ?, smsAd = ? ");
+		sb.append("where id = ?");
+		String sql = sb.toString();
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getPassword());
+			pstmt.setString(2, dto.getEmail());
+			pstmt.setInt(3, dto.getEmailAd());
+			pstmt.setInt(4, dto.getSmsAd());
+			pstmt.setInt(5, dto.getId());
+			
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return -1;
+	}
+	
 	public String findByUsername(UsernameCheckReqDto dto) {
 		String sql = "SELECT * FROM users WHERE username=?";
 		Connection conn = DBConn.getConnection();
@@ -60,13 +88,14 @@ public class AuthRepository {
 			return gson.toJson(responseDto);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {	// 항상 실행
+		} finally {	
 			DBConn.close(conn, pstmt, rs);
 		}
 		CommonDto<String> responseDto = new CommonDto<String>();
 		responseDto.setStatusCode(400);
 		return gson.toJson(responseDto);
 	}
+	
 	public User findByUsernameAndPassword(LoginReqDto dto) {
 		String sql = "SELECT id, name, username, birth, phone, email, role, emailAd, smsAd, createDate, updateDate FROM users WHERE username=? AND password=?";
 		Connection conn = DBConn.getConnection();
@@ -94,9 +123,32 @@ public class AuthRepository {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {	// 항상 실행
+		} finally {	// �빆�긽 �떎�뻾
 			DBConn.close(conn, pstmt, rs);
 		}
 		return null;
 	}
+	
+	public int findByIdAndPassword(UpdateChkReqDto dto) {
+		String sql = "SELECT * FROM users WHERE id=? AND password=?";
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getId());
+			pstmt.setString(2, dto.getPassword());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {	
+			DBConn.close(conn, pstmt, rs);
+		}
+		return -1;
+	}
+	
+	
 }
