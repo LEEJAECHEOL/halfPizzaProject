@@ -98,7 +98,17 @@
         <div class="top-fix">
             <div class="container">
                 <div class="address">
-                    <a href="${pageContext.request.contextPath}/delivery"><img src="${pageContext.request.contextPath}/images/common/ico_gnb_location.png" alt=""><span>배송정보를 입력해 주세요</span></a>
+                    <a href="${pageContext.request.contextPath}/delivery">
+	                    <img src="${pageContext.request.contextPath}/images/common/ico_gnb_location.png" alt="">
+	                    <c:choose>
+						  	<c:when test="${selectedAddr!=null}">
+						  		<span>${selectedAddr}</span>
+						  	</c:when>
+						  	<c:otherwise>
+						  		<span>배송지를 선택해주세요.</span>
+						  	</c:otherwise>
+					  	</c:choose>
+                    </a>
                 </div>
                 <c:choose>
 				  	<c:when test="${sessionScope.user!=null}">

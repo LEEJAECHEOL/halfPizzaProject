@@ -8,7 +8,16 @@
                 <h3 class="underLine"><span>주문서</span></h3>
             </div>
             <div class="my-address">
-                <span>배송지를 선택해주세요.</span>
+            
+	            <c:choose>
+				  	<c:when test="${selectedAddr!=null}">
+				  		<span>${selectedAddr}</span>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<span>배송지를 선택해주세요.</span>
+				  	</c:otherwise>
+			  	</c:choose>
+			  	
                 <a href="${pageContext.request.contextPath}/delivery">변경</a>
             </div>
             <c:choose>
