@@ -15,10 +15,14 @@ import com.google.gson.Gson;
 @Controller
 public class OrderController {
 	
-	@RequestMapping("/cart")
+	@RequestMapping("/order/cart")
 	public String cart(HttpServletRequest req) {
 		
 		return "/order/cart.jsp";
+	}
+	@RequestMapping("/order/payment")
+	public String payment() {
+		return "/order/payment.jsp";
 	}
 	
 }

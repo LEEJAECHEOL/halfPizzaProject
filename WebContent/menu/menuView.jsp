@@ -166,7 +166,7 @@
 	    	if(data.cartWrap.length !== 0){
 				let i = 0;
 				for(i = 0; i < 5; i++){
-					if(data.cartWrap[i] === undefined){
+					if(data.cartWrap[i] === undefined || data.cartWrap[i] !== name + i ){
 						name = name + i;
 						break;
 					}
@@ -223,7 +223,7 @@
 			let num = document.querySelector("#cartNum").textContent === "" ? 0 : Number(document.querySelector("#cartNum").textContent);
 			document.querySelector("#cartNum").textContent = num + 1;
 			if(confirm("장바구니에 제품이 담겼습니다.\n장바구니로 이동하시겠습니까?")){
-				location.href="/halfPizza/cart";
+				location.href="/halfPizza/order/cart";
 			}
 		}
 		function getCookie(name) {

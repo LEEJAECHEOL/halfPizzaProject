@@ -63,7 +63,7 @@
 	</filter-mapping> 
 	<filter-mapping>
 		<filter-name>cartFilter</filter-name>
-		<url-pattern>/cart</url-pattern>
+		<url-pattern>/order/cart</url-pattern>
 	</filter-mapping> 
    
     <filter-mapping>

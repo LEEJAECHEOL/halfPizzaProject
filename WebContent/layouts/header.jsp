@@ -126,7 +126,7 @@
 				  	<c:otherwise>
 		                <div class="login">
 		                    <a href="${pageContext.request.contextPath}/auth/login">로그인</a>
-		                    <a href="${pageContext.request.contextPath}/cart" class="cart">
+		                    <a href="${pageContext.request.contextPath}/order/cart" class="cart">
 		                    <img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""><b id="cartNum">${cartCount == 0 ? '' : cartCount }</b>
 		                    </a>
 		                </div>

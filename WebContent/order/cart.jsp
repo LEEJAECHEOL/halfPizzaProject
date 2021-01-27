@@ -54,12 +54,12 @@
 			                        <span>수량</span>
 			                        <div>
 			                            <button class="qtyminus" field="quantity">-</button>
-			                            <input id="qty" type="number" name="quantity" value="1" class="qty" readonly />
+			                            <input id="qty" type="number" name="quantity" value="${item.count }" class="qty" readonly />
 			                            <button class="qtyplus" field="quantity">+</button>
 			                        </div>
 			                    </div>
 			                    <div class="pizza-price">
-			                        <span class="partPrice" data-price=${item.totalPrice} data-count=${item.count}><fmt:formatNumber value="${item.totalPrice}" pattern="#,###" />원</span>
+			                        <span class="partPrice" data-price=${item.totalPrice} data-count=${item.count}><fmt:formatNumber value="${item.totalPrice * item.count}" pattern="#,###" /> 원</span>
 			                    </div>
 			                </div>
 			               	<button class="delete-cart" onClick="deleteCart('${item.name}')" ><i class="fas fa-times"></i></button>
@@ -75,8 +75,8 @@
                 <span id="cartToltalPrice">0원</span>
             </div>
             <div class="order-button">
-                <button class="add-menu">메뉴추가</button>
-                <button class="order-start">주문하기</button>
+                <button class="add-menu" type="button" onclick="addMenu()" >메뉴추가</button>
+                <button class="order-start" type="button" onclick="order()">주문하기</button>
             </div>
         </div>
     </main>
@@ -123,27 +123,35 @@
 			document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 		}
 		function moneyComma(val){
-			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원";
 		}
 		window.addEventListener('DOMContentLoaded', function() {
 			let prices = document.querySelectorAll('.partPrice');
 			let price = 0;
 			prices.forEach(function(p){
-				price += Number(p.dataset.price);
+				price += Number(p.dataset.price * p.dataset.count);
 			});
 			document.querySelector('#cartToltalPrice').dataset.price = price;
 			document.querySelector('#cartToltalPrice').textContent = moneyComma(price);
 		});
 
+		function order(){
+			location.href="/halfPizza/order/payment";
+		}
+		function addMenu(){
+			location.href="/halfPizza/menu";
+		}
     </script>
     <script>
         $(function() {
             $('.qtyplus').click(function(e) {
                 e.preventDefault();
-                fieldName = $(this).attr('field');
-                var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                var currentVal = parseInt($(this).prev().val());
                 if (!isNaN(currentVal)) {
-                    $('input[name=' + fieldName + ']').val(currentVal + 1);
+                	$(this).prev().val(currentVal + 1);
+                    let box = $(this)[0].parentElement.parentElement.parentElement.parentElement;
+                    let _thisBox = box.classList[1];
+                    changeCookieCount(_thisBox, 1);
                     let priceSpan = $(this)[0].parentElement.parentElement.nextElementSibling.children[0];
                     priceSpan.dataset.count = Number(priceSpan.dataset.count) + 1;
                     priceSpan.textContent = moneyComma(priceSpan.dataset.price * priceSpan.dataset.count);
@@ -155,9 +163,12 @@
             $(".qtyminus").click(function(e) {
                 e.preventDefault();
                 fieldName = $(this).attr('field');
-                var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                var currentVal = parseInt($(this).next().val());
                 if (!isNaN(currentVal) && currentVal > 1) {
-                    $('input[name=' + fieldName + ']').val(currentVal - 1);
+                    $(this).next().val(currentVal - 1);
+                    let box = $(this)[0].parentElement.parentElement.parentElement.parentElement;
+                    let _thisBox = box.classList[1];
+                    changeCookieCount(_thisBox, -1);
                     let priceSpan = $(this)[0].parentElement.parentElement.nextElementSibling.children[0];
                     priceSpan.dataset.count = Number(priceSpan.dataset.count) - 1;
                     priceSpan.textContent = moneyComma(priceSpan.dataset.price * priceSpan.dataset.count);
@@ -166,7 +177,19 @@
                     $('input[name=' + fieldName + ']').val(1);
                 }
             });
-
+			function changeCookieCount(name, value){
+				let data = null;
+		    	if(getCookie("cart") !== null){
+		    		data = JSON.parse((decodeURIComponent(getCookie("cart"))).replace('path=/halfPizza', ''));
+				}
+				for(let i = 0; i < data.cartWrap.length; i++){
+					if(data.cartWrap[i].name === name){
+						data.cartWrap[i].count += value;
+						break;
+					}
+				}
+				SetCookie("cart" , JSON.stringify(data), null);
+			}
             function totalPriceUpdate(){
             	let prices = document.querySelectorAll('.partPrice');
     			let price = 0;
@@ -176,7 +199,6 @@
     			document.querySelector('#cartToltalPrice').dataset.price = price;
     			document.querySelector('#cartToltalPrice').textContent = moneyComma(price);
             }
-
         });
     </script>
 
