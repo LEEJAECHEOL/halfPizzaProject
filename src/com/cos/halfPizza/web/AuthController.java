@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
+import com.cos.halfPizza.domain.auth.AuthRepository;
 import com.cos.halfPizza.domain.auth.User;
 import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
@@ -49,12 +50,18 @@ public class AuthController {
 	}
 	
 	@RequestMapping("/auth/updateProc")
-	public String updateProc(UpdateReqDto dto) {
-		System.out.println("아이디 : "+dto.getId());
-		System.out.println(dto.getEmail());
-		System.out.println(dto.getPassword());
-		System.out.println(dto.getEmailAd());
-		System.out.println(dto.getSmsAd());
+	public String updateProc(UpdateReqDto dto, HttpServletResponse response, HttpSession session) {
+		int result = authService.update(dto);
+		if(result == 1) {
+			try {
+				session.invalidate();
+				return "/auth/loginForm.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {
+			Script.back(response, "회원 수정에 실패했습니다.");
+		}
 		return null;
 	}
 	

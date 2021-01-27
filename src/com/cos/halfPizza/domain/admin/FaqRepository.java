@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cos.halfPizza.config.DBConn;
+import com.cos.halfPizza.domain.admin.dto.FaqUpdateReqDto;
+import com.cos.halfPizza.domain.admin.dto.FaqUpdateRespDto;
+import com.cos.halfPizza.domain.admin.dto.NoticeUpdateReqDto;
+import com.cos.halfPizza.domain.admin.dto.NoticeUpdateRespDto;
 import com.cos.halfPizza.domain.admin.dto.RegistFaqReqDto;
 import com.cos.halfPizza.domain.event.Event;
 import com.cos.halfPizza.domain.faq.Faq;
@@ -33,7 +37,7 @@ public class FaqRepository {
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {	// Ç×»ó ½ÇÇà
+		} finally {	// ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½
 			DBConn.close(conn, pstmt, rs);
 		}
 		return null;
@@ -60,4 +64,78 @@ public class FaqRepository {
 		}
 		return -1;
 	}
+	
+	public int delete(int id) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("DELETE FROM faq ");
+		sb.append("WHERE id = ?");
+		String sql = sb.toString();
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return -1;
+	}
+	
+	public FaqUpdateRespDto updateForm(int id) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT id, gubun, title, content ");
+		sb.append("FROM faq WHERE id = ?");
+		String sql = sb.toString();
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				FaqUpdateRespDto dto = new FaqUpdateRespDto();
+				dto.setId(rs.getInt("id"));
+				dto.setGubun(rs.getString("gubun"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				System.out.println(dto);
+				return dto;	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return null;
+	}
+	
+	public int update(FaqUpdateReqDto dto) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("UPDATE faq SET gubun = ?, title = ?, content = ? ");
+		sb.append("WHERE id = ?");
+		String sql = sb.toString();
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getGubun());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setInt(4, dto.getId());
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return -1;
+	}
+
+	
 }

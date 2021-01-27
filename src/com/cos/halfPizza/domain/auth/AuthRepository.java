@@ -53,7 +53,7 @@ public class AuthRepository {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getPassword());
-			pstmt.setString(2, dto.getEmail());
+			pstmt.setString(2, dto.getEmailFront()+dto.getEmailBack());
 			pstmt.setInt(3, dto.getEmailAd());
 			pstmt.setInt(4, dto.getSmsAd());
 			pstmt.setInt(5, dto.getId());

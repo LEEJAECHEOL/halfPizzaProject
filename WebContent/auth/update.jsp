@@ -21,7 +21,7 @@
                 <form action="${pageContext.request.contextPath}/auth/updateProc">
                     <div class="update-form-top">
                         <h3>개인정보 입력</h3>
-                        <input type="hidden" value="${user.id}">
+                        <input type="hidden" name="id" value="${user.id}">
                         <p class="update-name">
                             <span>이름</span>
                             <input type="text" value="${user.name}"readonly>
@@ -46,11 +46,14 @@
                         </p>
                         <p class="update-email">
                             <span>이메일</span>
-                            <input type="email" name="emailFront" id="emailFront">
-                            <input type="email" name="emailBack" id="emailBack">
-                            <input type="hidden" name="email" id="email">
+                            <c:set var="e" value="${user.email}"/>
+                            <input type="text" name="emailFront" id="emailFront" value="${fn:substringBefore(e, '@')}">
+                            <input type="text" name="email" id="email" value="${fn:substringAfter(e, '@')}">
+                            
+                            <input type="hidden" name="emailBack" id="emailBack">
+                            
                         <select name="eSelect" id="eSelect">
-							<option value="">직접입력</option>
+							<option value="1" selected="selected">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="nate.com">nate.com</option>
 							<option value="google.com">google.com</option>
@@ -88,13 +91,13 @@
      <script>
 		document.querySelector('#eSelect').addEventListener("change", function(){
 			let _value = this.value;
-			let _emailBack = document.querySelector('#emailBack');
+			let _email = document.querySelector('#email');
 			if(_value === ""){
-				_emailBack.readOnly=false;
-				_emailBack.value = "";
+				_email.readOnly=false;
+				_email.value = "";
 			}else{
-				_emailBack.readOnly=true;
-				_emailBack.value = _value;
+				_email.readOnly=true;
+				_email.value = _value;
 			}
 			inputEmail();
 		});
@@ -103,7 +106,7 @@
 			inputEmail();
 		});
 		
-		document.querySelector('#emailBack').addEventListener("change", function(){
+		document.querySelector('#email').addEventListener("change", function(){
 			inputEmail();
 		});
 		
@@ -137,9 +140,8 @@
 			}
 		});
 		function inputEmail(){
-			let _first = document.querySelector('#emailFront').value;
-			let _end = document.querySelector('#emailBack').value;
-			document.querySelector('#email').value = _first + '@' + _end;
+			let _end = document.querySelector('#email').value;
+			document.querySelector('#emailBack').value = '@' + _end;
 		}
 		document.querySelector('#usernameCheck').addEventListener('click', function(){
 			let _username = document.querySelector('#username').value;

@@ -42,6 +42,9 @@ public class ImageUploadFilter implements Filter {
 			else if(endPoint.equals("/admin/event/registProc")) {
 				path = "/images/event/";
 			}
+			else if(endPoint.equals("/admin/event/updateProc")) {
+				path = "/images/event/";
+			}
 			String uploadPath = req.getSession().getServletContext().getRealPath(path);
 			System.out.println("업로드 패스: "+uploadPath);
 			// �씠誘몄� �뾽濡쒕뱶
