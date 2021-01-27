@@ -98,7 +98,17 @@
         <div class="top-fix">
             <div class="container">
                 <div class="address">
-                    <a href="${pageContext.request.contextPath}/delivery"><img src="${pageContext.request.contextPath}/images/common/ico_gnb_location.png" alt=""><span>배송정보를 입력해 주세요</span></a>
+                    <a href="${pageContext.request.contextPath}/delivery">
+	                    <img src="${pageContext.request.contextPath}/images/common/ico_gnb_location.png" alt="">
+	                    <c:choose>
+						  	<c:when test="${selectedAddr!=null}">
+						  		<span>${selectedAddr}</span>
+						  	</c:when>
+						  	<c:otherwise>
+						  		<span>배송지를 선택해주세요.</span>
+						  	</c:otherwise>
+					  	</c:choose>
+                    </a>
                 </div>
                 <c:choose>
 				  	<c:when test="${sessionScope.user!=null}">
@@ -116,7 +126,7 @@
 				  	<c:otherwise>
 		                <div class="login">
 		                    <a href="${pageContext.request.contextPath}/auth/login">로그인</a>
-		                    <a href="${pageContext.request.contextPath}/cart" class="cart">
+		                    <a href="${pageContext.request.contextPath}/order/cart" class="cart">
 		                    <img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""><b id="cartNum">${cartCount == 0 ? '' : cartCount }</b>
 		                    </a>
 		                </div>
@@ -131,7 +141,7 @@
                     <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/images/common/img_logo.png" alt=""></a>
                     <li class="nav-item"><a href="#a">메뉴</a></li>
                     <li class="nav-item"><a href="#a">E쿠폰</a></li>
-                    <li class="nav-item"><a href="#a">스토어</a></li>
+                    <li class="nav-item"><a href="${pageContext.request.contextPath}/store">스토어</a></li>
                     <li class="nav-item"><a href="#a">커뮤니티</a></li>
                     <li class="nav-item"><a href="#a">프랜차이즈</a></li>
                     <li class="nav-item"><a href="#a">브랜드</a></li>
@@ -154,7 +164,7 @@
                     <li>
                         <img src="${pageContext.request.contextPath}/images/common/ico_gnb_menu3.png" alt="">
                         <h3>스토어</h3>
-                        <a href="#a">매장찾기</a>
+                        <a href="${pageContext.request.contextPath}/store">매장찾기</a>
                     </li>
                     <li>
                         <img src="${pageContext.request.contextPath}/images/common/ico_gnb_menu4.png" alt="">

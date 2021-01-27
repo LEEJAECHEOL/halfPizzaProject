@@ -11,4 +11,5 @@ public class Cart {
 	private Size size;
 	private List<Option> option = null;
 	private String totalPrice;
+	private String count;
 }

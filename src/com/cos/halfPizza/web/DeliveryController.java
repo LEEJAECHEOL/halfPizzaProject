@@ -17,23 +17,8 @@ public class DeliveryController {
 	
 	@RequestMapping("/delivery")
 	public String index(HttpServletRequest req) {
-		Cookie[] cookies = req.getCookies();
-		List<String> data = new ArrayList<String>();
-		for(int i = 0; i < cookies.length; i++) {
-			if(cookies[i].getName().contains("addr")){
-				System.out.println(cookies[i].getName());
-				data.add(URLDecoder.decode(cookies[i].getValue()).replace("path=/halfPizza", ""));
-			}
-		}
-		Gson gson = new Gson();
-		List<Addr> addr = new ArrayList<Addr>();
-		for (String str : data) {
-			addr.add(gson.fromJson(str, Addr.class));
-		}
-		if(addr.size() == 0) {
-			addr = null;
-		}
-		req.setAttribute("addr", addr);
+
 		return "/delivery/index.jsp";
 	}
+	
 }

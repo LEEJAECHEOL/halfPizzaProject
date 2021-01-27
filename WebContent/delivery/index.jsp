@@ -10,13 +10,23 @@
             </div>
             
             <div class="address-box">
-               <h3><span>배달 받으실 주소를 선택해주세요</span><button onClick="sample2_execDaumPostcode()">배송지등록</button></h3>
+               <h3>
+               <c:choose>
+				  	<c:when test="${selectedAddr!=null}">
+				  		<span>${selectedAddr}</span>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<span>배송지를 선택해주세요.</span>
+				  	</c:otherwise>
+			  	</c:choose>
+               	<button onClick="sample2_execDaumPostcode()">배송지등록</button>
+               </h3>
                 <ul class="address-list">
                 <c:choose>
 				  	<c:when test="${addr!=null}">
-						<c:forEach var="ad" items="${addr}">
+						<c:forEach var="ad" items="${addr.addrWrap}">
 	           				<li class="${ad.name}">
-	           					<span><i class='fas fa-check'></i></span>
+	           					<span onClick="selectedAddr('${ad.name}')"><i class='fas fa-check'></i></span>
 	           					${ad.addr}
 	           					<button type="button" onClick="deleteAddr('${ad.name}')"><i class='fas fa-times'></i></button></li>
 						</c:forEach>
@@ -26,7 +36,7 @@
 				  	</c:otherwise>
 			  	</c:choose>
                 </ul>
-                <button>주문진행</button>
+                <button type="button" onClick="orderProc()">주문진행</button>
             </div>
         </div>
     </main>
@@ -129,31 +139,41 @@
 	    }
 	    function addAddr(){
 	    	let cookieName = "addr";
+	    	let name = "addr";
 	    	
-			let i = 1;
-			for(i = 1; i <= 5; i++){
-				if(getCookie(cookieName + i) === null){
-					cookieName = cookieName + i;
-					break;
-				}
+	    	let data = null;
+	    	if(getCookie(cookieName) !== null){
+	    		data = JSON.parse((decodeURIComponent(getCookie(cookieName))).replace('path=/halfPizza', ''));
+			}else{
+				data = { addrWrap : [] };
 			}
-			if(i > 5){
-				alert("최대 5개까지 주소를 등록하실 수 있습니다."); return;
+			
+			if(data.addrWrap.length !== 0){
+				let i = 0;
+				for(i = 0; i < 5; i++){
+					if(data.addrWrap[i] === undefined){
+						name = name + i;
+						break;
+					}
+				}
+				if(i === 4){
+					alert("최대 5개까지 배송지를 등록하실 수 있습니다.");return;
+				}
 			}
 			let addrValue = document.getElementById('addr').value;
 			let detailValue = document.getElementById('detailInput').value;
 			let addr = {
-				name : cookieName,
+				name : name,
 				addr : addrValue + " " + detailValue
 			}
-			SetCookie(cookieName , JSON.stringify(addr), null);
-			let content = "<li><span><i class='fas fa-check'></i></span>";
+			data.addrWrap.push(addr);
+			SetCookie(cookieName , JSON.stringify(data), null);
+			let content = "<li class='" + name + "'><span onClick=\"selectedAddr('" + name +"')\"><i class='fas fa-check'></i></span>";
 			content += (addrValue + " " + detailValue);
-			content += "<button><i class='fas fa-times'></i></button></li>";
-			document.querySelector('.no-addr').remove();
+			content += "<button onClick=\"deleteAddr('" + name + "')\"><i class='fas fa-times'></i></button></li>";
+			document.querySelector('.no-addr') ? document.querySelector('.no-addr').remove():null;
 			document.querySelector('.address-list').insertAdjacentHTML("beforeend", content);
 			element_layer.style.display = 'none';
-			
 	    }
 	    function SetCookie( strName, strValue, iSecond )
 		{
@@ -170,9 +190,19 @@
 			  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
 			  return value? value[2] : null;
 		}
-		function deleteAddr(addrNum){
-			document.querySelector("." + addrNum).remove();
-			deleteCookie(addrNum);
+		function deleteAddr(addrName){
+			let data = null;
+	    	if(getCookie("addr") !== null){
+	    		data = JSON.parse((decodeURIComponent(getCookie("addr"))).replace('path=/halfPizza', ''));
+			}
+			for(let i = 0; i < data.addrWrap.length; i++){
+				if(data.addrWrap[i].name === addrName){
+					data.addrWrap.splice(i, 1);
+					break;
+				}
+			}
+			SetCookie("addr" , JSON.stringify(data), null);
+			document.querySelector("." + addrName).remove();
 			if(document.querySelector('.address-list').children.length === 0){
 				document.querySelector('.address-list').insertAdjacentHTML("beforeend", "<li class='no-addr'>배달지를 등록해주세요</li>");
 			}
@@ -180,7 +210,27 @@
 		function deleteCookie(name) {
 			document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 		}
-		
+		function selectedAddr(val){
+			let _li = document.querySelector('.' + val);
+			let _span = _li.children[0];
+			removeSelectedAddr();
+			_span.classList.toggle('selected');
+		}
+		function removeSelectedAddr(){
+			let lis = document.querySelectorAll('.address-list li');
+			lis.forEach(function(li){
+				li.children[0].classList.remove('selected');
+			});
+		}
+		function orderProc(){
+			let select = document.querySelector('.address-list li span.selected');
+			if(select === null){
+				alert("배달 받으실 주소를 선택해주세요."); return;
+			}
+			let addr = select.parentElement.outerText;
+			SetCookie("selectedAddr" , addr, null);
+			location.href = "/halfPizza/cart"
+		}
 	</script>
 <%@ include file="../layouts/footer.jsp" %>
 </body>

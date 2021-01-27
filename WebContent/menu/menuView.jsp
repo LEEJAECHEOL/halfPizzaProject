@@ -152,11 +152,31 @@
 			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
 		}
 		document.querySelector('#cartBtn').addEventListener('click', function(){
-			let _menu = document.querySelector('.menu-request h4');
-			let _size = document.querySelector('.menu-request p#size');
+
+			let cookieName = "cart";
+			let name = "cart";
+			
+			let data = null;
+	    	if(getCookie(cookieName) !== null){
+	    		data = JSON.parse((decodeURIComponent(getCookie(cookieName))).replace('path=/halfPizza', ''));
+			}else{
+				data = { cartWrap : [] };
+			}
+			
+	    	if(data.cartWrap.length !== 0){
+				let i = 0;
+				for(i = 0; i < 5; i++){
+					if(data.cartWrap[i] === undefined || data.cartWrap[i] !== name + i ){
+						name = name + i;
+						break;
+					}
+				}
+				if(i > 4){
+					alert("최대 5개까지 장바구니에 추가하실 수 있습니다."); return;
+				}
+			}
+
 			let _option = document.querySelectorAll('.menu-request p');
-			let _total = document.querySelector('#totalPrice');
-		
 			let optionArray = [];
 			for(let i = 1; i < _option.length; i++){
 				let content = {
@@ -166,19 +186,11 @@
 				}
 				optionArray.push(content);
 			}
-			let cookieName = "cart";
-			let i = 1;
-			for(i = 1; i <= 5; i++){
-				if(getCookie(cookieName + i) === null){
-					cookieName = cookieName + i;
-					break;
-				}
-			}
-			if(i > 5){
-				alert("최대 5개까지 장바구니에 추가하실 수 있습니다."); return;
-			}
+			let _menu = document.querySelector('.menu-request h4');
+			let _size = document.querySelector('.menu-request p#size');
+			let _total = document.querySelector('#totalPrice');
 			let request = {
-				name : cookieName,
+				name : name,
 				menu : {
 					id : _menu.dataset.id,
 					title : _menu.dataset.title,
@@ -191,9 +203,12 @@
 					text : _size.children[0].textContent
 				},
 				option : optionArray,
-				totalPrice : _total.dataset.total
+				totalPrice : _total.dataset.total,
+				count : 1
 			}
-			SetCookie(cookieName , JSON.stringify(request), null);
+			data.cartWrap.push(request);
+			console.log(data);
+			SetCookie(cookieName , JSON.stringify(data), null);
 		});
 		function SetCookie( strName, strValue, iSecond )
 		{
@@ -208,7 +223,7 @@
 			let num = document.querySelector("#cartNum").textContent === "" ? 0 : Number(document.querySelector("#cartNum").textContent);
 			document.querySelector("#cartNum").textContent = num + 1;
 			if(confirm("장바구니에 제품이 담겼습니다.\n장바구니로 이동하시겠습니까?")){
-				location.href="/halfPizza/cart";
+				location.href="/halfPizza/order/cart";
 			}
 		}
 		function getCookie(name) {
