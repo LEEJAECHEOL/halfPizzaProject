@@ -39,32 +39,53 @@
                         </div>
                     </div>
                     <div class="myPizza">
-                        <div class="myPizza-left">
-                            <img src="../images/main_menu/img_pizza_%ED%86%B5%EB%A7%88%EB%8A%98_%EB%B6%88%EA%B3%A0%EA%B8%B0_%EC%86%8C%EB%B3%B4%EB%A1%9C.png" alt="">
-                        </div>
-                        <div class="myPizza-right">
-                            <div class="myPizza-right-title">
-                                <h3>통마늘 불고기 소보로</h3>
-                                <span>20,900원</span>
-                            </div>
-                            <table width="350px">
-                                <colgroup>
-                                    <col width="10%">
-                                    <col width="70%">
-                                    <col width="20%">
-                                </colgroup>
-                                <tr>
-                                    <td>+</td>
-                                    <td>Regular</td>
-                                    <td>0원</td>
-                                </tr>
-                                <tr>
-                                    <td>+</td>
-                                    <td>특제갈릭소스</td>
-                                    <td>500원</td>
-                                </tr>
-                            </table>
-                        </div>
+	                    <c:choose>
+						  	<c:when test="${cart!=null}">
+								<c:forEach var="item" items="${cart.cartWrap}">
+									<div>
+			                    		<div class="myPizza-left">
+				                            <img src="${item.menu.src}" alt="">
+				                        </div>
+				                        <div class="myPizza-right">
+				                            <div class="myPizza-right-title">
+				                                <h3>${item.menu.title}</h3>
+				                                <span><fmt:formatNumber value="${item.menu.price}" pattern="#,###" />원</span>
+				                            </div>
+				                            <table width="350px">
+				                                <colgroup>
+				                                    <col width="80%">
+				                                    <col width="20%">
+				                                </colgroup>
+				                                <tr>
+				                                    <td>${item.size.text}</td>
+				                                    <td><fmt:formatNumber value="${item.size.price}" pattern="#,###" />원</td>
+				                                </tr>
+					                            <c:forEach var="option" items="${item.option}" varStatus="status">
+					                            	<tr>
+						                                <td>${option.text}</td>
+						                                <td><fmt:formatNumber value="${option.price}" pattern="#,###" />원</td>
+						                            </tr>
+					                            </c:forEach>
+					                            <tr>
+					                            	<td>수량</td>
+					                            	<td>${item.count }</td>
+					                            </tr>
+					                            <tr>
+					                            	<td></td>
+					                            	<td>
+					                            	<input type="hidden" class="partPrice" value="${item.totalPrice * item.count}" /> 
+					                            	<fmt:formatNumber value="${item.totalPrice * item.count}" pattern="#,###" />원
+					                            	</td>
+					                            </tr>
+				                            </table>
+				                        </div>
+			                    	</div>
+								</c:forEach>
+						  	</c:when>
+						  	<c:otherwise>
+						  		<h3>장바구니가 비었습니다.</h3>
+						  	</c:otherwise>
+					  	</c:choose>
                     </div>
                     <div class="sunbool">
                         <h3>선불금액권</h3>
@@ -91,7 +112,7 @@
                             </colgroup>
                             <tr>
                                 <td>배달정보</td>
-                                <td>부산남구점/부산 남구 문현동 800-18 1층</td>
+                                <td>${selectedAddr}</td>
                             </tr>
                             <tr>
                                 <td>예정시간</td>
@@ -117,20 +138,29 @@
                         </div>
                         <div class="payment-calced-price">
                             <h4>최종결제금액</h4>
-                            <span>31,900원</span>
+                            <span id ="cartToltalPrice">0원</span>
                         </div>
-                        <p class="stamp-accumulation">
-                            3개의 스탬프가 적립 예정입니다.
-                        </p>
-                        <p class="stamp-warning">
-                            *온라인 주문 시 스탬프가 적립되므로 포장 할인은 불가능합니다.
-                        </p>
                         <button>결제하기</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <script>
+		window.addEventListener('DOMContentLoaded', function() {
+			let prices = document.querySelectorAll('.partPrice');
+			let price = 0;
+			prices.forEach(function(p){
+				price += Number(p.value);
+			});
+			console.log(prices);
+			function moneyComma(val){
+				return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원";
+			}
+			document.querySelector('#cartToltalPrice').dataset.price = price;
+			document.querySelector('#cartToltalPrice').textContent = moneyComma(price);
+		});
+    </script>
 <%@ include file="../layouts/footer.jsp" %>
 	<div class="popup2">
         <h2>개인정보 처리방침</h2>

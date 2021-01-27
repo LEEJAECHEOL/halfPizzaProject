@@ -29,4 +29,17 @@ public class Script {
 			e.printStackTrace();
 		}
 	}
+	public static void flash(HttpServletResponse response, String msg, String path) {
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('" + msg + "')");
+			out.println("location.href='" + path + "'");
+			out.println("</script>");
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

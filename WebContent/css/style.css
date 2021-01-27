@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /*style*//*style*//*style*//*style*//*style*/
 *,
 *::before,
@@ -475,11 +476,11 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 /*payment*//*payment*//*payment*//*payment*//*payment*/
 .payment-box{display: flex; font-family: NR;}
 .payment-box .payment-left{flex-basis: 60%; padding-right: 30px; max-width: 800px;}
-.payment-box .payment-right{flex-basis: 40%; margin-right: 50px;}
-.payment-box .payment-right > div{background: #fff; border: 5px solid #00a0e9; border-radius: 50px; padding: 50px 30px;}
+.payment-box .payment-right{flex-basis: 40%; margin-right: 50px;position:relative;}
+.payment-box .payment-right > div{background: #fff; border: 5px solid #00a0e9; border-radius: 50px; padding: 50px 30px;position:sticky;top:200px;}
 .payment-box .payment-right > div h3{font-size: 18px; margin-bottom: 20px;}
 .payment-box .payment-right > div .payment-discount,
-.payment-box .payment-right > div .payment-calced-price{display: flex; justify-content: space-between; margin-bottom: 10px;}
+.payment-box .payment-right > div .payment-calced-price{display: flex; justify-content: space-between; margin-bottom: 30px;}
 .payment-box .payment-right > div .stamp-accumulation{background: #ffe100; height: 40px; text-align: center; line-height: 40px; opacity: .8; margin-bottom: 10px;}
 .payment-box .payment-right > div .stamp-warning{font-size: 12px; margin-bottom: 35px;}
 .payment-box .payment-right > div button{width: 100%; height: 50px; border: none; background: #00a0e9; color: #fff; border-radius: 50px;}
@@ -496,13 +497,15 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .payment-box .payment-left .payment-user .agree-check .lbl:before{top: -1px;}
 .payment-box .payment-left .payment-user .agree-check .open2{position: relative; cursor: pointer;}
 .payment-box .payment-left .payment-user .agree-check .open2:after{content: ''; position: absolute; left: 0; bottom: 10px; width: 100%; height: 1px; background: #000;}
-.payment-box .payment-left .myPizza{margin-top: 30px; display: flex; background: #fff; border-radius: 50px; padding: 0 60px; margin-bottom: 30px;}
+.payment-box .payment-left .myPizza{margin-top: 30px; display: flex;flex-direction:column; background: #fff; border-radius: 50px; padding: 0 60px; margin-bottom: 30px;}
+.payment-box .payment-left .myPizza > div {display:flex;}
 .payment-box .payment-left .myPizza .myPizza-left img{transform: scale(.8);}
 .payment-box .payment-left .myPizza .myPizza-right{padding-top: 30px;}
-.payment-box .payment-left .myPizza .myPizza-right .myPizza-right-title{padding: 20px 0; display: flex; justify-content: space-between; margin-bottom: 40px;}
+.payment-box .payment-left .myPizza .myPizza-right .myPizza-right-title{padding: 20px 0; display: flex; justify-content: space-between;}
 .payment-box .payment-left .myPizza .myPizza-right .myPizza-right-title h3{font-size: 22px;}
 .payment-box .payment-left .myPizza .myPizza-right .myPizza-right-title span{font-size: 22px; font-weight: bold; color: #00a0e9;}
 .payment-box .payment-left .myPizza .myPizza-right table td{border-bottom: 10px solid transparent;}
+.payment-box .payment-left .myPizza .myPizza-right table tr td:last-child {text-align:right;}
 
 .payment-box .payment-left .sunbool,
 .payment-box .payment-left .coupon,
@@ -524,5 +527,4 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 
 .payment-box .payment-left .sunbool .sunbool-point button,
 .payment-box .payment-left .coupon .coupon-discount button{height: 60px; width: 150px; border-radius: 60px; background: #ffe100; border: none; color: #000; font-weight: bold; font-size: 18px; position: relative;}
-.payment-box .payment-left .sunbool .sunbool-point button:after,
-.payment-box .payment-left .coupon .coupon-discount button:after{content: '원'; font-family: NR; position: absolute; left: -50px; top: 50%; transform: translateY(-50%);}
+
