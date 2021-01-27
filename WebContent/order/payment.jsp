@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layouts/header.jsp" %>
+  
 	<main>
         <div class="container">
             <div class="sub-p-title">
@@ -17,18 +18,39 @@
                                 <col width="20%">
                                 <col width="70%">
                             </colgroup>
-                            <tr class="tb-name">
-                                <td>이름</td>
-                                <td><input type="text" value="동태완" name="username" readonly></td>
-                            </tr>
-                            <tr class="tb-phone">
-                                <td>휴대전화</td>
-                                <td><input type="number" value="010" name="phone-first" readonly><input type="number" value="90622304" name="phone-second" readonly></td>
-                            </tr>
-                            <tr class="tb-request">
-                                <td>요청사항</td>
-                                <td><input type="text" name="username" placeholder="요청사항을 입력해주세요"></td>
-                            </tr>
+							<c:choose>
+								<c:when test="${sessionScope.user!=null}">
+									 <tr class="tb-name">
+		                                <td>이름</td>
+		                                <td><input type="text" value="${sessionScope.user.name}" name="username" readonly></td>
+		                            </tr>
+		                            <tr class="tb-phone">
+		                                <td>휴대전화</td>
+		                                <td><input type="number" value="${sessionScope.user.phone}" name="phone-first" readonly></td>
+		                            </tr>
+		                            <tr class="tb-request">
+		                                <td>요청사항</td>
+		                                <td><input type="text" name="text" placeholder="요청사항을 입력해주세요"></td>
+		                            </tr>
+								</c:when>
+								<c:otherwise>
+									<tr class="tb-name">
+		                                <td>이름</td>
+		                                <td><input type="text" value="" name="username" placeholder="이름을 입력해주세요."></td>
+		                            </tr>
+		                            <tr class="tb-phone">
+		                                <td>휴대전화</td>
+		                                <td><input type="number" value="" name="phone" placeholder="휴대전화를 입력해주세요."></td>
+		                            </tr>
+		                            <tr class="tb-request">
+		                                <td>요청사항</td>
+		                                <td><input type="text" name="text" placeholder="요청사항을 입력해주세요"></td>
+		                            </tr>
+								</a>
+								</div>
+								</c:otherwise>
+							</c:choose>
+                           
                         </table>
                         <div class="agree-check">
                             <label class="checkbox chkYellow">
@@ -140,7 +162,7 @@
                             <h4>최종결제금액</h4>
                             <span id ="cartToltalPrice">0원</span>
                         </div>
-                        <button>결제하기</button>
+                        <button type="button" onclick="pay()">결제하기</button>
                     </div>
                 </div>
             </div>
@@ -160,6 +182,33 @@
 			document.querySelector('#cartToltalPrice').dataset.price = price;
 			document.querySelector('#cartToltalPrice').textContent = moneyComma(price);
 		});
+		function pay() {
+			IMP.init('imp27033422'); 
+			IMP.request_pay({
+			      pg : 'kakao', // 결제방식
+			       pay_method : 'card',	// 결제 수단
+			       merchant_uid : 'merchant_' + new Date().getTime(),
+			      name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
+			       amount : '100',	// 결제 금액
+			       buyer_email : '',	// 구매자 email
+			      buyer_name :  '',	// 구매자 이름
+			       buyer_tel :  '',	// 구매자 전화번호
+			       buyer_addr :  '',	// 구매자 주소
+			       buyer_postcode :  '',	// 구매자 우편번호
+			       m_redirect_url : '/khx/payEnd.action'	// 결제 완료 후 보낼 컨트롤러의 메소드명
+			   }, function(rsp) {
+				if ( rsp.success ) { // 성공시
+					var msg = '결제가 완료되었습니다.';
+					msg += '고유ID : ' + rsp.imp_uid;
+					msg += '상점 거래ID : ' + rsp.merchant_uid;
+					msg += '결제 금액 : ' + rsp.paid_amount;
+					msg += '카드 승인번호 : ' + rsp.apply_num;
+				} else { // 실패시
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+				}
+			});
+		} 
     </script>
 <%@ include file="../layouts/footer.jsp" %>
 	<div class="popup2">

@@ -490,7 +490,7 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .payment-box .payment-left .payment-user table input{height: 50px; border-radius: 50px; border: 1px solid #666; text-indent: 20px;}
 .payment-box .payment-left .payment-user table td{border-bottom: 10px solid transparent;}
 .payment-box .payment-left .payment-user .tb-name input{width: 300px;}
-.payment-box .payment-left .payment-user .tb-phone input{width: 150px; margin-right: 5px;}
+.payment-box .payment-left .payment-user .tb-phone input{width: 300px; margin-right: 5px;}
 .payment-box .payment-left .payment-user .tb-request input{width: 400px;}
 .payment-box .payment-left .payment-user .agree-check{display: flex; justify-content: space-between; padding-left: 100px;}
 .payment-box .payment-left .payment-user .agree-check .lbl:after{top: 10px;}
