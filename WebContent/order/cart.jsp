@@ -22,7 +22,7 @@
             </div>
             <c:choose>
 			  	<c:when test="${cart!=null}">
-					<c:forEach var="item" items="${cart}">
+					<c:forEach var="item" items="${cart.cartWrap}">
            				<div class="order-box ${item.name}">
            					<div class="order-menu">
 			                    <img src="${item.menu.src}" alt="">
@@ -81,9 +81,43 @@
         </div>
     </main>
     <script>
-		function deleteCart(cartNo){
-			document.querySelector("." + cartNo).remove();
-			deleteCookie(cartNo);
+		function deleteCart(cartName){
+			let data = null;
+	    	if(getCookie("cart") !== null){
+	    		data = JSON.parse((decodeURIComponent(getCookie("cart"))).replace('path=/halfPizza', ''));
+			}
+			for(let i = 0; i < data.cartWrap.length; i++){
+				if(data.cartWrap[i].name === cartName){
+					data.cartWrap.splice(i, 1);
+					break;
+				}
+			}
+			minusTotalPrice(cartName)
+			SetCookie("cart" , JSON.stringify(data), null);
+			document.querySelector(".order-box." + cartName).remove();
+		}
+		function minusTotalPrice(cartName){
+			let _totalPrice = document.querySelector('#cartToltalPrice').dataset.price;
+			let _layout = document.querySelector("." + cartName + " .pizza-price span");
+			let price = _layout.dataset.price;
+			let count = _layout.dataset.count;
+			_totalPrice -= price * count;
+			document.querySelector('#cartToltalPrice').dataset.price = _totalPrice;
+			document.querySelector('#cartToltalPrice').textContent = moneyComma(_totalPrice);
+		}
+		function SetCookie( strName, strValue, iSecond ){
+			var strCookie = strName + "=" + encodeURIComponent(strValue);
+			strCookie += "path=/halfPizza";
+			if( typeof iSecond === "number" )
+			{
+				strCookie += "; max-age=" + iSecond;
+			}
+			strCookie += "; path=/halfPizza";
+			document.cookie = strCookie;
+		}
+		function getCookie(name) {
+			  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+			  return value? value[2] : null;
 		}
 		function deleteCookie(name) {
 			document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';

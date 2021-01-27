@@ -142,19 +142,22 @@
 	    	let name = "addr";
 	    	
 	    	let data = null;
-	    	console.log(decodeURIComponent(getCookie('addr')));
 	    	if(getCookie(cookieName) !== null){
 	    		data = JSON.parse((decodeURIComponent(getCookie(cookieName))).replace('path=/halfPizza', ''));
 			}else{
 				data = { addrWrap : [] };
 			}
-			console.log(data.addrWrap.length);
+			
 			if(data.addrWrap.length !== 0){
-				for(let i = 0; i < 5; i++){
+				let i = 0;
+				for(i = 0; i < 5; i++){
 					if(data.addrWrap[i] === undefined){
 						name = name + i;
 						break;
 					}
+				}
+				if(i === 4){
+					alert("최대 5개까지 배송지를 등록하실 수 있습니다.");return;
 				}
 			}
 			let addrValue = document.getElementById('addr').value;
