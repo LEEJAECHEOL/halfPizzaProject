@@ -39,11 +39,12 @@ header{position: fixed; height: 190px; z-index: 100; background: #fff; width: 10
 .top-fix .container{width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;}
 .top-fix .container .address{display: flex; width: 300px; align-items: center;}
 .top-fix .container .address img{margin-right: 5px;}
-.top-fix .container .address a{color: #000; font-family: NR; font-weight: bold;}
+.top-fix .container .address a{color: #000; font-family: NR; font-weight: bold; display: flex; align-items: center;}
 .top-fix .container .login{display: flex; align-items: center; padding-right: 40px; font-size: 14px; color: #000;}
 .top-fix .container .login a {margin-left:5px;}
 .top-fix .container .login .cart{position: relative; top: 20px; left: 30px; display: inline-block; width: 60px; height: 60px; background: #ffe100; border-radius: 50%;}
 .top-fix .container .login .cart img{display: block; position: absolute; left: 50%; top: 50%; transform: translate(-60%,-50%);}
+.top-fix .container .login .cart #cartNum{position:absolute; left:50%; top:15%; transform:translateX(-50%); font-size:20px; color:#00A0E9;}
 .nav-list .main-menu:hover .detail-menu{display: block;}
 .nav-list .main-menu > .container{width: 1200px; margin: 0 auto; display: flex; align-items: center;}
 .nav-list .main-menu > .container > a{flex-basis: 10%;}

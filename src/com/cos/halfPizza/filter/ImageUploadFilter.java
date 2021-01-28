@@ -39,6 +39,9 @@ public class ImageUploadFilter implements Filter {
 			if(endPoint.equals("/admin/menu/registProc")) {
 				path = "/images/menu/";
 			}
+			else if(endPoint.equals("/admin/menu/updateProc")) {
+				path = "/images/menu/";
+			}
 			else if(endPoint.equals("/admin/event/registProc")) {
 				path = "/images/event/";
 			}
@@ -56,6 +59,7 @@ public class ImageUploadFilter implements Filter {
 				while(params.hasMoreElements()) {
 					String param = (String)params.nextElement();
 					req.setAttribute(param, multi.getParameter(param));
+					System.out.println(multi.getParameter(param));
 				}
 				
 				Enumeration<?> files = multi.getFileNames();

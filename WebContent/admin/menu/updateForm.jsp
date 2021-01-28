@@ -4,26 +4,27 @@
     <main>
         <div class="container">
            <div class="sub-p-title">
-                <h3 class="underLine"><span>메뉴 등록하기</span></h3>
+                <h3 class="underLine"><span>메뉴 수정하기</span></h3>
             </div>
             <div class="menu-add">
-                <h3>메뉴추가</h3>
-                <form action="${pageContext.request.contextPath}/admin/menu/registProc" method="post" enctype="multipart/form-data">
+                <h3>메뉴수정</h3>
+                <form action="${pageContext.request.contextPath}/admin/menu/updateProc" method="post" enctype="multipart/form-data">
+                	<input type="hidden" name="id" value="${dto.id}">
                     <div class="menu-add-image">
                         <span>상품 이미지</span>
                         <input type="file" name="file">
                     </div>
                     <div class="menu-add-title">
                         <span>상품명</span>
-                        <input type="text" name="title">
+                        <input type="text" name="title" value="${dto.title}">
                     </div>
                     <div class="menu-add-price">
                         <span>가격</span>
-                        <input type="text" name="price">
+                        <input type="text" name="price" value="${dto.price}">
                     </div>
                     <div class="menu-add-content">
                         <span>상품 설명</span>
-                        <textarea name="content" id="" cols="30" rows="10"></textarea>
+                        <textarea name="content" id="" cols="30" rows="10">${dto.content}</textarea>
                     </div>
                     <div class="menu-add-regular">
                         <span>사이즈 R 여부</span>
