@@ -529,3 +529,23 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .payment-box .payment-left .sunbool .sunbool-point button,
 .payment-box .payment-left .coupon .coupon-discount button{height: 60px; width: 150px; border-radius: 60px; background: #ffe100; border: none; color: #000; font-weight: bold; font-size: 18px; position: relative;}
 
+
+/*email*//*email*//*email*/
+.content_wrap{padding: 70px 80px; background: #fff; border-radius: 40px; font-family: NR;}
+.content_wrap .formlist ul{padding-bottom: 150px;}
+.content_wrap .formlist ul li{height: 60px; margin-bottom: 20px;}
+.content_wrap .formlist ul li label{display: inline-block; width: 80px; height: 60px; line-height: 60px;}
+.content_wrap .formlist ul li #part,
+.content_wrap .formlist ul li input{width: 357px; height: 100%; border-radius: 50px; padding: 0 60px 0 30px; appearance:none; border: 1px solid #bfbfbf;}
+.content_wrap .formlist ul li:first-child{position: relative;}
+.content_wrap .formlist ul li:first-child i{position: absolute; left: 390px; top: 50%; transform: translateY(-50%);}
+.content_wrap .formlist ul li:last-child{display: flex; align-items: flex-start;}
+.content_wrap .formlist ul li:last-child textarea{width: 100%; height: 180px; border-radius: 30px; padding: 15px 20px; border: 1px solid #bfbfbf; resize: none; margin-left: 10px;}
+.content_wrap .formlist .commbtn{display: block; width: 300px; height: 60px; border-radius: 50px; border: none; background: #ffe100; font-size: 18px; font-weight: bold; margin: 0 auto;}
+
+.thankyou_message{position:fixed; top:50%; left:50%;  background: rgba(0,0,0,.6); z-index:999; display:none; border-radius: 50px; transform: translate(-50%,-50%);}
+.thankyou_message > section > h1{color: #00a0e9; font-size:25px; font-weight:700; margin-bottom:20px;}
+.thankyou_message > section > p{color: #fff;}
+.thankyou_message > section{width:550px; margin:10% auto; padding:20px; border-radius:5px; color:#3c4147;}
+.thankyou_message .btn_box{margin: 30px auto 0; text-align: center;}
+.thankyou_message .btn_box a{color: #fff; background: #00a0e9; display: inline-block; padding: 20px 30px; border-radius: 50px;}

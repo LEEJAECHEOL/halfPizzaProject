@@ -82,7 +82,7 @@
             <ul class="main-menu">
                 <div class="container">
                     <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/images/common/img_logo.png" alt=""></a>
-                    <li class="nav-item"><a href="#a">메뉴</a></li>
+                    <li class="nav-item"><a href="${pageContext.request.contextPath}/menu">메뉴</a></li>
                     <li class="nav-item"><a href="#a">E쿠폰</a></li>
                     <li class="nav-item"><a href="${pageContext.request.contextPath}/store">스토어</a></li>
                     <li class="nav-item"><a href="#a">커뮤니티</a></li>
