@@ -157,7 +157,8 @@
 			let name = "cart";
 			
 			let data = null;
-	    	if(getCookie(cookieName) !== null){
+			console.log(getCookie(cookieName) );
+	    	if(getCookie(cookieName) !== null && getCookie(cookieName) !== '' ){
 	    		data = JSON.parse((decodeURIComponent(getCookie(cookieName))).replace('path=/halfPizza', ''));
 			}else{
 				data = { cartWrap : [] };

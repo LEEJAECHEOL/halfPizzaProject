@@ -85,4 +85,17 @@ create table notice(
     createDate timestamp,
     updateDate timestamp
 );
+create table orders(
+    id int primary key auto_increment,
+    userId int,
+    name varchar(20),
+    phone varchar(13),
+    addr varchar(200),
+    info longText,
+    impId varchar(100),
+    merchantId varchar(100),
+    paidAmount int,
+    state varchar(20),
+    createDate timestamp
+);
 ```

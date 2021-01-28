@@ -40,16 +40,16 @@ public class PaymentFilter implements Filter {
 				break;
 			}
 		}
-		if(cartData == null) {
-			Script.flash(resp, "선택하신 메뉴가 없습니다.\n주문하실 메뉴를 선택해주세요.", "/halpPizza/menu");
+		if(cartData == null || cartData.equals("")) {
+			Script.flash(resp, "선택하신 메뉴가 없습니다.주문하실 메뉴를 선택해주세요.", "/halfPizza/menu");
+			return;
 		}
 		if(addrData == null) {
-			Script.flash(resp, "등록된 배송지가 없습니다.\n배송지를 선택해주세요.", "/halpPizza/delivery");
+			Script.flash(resp, "등록된 배송지가 없습니다.배송지를 선택해주세요.", "/halfPizza/delivery");
+			return;
 		}
 		CartWrap cart = new CartWrap();
 		cart = gson.fromJson(cartData, CartWrap.class);
-		System.out.println(cart);
-		System.out.println(addrData);
 		req.setAttribute("cart", cart);
 		req.setAttribute("selectedAddr", addrData);
 		

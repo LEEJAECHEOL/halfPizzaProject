@@ -21,30 +21,32 @@
 							<c:choose>
 								<c:when test="${sessionScope.user!=null}">
 									 <tr class="tb-name">
+									 	<input type="hidden" id="userId" name="userId" value="${sessionScope.user.id }"/>
 		                                <td>이름</td>
-		                                <td><input type="text" value="${sessionScope.user.name}" name="username" readonly></td>
+		                                <td><input type="text" value="${sessionScope.user.name}" id="username" name="username" readonly></td>
 		                            </tr>
 		                            <tr class="tb-phone">
 		                                <td>휴대전화</td>
-		                                <td><input type="number" value="${sessionScope.user.phone}" name="phone-first" readonly></td>
+		                                <td><input type="text" value="${sessionScope.user.phone}" id="phone" name="phone" readonly></td>
 		                            </tr>
 		                            <tr class="tb-request">
 		                                <td>요청사항</td>
-		                                <td><input type="text" name="text" placeholder="요청사항을 입력해주세요"></td>
+		                                <td><input type="text" id="text" name="text" placeholder="요청사항을 입력해주세요"></td>
 		                            </tr>
 								</c:when>
 								<c:otherwise>
 									<tr class="tb-name">
+										<input type="hidden" id="userId" name="userId" value="0"/>
 		                                <td>이름</td>
-		                                <td><input type="text" value="" name="username" placeholder="이름을 입력해주세요."></td>
+		                                <td><input type="text" value="" id="username" name="username" placeholder="이름을 입력해주세요."></td>
 		                            </tr>
 		                            <tr class="tb-phone">
 		                                <td>휴대전화</td>
-		                                <td><input type="number" value="" name="phone" placeholder="휴대전화를 입력해주세요."></td>
+		                                <td><input type="text" value="" id="phone" name="phone" placeholder="휴대전화를 입력해주세요."></td>
 		                            </tr>
 		                            <tr class="tb-request">
 		                                <td>요청사항</td>
-		                                <td><input type="text" name="text" placeholder="요청사항을 입력해주세요"></td>
+		                                <td><input type="text" id="text" name="text" placeholder="요청사항을 입력해주세요"></td>
 		                            </tr>
 								</a>
 								</div>
@@ -54,7 +56,7 @@
                         </table>
                         <div class="agree-check">
                             <label class="checkbox chkYellow">
-                                <input type="checkbox" name="allCheck" id="Check2" value="00">
+                                <input type="checkbox" name="allCheck" id="check" value="00">
                                 <span class="lbl"><i></i>개인정보 처리방침 동의</span>
                             </label>
                             <span class="open2">약관보기</span>
@@ -134,7 +136,7 @@
                             </colgroup>
                             <tr>
                                 <td>배달정보</td>
-                                <td>${selectedAddr}</td>
+                                <td id="addr">${selectedAddr}</td>
                             </tr>
                             <tr>
                                 <td>예정시간</td>
@@ -175,7 +177,6 @@
 			prices.forEach(function(p){
 				price += Number(p.value);
 			});
-			console.log(prices);
 			function moneyComma(val){
 				return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원";
 			}
@@ -183,32 +184,74 @@
 			document.querySelector('#cartToltalPrice').textContent = moneyComma(price);
 		});
 		function pay() {
+			let _check = document.querySelector('#check').checked;
+			let _userId = document.querySelector('#userId').value;
+			let _name = document.querySelector('#username').value;
+			let _phone = document.querySelector('#phone').value;
+			let _text = document.querySelector('#text').value;
+			let _price = document.querySelector('#cartToltalPrice').dataset.price;
+			let _addr = document.querySelector('#addr').textContent;
+			if(_name === '' || _phone === '' || _text === ''){
+				alert("고객정보를 입력해주세요."); return ;
+			}
+			if(!_check){
+				alert("개인정보처리방침을 동의해주세요.");return;	
+			}
 			IMP.init('imp27033422'); 
 			IMP.request_pay({
-			      pg : 'kakao', // 결제방식
+			      pg : 'html5_inicis', // 결제방식
 			       pay_method : 'card',	// 결제 수단
 			       merchant_uid : 'merchant_' + new Date().getTime(),
 			      name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
 			       amount : '100',	// 결제 금액
 			       buyer_email : '',	// 구매자 email
-			      buyer_name :  '',	// 구매자 이름
-			       buyer_tel :  '',	// 구매자 전화번호
-			       buyer_addr :  '',	// 구매자 주소
+			      buyer_name :  _name,	// 구매자 이름
+			       buyer_tel :  _phone,	// 구매자 전화번호
+			       buyer_addr :  _addr,	// 구매자 주소
 			       buyer_postcode :  '',	// 구매자 우편번호
-			       m_redirect_url : '/khx/payEnd.action'	// 결제 완료 후 보낼 컨트롤러의 메소드명
+			       /* m_redirect_url : '/khx/payEnd.action'	// 결제 완료 후 보낼 컨트롤러의 메소드명 */
 			   }, function(rsp) {
 				if ( rsp.success ) { // 성공시
-					var msg = '결제가 완료되었습니다.';
-					msg += '고유ID : ' + rsp.imp_uid;
-					msg += '상점 거래ID : ' + rsp.merchant_uid;
-					msg += '결제 금액 : ' + rsp.paid_amount;
-					msg += '카드 승인번호 : ' + rsp.apply_num;
+					let data = "name=" + _name +"&";
+					data += "phone=" + _phone +"&";
+					data += "userId=" + _userId +"&";
+					data += "impId=" + rsp.imp_uid +"&";
+					data += "addr=" + getCookie("selectedAddr").replace('path=/halfPizza', '') +"&";
+					data += "info=" + getCookie("cart").replace('path=/halfPizza', '') +"&";
+					data += "merchantId=" + rsp.merchant_uid +"&";
+					data += "paidAmount=" + rsp.paid_amount;
+					
+					$.ajax({
+						type : "POST",
+						url : "http://localhost:8000/halfPizza/order/complete",
+						data : data
+					})
+					.done(function(result){
+						document.cookie = 'cart=; expire=Thu, 01 Jan 1999 00:00:10 GMT; domain=localhost; path=/halfPizza';
+						location.href="/halfPizza/order/payment/success";
+					});
 				} else { // 실패시
 					var msg = '결제에 실패하였습니다.';
 					msg += '에러내용 : ' + rsp.error_msg;
 				}
 			});
-		} 
+		}
+		function getCookie(name) {
+			  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+			  return value? value[2] : null;
+		}
+		function deleteCookie(name) {
+			console.log(name);
+			document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT';
+		}
+		document.querySelector('#phone').addEventListener("blur", function(){
+			let val = this.value;
+			this.value = val.substr(0,3) + '-' + val.substr(3,4) + '-' + val.substr(7);
+		});
+
+		document.querySelector('#phone').addEventListener("focus", function(){
+			this.value = this.value.replace(/[^0-9]/g,'');
+		});
     </script>
 <%@ include file="../layouts/footer.jsp" %>
 	<div class="popup2">

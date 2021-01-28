@@ -34,16 +34,16 @@ a {color:#333;}
 /* 핸들 (Handle) */
 ::-webkit-scrollbar-thumb { background: #00a0e9; border-radius: 10px; }
 header{position: fixed; height: 190px; z-index: 100; background: #fff; width: 100%; top: 0;}
-
 .top-fix{border-bottom: 1px solid #ddd; margin-bottom: 20px;}
 .top-fix .container{width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;}
 .top-fix .container .address{display: flex; width: 300px; align-items: center;}
 .top-fix .container .address img{margin-right: 5px;}
-.top-fix .container .address a{color: #000; font-family: NR; font-weight: bold;}
+.top-fix .container .address a{color: #000; font-family: NR; font-weight: bold; display: flex; align-items: center;}
 .top-fix .container .login{display: flex; align-items: center; padding-right: 40px; font-size: 14px; color: #000;}
 .top-fix .container .login a {margin-left:5px;}
 .top-fix .container .login .cart{position: relative; top: 20px; left: 30px; display: inline-block; width: 60px; height: 60px; background: #ffe100; border-radius: 50%;}
 .top-fix .container .login .cart img{display: block; position: absolute; left: 50%; top: 50%; transform: translate(-60%,-50%);}
+.top-fix .container .login .cart #cartNum{position:absolute; left:50%; top:15%; transform:translateX(-50%); font-size:20px; color:#00A0E9;}
 .nav-list .main-menu:hover .detail-menu{display: block;}
 .nav-list .main-menu > .container{width: 1200px; margin: 0 auto; display: flex; align-items: center;}
 .nav-list .main-menu > .container > a{flex-basis: 10%;}
@@ -549,3 +549,17 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .thankyou_message > section{width:550px; margin:10% auto; padding:20px; border-radius:5px; color:#3c4147;}
 .thankyou_message .btn_box{margin: 30px auto 0; text-align: center;}
 .thankyou_message .btn_box a{color: #fff; background: #00a0e9; display: inline-block; padding: 20px 30px; border-radius: 50px;}
+
+/*order-suc.css*//*order-suc.css*//*order-suc.css*//*order-suc.css*//*order-suc.css*/
+.subpage-box .order-success-box{display: flex; flex-direction: column; text-align: center}
+.subpage-box .order-success-box img {width: 120px; margin: 0 auto; margin-bottom: 50px;}
+.subpage-box .order-success-box .success-complete{font-size: 20px; margin-bottom: 30px;}
+.subpage-box .order-success-box .success-complete h4{margin-bottom: 5px;}
+.subpage-box .order-success-box .success-complete-button{display: flex;}
+.subpage-box .order-success-box .success-complete-button > *{flex: 1; border-radius: 50px; border: none; height: 50px; font-size: 15px; margin-right: 15px; font-weight: bold;}
+.subpage-box .order-success-box .success-complete-button .btn-blue{margin: 0;}
+.subpage-box .order-success-box .success-complete-button .btn-gray{background: #6b6b6b; color: #fff;}
+
+
+
+

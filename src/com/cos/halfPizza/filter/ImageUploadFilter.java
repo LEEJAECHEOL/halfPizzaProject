@@ -47,7 +47,6 @@ public class ImageUploadFilter implements Filter {
 			}
 			String uploadPath = req.getSession().getServletContext().getRealPath(path);
 			System.out.println("업로드 패스: "+uploadPath);
-			// �씠誘몄� �뾽濡쒕뱶
 			try {
 				MultipartRequest multi = new MultipartRequest(req, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 				String gubun = multi.getParameter("gubun");
