@@ -17,7 +17,7 @@
 					<c:forEach var="m" items="${menu}">
 						<div class="menu-item">
 							<input type="hidden" name="id" value="${m.id}"> 
-							<img alt="" src="/halfPizza/${m.path}${m.changeFileName}">
+							<img alt="" src="/halfPizza/${m.path}${m.changeFileName1}">
 							<div class="menu-item-content">
 								<p>피자명 : ${m.title }</p>
 								<p>설명 : ${m.content }</p>

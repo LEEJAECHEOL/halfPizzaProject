@@ -71,12 +71,14 @@ create table faq(
 create table event(
     id int primary key auto_increment,
     title varchar(100),
-    content text null,
     fromDate date,
     toDate date,
-    originFileName varchar(100),
-    changeFileName varchar(100),
-    path varchar(100)
+    originFileName1 varchar(100),
+    changeFileName1 varchar(100),
+    originFileName2 varchar(100),
+    changeFileName2 varchar(100),
+    path varchar(100),
+    createDate timestamp
 );
 create table notice(
     id int primary key auto_increment,

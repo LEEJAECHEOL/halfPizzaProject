@@ -4,9 +4,9 @@ package com.cos.halfPizza.domain.admin.dto;
 import lombok.Data;
 
 @Data
-public class RegistMenuReqDto {
-	private String originFileName;
-	private String changeFileName;
+public class MenuRegistReqDto {
+	private String originFileName1;
+	private String changeFileName1;
 	private String path;
 	private String gubun;
 	private String title;

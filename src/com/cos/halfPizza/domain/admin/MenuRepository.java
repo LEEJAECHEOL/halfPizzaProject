@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cos.halfPizza.config.DBConn;
-import com.cos.halfPizza.domain.admin.dto.EventUpdateReqDto;
-import com.cos.halfPizza.domain.admin.dto.EventUpdateRespDto;
 import com.cos.halfPizza.domain.admin.dto.MenuUpdateReqDto;
 import com.cos.halfPizza.domain.admin.dto.MenuUpdateRespDto;
-import com.cos.halfPizza.domain.admin.dto.RegistMenuReqDto;
+import com.cos.halfPizza.domain.admin.dto.EventFileRespDto;
+import com.cos.halfPizza.domain.admin.dto.MenuFileDeleteRespDto;
+import com.cos.halfPizza.domain.admin.dto.MenuRegistReqDto;
 import com.cos.halfPizza.domain.menu.Menu;
 
 public class MenuRepository {
@@ -29,8 +29,8 @@ public class MenuRepository {
 				list.add(Menu.builder()
 							.id(rs.getInt("id"))
 							.gubun(rs.getString("gubun"))
-							.originFileName(rs.getString("originFileName"))
-							.changeFileName(rs.getString("changeFileName"))
+							.originFileName1(rs.getString("originFileName1"))
+							.changeFileName1(rs.getString("changeFileName1"))
 							.path(rs.getString("path"))
 							.title(rs.getString("title"))
 							.content(rs.getString("content"))
@@ -49,9 +49,9 @@ public class MenuRepository {
 		return null;
 	}
 	
-	public int save(RegistMenuReqDto dto) {
+	public int save(MenuRegistReqDto dto) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("INSERT INTO menu(gubun, originFileName, changeFileName, path, title, content, price, isR, createDate) ");
+		sb.append("INSERT INTO menu(gubun, originFileName1, changeFileName1, path, title, content, price, isR, createDate) ");
 		sb.append("VALUES(?, ?, ?, ?, ?, ?, ?, ?, now())");
 		String sql = sb.toString();
 		Connection conn = DBConn.getConnection();
@@ -59,8 +59,8 @@ public class MenuRepository {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getGubun());
-			pstmt.setString(2, dto.getOriginFileName());
-			pstmt.setString(3, dto.getChangeFileName());
+			pstmt.setString(2, dto.getOriginFileName1());
+			pstmt.setString(3, dto.getChangeFileName1());
 			pstmt.setString(4, dto.getPath());
 			pstmt.setString(5, dto.getTitle());
 			pstmt.setString(6, dto.getContent());
@@ -99,7 +99,7 @@ public class MenuRepository {
 	
 	public MenuUpdateRespDto updateForm(int id) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT id, gubun, originFileName, changeFileName, path, title, content, path, price, isR ");
+		sb.append("SELECT id, gubun, originFileName1, changeFileName1, path, title, content, path, price, isR ");
 		sb.append("FROM menu WHERE id = ?");
 		String sql = sb.toString();
 		Connection conn = DBConn.getConnection();
@@ -113,8 +113,8 @@ public class MenuRepository {
 				MenuUpdateRespDto dto = new MenuUpdateRespDto();
 				dto.setId(rs.getInt("id"));
 				dto.setGubun(rs.getString("gubun"));
-				dto.setOriginFileName(rs.getString("originFileName"));
-				dto.setChangeFileName(rs.getString("changeFileName"));
+				dto.setOriginFileName1(rs.getString("originFileName1"));
+				dto.setChangeFileName1(rs.getString("changeFileName1"));
 				dto.setPath(rs.getString("path"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
@@ -133,7 +133,7 @@ public class MenuRepository {
 	
 	public int update(MenuUpdateReqDto dto) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE menu SET gubun = ?, originFileName = ?, changeFileName = ?, path = ?, title = ?, content = ?, path = ?, price = ?, isR = ? ");
+		sb.append("UPDATE menu SET gubun = ?, originFileName1 = ?, changeFileName1 = ?, path = ?, title = ?, content = ?, path = ?, price = ?, isR = ? ");
 		sb.append("WHERE id = ?");
 		String sql = sb.toString();
 		Connection conn = DBConn.getConnection();
@@ -141,8 +141,8 @@ public class MenuRepository {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getGubun());
-			pstmt.setString(2, dto.getOriginFileName());
-			pstmt.setString(3, dto.getChangeFileName());
+			pstmt.setString(2, dto.getOriginFileName1());
+			pstmt.setString(3, dto.getChangeFileName1());
 			pstmt.setString(4,dto.getPath());
 			pstmt.setString(5, dto.getTitle());
 			pstmt.setString(6, dto.getContent());
@@ -158,5 +158,27 @@ public class MenuRepository {
 			DBConn.close(conn, pstmt);
 		}
 		return -1;
+	}
+	public MenuFileDeleteRespDto findFileById(int id) {
+		String sql = "SELECT changeFileName1, path FROM menu WHERE id = ?";
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				MenuFileDeleteRespDto dto = new MenuFileDeleteRespDto();
+				dto.setChangeFileName1(rs.getString("changeFileName1"));
+				dto.setPath(rs.getString("path"));
+				return dto;	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return null;
 	}
 }

@@ -15,7 +15,7 @@
                     	<input type="hidden" name="id" value="${menu.id }">
                     	<input type="hidden" name="priceR" value="${menu.price - 2000 }">
                     	<input type="hidden" name="priceL" value="${menu.price }">
-                        <img src="${pageContext.request.contextPath}${menu.path}${menu.changeFileName}" alt="">
+                        <img src="${pageContext.request.contextPath}${menu.path}${menu.changeFileName1}" alt="">
                         <div class="sub-p-title">
                             <h3 class="underLine"><span>${menu.title }</span></h3>
                         </div>
@@ -63,7 +63,12 @@
                        		<h4 data-id=${menu.id} data-title=${menu.title} data-price=${menu.price - 2000 }><span>${menu.title }</span><b><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" /> 원</b></h4>
                         	<p id="size" data-size="R" data-price="0"><span>+ Regular</span><b>0 원</b></p>
                         </div>
-                        <h5><span>총 주문금액</span><b id="totalPrice" data-total=${menu.price - 2000 }><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" />원</b></h5>
+                        <h5>
+                        	<span>총 주문금액</span>
+                        	<b id="totalPrice" data-total=${menu.price - 2000 }>
+                        		<fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" />원
+                       		</b>
+                        </h5>
                         <button type="button" id="cartBtn">담기</button>
                     </div>
                 </div>
@@ -196,7 +201,7 @@
 					id : _menu.dataset.id,
 					title : _menu.dataset.title,
 					price : _menu.dataset.price,
-					src : "${pageContext.request.contextPath}${menu.path}${menu.changeFileName}"
+					src : "${pageContext.request.contextPath}${menu.path}${menu.changeFileName1}"
 				},
 				size : {
 					size : _size.dataset.size,

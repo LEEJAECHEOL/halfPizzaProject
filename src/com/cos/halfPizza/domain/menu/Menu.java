@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Menu {
 	private int id;
-	private String originFileName;
-	private String changeFileName;
+	private String originFileName1;
+	private String changeFileName1;
 	private String path;
 	private String gubun;
 	private String title;

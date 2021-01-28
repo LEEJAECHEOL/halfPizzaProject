@@ -8,12 +8,15 @@
 </head>
 <body>
 	<form action="/halfPizza/admin/event/registProc" method="post" enctype="multipart/form-data">
-		<label>이벤트 이미지</label>
-		<input type="file" name="file">
-		<label>제목 : </label><input type="text" name="title">
-		<label>내용 : </label><textarea name="content" rows="3" cols=""></textarea>
-		<label>시작일 : </label><input type="date" name="fromDate">
-		<label>종료일 : </label><input type="date" name="toDate">
+		<label>미리보기 이미지</label>
+		<input type="file" name="previewImg" required>
+		<input type="hidden" name="gubun" value="prev">
+		<label>제목 : </label><input type="text" name="title" required>
+		<label>내용 이미지</label>
+		<input type="hidden" name="gubun" value="content" required>
+		<input type="file" name="contentImg">
+		<label>시작일 : </label><input type="date" name="fromDate" required>
+		<label>종료일 : </label><input type="date" name="toDate" required>
 		<button>저장</button>
 	</form>
 </body>

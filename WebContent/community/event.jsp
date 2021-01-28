@@ -16,8 +16,8 @@
 					<c:forEach var="e" items="${events}">
 
 						<div class="event-item">
-							<a href="${pageContext.request.contextPath}/detail?id=${e.id}">
-								<img src="/halfPizza/${e.path}${e.changeFileName}" alt="">
+							<a href="${pageContext.request.contextPath}/community/event/detail?id=${e.id}">
+								<img src="${pageContext.request.contextPath}${e.path}${e.changeFileName1}" alt="">
 								<div class="event-content">
 									<h3>${e.title}</h3>
 									<p>${e.fromDate}~${e.toDate}</p>

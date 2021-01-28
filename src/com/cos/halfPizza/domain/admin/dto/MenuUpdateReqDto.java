@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class MenuUpdateReqDto {
 	private int id;
-	private String originFileName;
-	private String changeFileName;
+	private String originFileName1;
+	private String changeFileName1;
 	private String path;
 	private String gubun;
 	private String title;

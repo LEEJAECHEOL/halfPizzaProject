@@ -8,7 +8,7 @@ import lombok.Data;
 public class MenuListRespDto {
 	private int id;
 	private String path;
-	private String changeFileName;
+	private String changeFileName1;
 	private String title;
 	private int price;
 	private int isR;

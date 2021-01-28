@@ -25,7 +25,7 @@ public class MenuRepository {
 			while(rs.next()) {
 				list.add(MenuListRespDto.builder()
 							.id(rs.getInt("id"))
-							.changeFileName(rs.getString("changeFileName"))
+							.changeFileName1(rs.getString("changeFileName1"))
 							.path(rs.getString("path"))
 							.title(rs.getString("title"))
 							.price(rs.getInt("price"))
@@ -42,7 +42,7 @@ public class MenuRepository {
 		return null;
 	}
 	public MenuViewRespDto findById(MenuViewReqDto dto) {
-		String sql = "SELECT id, path, changeFileName, title, content, price, isR FROM menu WHERE id = ?";
+		String sql = "SELECT id, path, changeFileName1, title, content, price, isR FROM menu WHERE id = ?";
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -54,7 +54,7 @@ public class MenuRepository {
 				MenuViewRespDto respDto = new MenuViewRespDto();
 				respDto.setId(rs.getInt("id"));
 				respDto.setPath(rs.getString("path"));
-				respDto.setChangeFileName(rs.getString("changeFileName"));
+				respDto.setChangeFileName1(rs.getString("changeFileName1"));
 				respDto.setTitle(rs.getString("title"));
 				respDto.setContent(rs.getString("content"));
 				respDto.setPrice(rs.getInt("price"));

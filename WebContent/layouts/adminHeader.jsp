@@ -20,7 +20,7 @@
 <body>
     <header>
         <div class="container">
-            <h3><img src="../images/common/img_logo.png" alt="">Ad<span>min</span></h3>
+            <h3><img src="${pageContext.request.contextPath}/images/common/img_logo.png" alt="">Ad<span>min</span></h3>
             <nav>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/admin/menu/list">메뉴관리</a></li>

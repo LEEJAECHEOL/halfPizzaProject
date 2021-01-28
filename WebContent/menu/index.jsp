@@ -22,7 +22,7 @@
 						<c:forEach var="m" items="${menu}">
 			                <div class="pizza-item">
 			                    <a href="${pageContext.request.contextPath}/menu/menuView?id=${m.id}">
-			                        <img src="${pageContext.request.contextPath}${m.path}${m.changeFileName}" alt="">
+			                        <img src="${pageContext.request.contextPath}${m.path}${m.changeFileName1}" alt="">
 			                        <h3>${m.title }</h3>
 			                        <p>
 			                        	<c:if test="${m.isR eq 1}">

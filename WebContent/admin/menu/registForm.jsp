@@ -11,8 +11,9 @@
                 <form action="${pageContext.request.contextPath}/admin/menu/registProc" method="post" enctype="multipart/form-data">
                     <div class="menu-add-image">
                         <span>상품 이미지</span>
-                        <input type="file" name="file">
+                        <input type="file" name="file" onchange="setThumbnail(event);">
                     </div>
+                    <div id="image_container"></div>
                     <div class="menu-add-title">
                         <span>상품명</span>
                         <input type="text" name="title">
@@ -27,7 +28,7 @@
                     </div>
                     <div class="menu-add-regular">
                         <span>사이즈 R 여부</span>
-                        <input type="checkbox" name="isR" value="1">
+                        <input type="checkbox" name="isR" value="1" />
                     </div>
                     <div class="menu-add-gubun">
                        <span>메뉴 구분</span>
@@ -42,6 +43,20 @@
             </div>
         </div>
     </main>
+    
+	<script> 
+		function setThumbnail(event) { 
+			var reader = new FileReader(); 
+			reader.onload = function(event) { 
+				var img = document.createElement("img"); 
+				img.setAttribute("src", event.target.result); 
+				document.querySelector("div#image_container").appendChild(img);
+				document.querySelector("div#image_container").style.height="300px"; 
+			}; 
+			reader.readAsDataURL(event.target.files[0]); 
+		} 
+	</script>
+
 </body>
 
 </html>

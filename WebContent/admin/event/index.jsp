@@ -16,11 +16,9 @@
 				<div>
 					<div>
 						<input type="hidden" name="id" value="${e.id}">
-						<img alt="" src="/halfPizza/${e.path}${e.changeFileName}">
+						<img alt="" src="/halfPizza/${e.path}${e.changeFileName1}">
 						<h3>${e.title}</h3>
-						<p>${e.content}</p>
-						<p>${e.fromDate}</p>
-						<p>${e.toDate}</p>
+						<p>${e.fromDate} ~ ${e.toDate}</p>
 					</div>
 					<a href="/halfPizza/admin/event/updateForm?id=${e.id}">수정하기</a>
 					<button onclick="deleteById(${e.id})">삭제하기</button>
