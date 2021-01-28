@@ -1,0 +1,95 @@
+/*style*//*style*//*style*//*style*//*style*/
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    outline: none;
+    text-decoration: none;
+}
+button{cursor: pointer;}
+/*폰트*/
+@font-face {
+  font-family: NR;
+  src: url(../font/NanumSquare_acR.ttf) format('woff')
+}
+@font-face {
+  font-family: NL;
+  src: url(../font/NanumSquare_acL.ttf) format('woff')
+}
+@font-face {
+  font-family: NB;
+  src: url(../font/NanumSquare_acB.ttf) format('woff')
+}
+
+/* 길이 변경 */
+::-webkit-scrollbar { width: 5px;height: 8px;border: 2px solid #fff; }
+/* 트랙 (Track) */
+::-webkit-scrollbar-track { background: #ffe100;padding-right: 5px;	padding-left: 5px; }
+/* 핸들 (Handle) */
+::-webkit-scrollbar-thumb { background: #00a0e9; border-radius: 10px;}
+
+.container{width: 1200px; margin: 0 auto;}
+header{background: #fff;}
+header .container h3{color: #00a0e9; font-size: 22px; padding: 15px 0; display: flex; align-items: center;}
+header .container h3 img{margin-right: 10px;}
+header .container h3 span{color: #ffe100;}
+header .container{display: flex; align-items: center;}
+header .container nav{width: 100%;}
+header .container ul{display: flex;}
+header .container ul li{flex: 1; text-align: center;}
+header .container ul li a{display: inline-block; padding: 30px; color: #000; font-weight: bold;}
+body{background: #f3f3f3; padding-bottom: 50px;}
+main .container{padding-top: 60px;}
+main .container .sub-p-title {text-align: center; padding: 20px 0;}
+.underLine {display:inline-block;font-size: 26px;color:#000;position: relative;}
+.underLine span{position: relative;}
+.underLine:before {content: '';  display: block;width: 100%;height: 18px;position: absolute;left: -1px; bottom: 0;background: #ffe100;}
+
+
+/*index*//*index*//*index*//*index*//*index*/
+main .container .index-table-top,
+main .container .index-table-bottom{ background: #ffe100; border-radius: 50px; height: 400px; overflow-y: scroll;}
+main .container .index-table-top{margin-bottom: 50px;}
+main .container .index-table-top h3,
+main .container .index-table-bottom h3{text-align: center; color: #00a0e9; padding: 15px 0;}
+main .container .index-table-top table,
+main .container .index-table-bottom table{padding: 50px 70px;}
+main .container .index-table-top table th,
+main .container .index-table-top table td,
+main .container .index-table-bottom table th,
+main .container .index-table-bottom table td{font-size: 15px;}
+main .container .index-table-top table th,
+main .container .index-table-top table td,
+main .container .index-table-bottom table th,
+main .container .index-table-bottom table td{border-bottom: 1px solid #00a0e9;}
+main .container .index-table-top table td,
+main .container .index-table-bottom table td{text-align: center; padding: 10px 0;}
+
+
+/*menu-manage*/
+main .container .addMenu{display: inline-block; padding: 20px 50px; background: #ffe100; color: #000; font-weight: bold; font-family: NR; border-radius: 50px; margin-bottom: 50px;}
+main .container .menu-list{display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 30px; font-family: NR;}
+main .container .menu-list .menu-item{display: flex; flex-direction: column; border: 1px solid #ffe100; padding: 20px 0; border-radius: 50px; background: #ffe100; box-shadow: 26px 39px 62px -37px rgba(0, 0, 0, 0.3);}
+main .container .menu-list .menu-item img{display: block; padding: 0 50px 50px;}
+main .container .menu-list .menu-item .menu-item-content{padding-left: 15px;}
+main .container .menu-list .menu-item .menu-item-content p{margin-bottom: 10px; font-weight: bold;}
+main .container .menu-list .menu-item .menu-item-content p:nth-of-type(5){margin-bottom: 30px;}
+main .container .menu-list .menu-item .menu-item-content a,
+main .container .menu-list .menu-item .menu-item-content button{display: inline-block; width: 100px; height: 50px; text-align: center; line-height: 50px; margin-right: 10px; background: #00a0e9; color: #fff; border-radius: 50px; font-weight: bold; font-size: 15px;}
+main .container .menu-list .menu-item .menu-item-content button{border: none; background: #00a0e9; color: #fff;}
+
+/*menu-add*//*menu-add*//*menu-add*//*menu-add*//*menu-add*/
+main .container .menu-add{width: 1000px; margin: 0 auto; padding: 50px 30px; background: #fff; border-radius: 50px; font-family: NR;}
+main .container .menu-add h3{font-size: 22px; margin-bottom: 30px;}
+main .container .menu-add form>div{margin-bottom: 30px; height: 60px;}
+main .container .menu-add form>div span{display: inline-block; width: 150px; height: 60px; line-height: 60px; color: #00a0e9; font-weight: bold;}
+main .container .menu-add form>div:nth-of-type(2) input,
+main .container .menu-add form>div:nth-of-type(3) input,
+main .container .menu-add form select{height: 100%; border-radius: 50px; border: 1px solid #bfbfbf; width: 350px; text-indent: 20px;}
+main .container .menu-add form>div textarea{display: block; height: 100px; width: 80%; resize: none; border-radius: 20px; padding: 20px; border: 1px solid #bfbfbf;}
+main .container .menu-add form>div:nth-of-type(4){margin-bottom: 100px;}
+
+main .container .menu-add form button{display: block; margin: 25px auto; width: 250px;height: 50px; border-radius: 50px; border: none; background: #00a0e9; color: #fff; font-weight: bold;}
