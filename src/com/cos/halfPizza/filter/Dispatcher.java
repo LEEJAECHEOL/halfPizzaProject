@@ -48,7 +48,7 @@ public class Dispatcher implements Filter {
 			Annotation[] controllerAnnotations = controller.getAnnotations();
 			for (Annotation controllerAnnotation : controllerAnnotations) {
 //				System.out.println("ControllerAnnotation : " + controllerAnnotation);
-				if(controllerAnnotation instanceof Controller) {
+				if(controllerAnnotation instanceof Controller || controllerAnnotation instanceof Controller) {
 					try {
 						Object controllerInstance = controller.getDeclaredConstructor().newInstance();
 						Method[] methods = controller.getDeclaredMethods();
@@ -108,12 +108,26 @@ public class Dispatcher implements Filter {
 							
 							if(requestMapping.value().equals(endPoint)) {
 								Parameter[] params = method.getParameters();
-								
 								String data;
 								if (params.length != 0) {
-									Object dtoInstance = params[0].getType().getDeclaredConstructor().newInstance();
-									setData(dtoInstance, request);
-									data = (String)method.invoke(controllerInstance, dtoInstance);
+									Object[] callParameter = new Object[params.length];
+									for(int i = 0; i < params.length; i++) {
+										String paramName = params[i].getType().getSimpleName();
+										if(paramName.equals("HttpSession")) {
+											callParameter[i] = req.getSession();
+										}else if(paramName.equals("HttpServletRequest")) {
+											callParameter[i] = req;
+										}else if(paramName.equals("HttpServletResponse")) {
+											callParameter[i] = resp;
+										}else if(paramName.equals("MultipartRequest")){
+											callParameter[i] = req;
+										}else {
+											Object dtoInstance = params[i].getType().getDeclaredConstructor().newInstance();
+											setData(dtoInstance, request);
+											callParameter[i] = dtoInstance;
+										}
+									}
+									data = (String)method.invoke(controllerInstance, callParameter);
 								} else {
 									data = (String)method.invoke(controllerInstance);
 								}

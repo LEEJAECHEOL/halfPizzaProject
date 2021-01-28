@@ -34,7 +34,6 @@ a {color:#333;}
 /* 핸들 (Handle) */
 ::-webkit-scrollbar-thumb { background: #00a0e9; border-radius: 10px; }
 header{position: fixed; height: 190px; z-index: 100; background: #fff; width: 100%; top: 0;}
-
 .top-fix{border-bottom: 1px solid #ddd; margin-bottom: 20px;}
 .top-fix .container{width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;}
 .top-fix .container .address{display: flex; width: 300px; align-items: center;}
@@ -550,3 +549,24 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .thankyou_message > section{width:550px; margin:10% auto; padding:20px; border-radius:5px; color:#3c4147;}
 .thankyou_message .btn_box{margin: 30px auto 0; text-align: center;}
 .thankyou_message .btn_box a{color: #fff; background: #00a0e9; display: inline-block; padding: 20px 30px; border-radius: 50px;}
+
+/*order-suc.css*//*order-suc.css*//*order-suc.css*//*order-suc.css*//*order-suc.css*/
+.subpage-box .order-success-box{display: flex; flex-direction: column; text-align: center}
+.subpage-box .order-success-box img {width: 120px; margin: 0 auto; margin-bottom: 50px;}
+.subpage-box .order-success-box .success-complete{font-size: 20px; margin-bottom: 30px;}
+.subpage-box .order-success-box .success-complete h4{margin-bottom: 5px;}
+.subpage-box .order-success-box .success-complete-button{display: flex;}
+.subpage-box .order-success-box .success-complete-button > *{flex: 1; border-radius: 50px; border: none; height: 50px; font-size: 15px; margin-right: 15px; font-weight: bold;}
+.subpage-box .order-success-box .success-complete-button .btn-blue{margin: 0;}
+.subpage-box .order-success-box .success-complete-button .btn-gray{background: #6b6b6b; color: #fff;}
+
+/* non-member-order *//* non-member-order *//* non-member-order *//* non-member-order *//* non-member-order */
+.non-member-order{padding: 90px 70px; background: #fff; border-radius: 40px; font-family: NR;}
+.non-member-order h3{font-size: 20px; padding: 5px 0;}
+.non-member-order p{margin-bottom: 30px; font-size: 20px;}
+.non-member-order .non-member-phone{height: 60px; line-height: 60px; margin-bottom: 50px;}
+.non-member-order .non-member-phone span{font-size: 17px; margin-right: 10px;}
+.non-member-order .non-member-phone input{width: 350px; height: 100%; border-radius: 50px; border: 1px solid #bfbfbf; padding: 0 30px;}
+.non-member-order button{height: 70px; width: 250px; border-radius: 50px; border: none; background: #ffe100; font-size: 20px; font-weight: bold;}
+
+

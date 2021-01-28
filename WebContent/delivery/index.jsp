@@ -229,7 +229,7 @@
 			}
 			let addr = select.parentElement.outerText;
 			SetCookie("selectedAddr" , addr, null);
-			location.href = "/halfPizza/cart"
+			location.href = "/halfPizza/order/cart"
 		}
 	</script>
 <%@ include file="../layouts/footer.jsp" %>

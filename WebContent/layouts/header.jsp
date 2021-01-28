@@ -62,7 +62,9 @@
 				  			</c:if>
 				  			<a href="${pageContext.request.contextPath}/auth/myPage?id=${user.id}">마이페이지</a>
 				  			<a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a>
-		                    <a href="#a" class="cart"><img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""></a>
+		                    <a href="${pageContext.request.contextPath}/order/cart" class="cart">
+		                    <img src="${pageContext.request.contextPath}/images/common/ico_common_cart.png" alt=""><b id="cartNum">${cartCount == 0 ? '' : cartCount }</b>
+		                    </a>
 		                </div>
 				  	
 				  	</c:when>

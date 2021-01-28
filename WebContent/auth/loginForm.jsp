@@ -25,7 +25,7 @@
                         <li><a href="#a">아이디찾기</a></li>
                         <li><a href="#a">비밀번호찾기</a></li>
                         <li><a href="${pageContext.request.contextPath}/auth/registerTerms">회원가입</a></li>
-                        <li><a href="#a">비회원 주문조회</a></li>
+                        <li><a href="${pageContext.request.contextPath}/order/noMemberOrderSearch">비회원 주문조회</a></li>
                     </ul>
 
                     <a href="#a"><img src="${pageContext.request.contextPath}/images/contents/ico_login_kakako.png" alt=""><span>카카오로그인</span></a>

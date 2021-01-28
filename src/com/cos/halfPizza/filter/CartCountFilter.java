@@ -35,9 +35,9 @@ public class CartCountFilter implements Filter {
 		}
 		Gson gson = new Gson();
 		CartWrap cart = new CartWrap();
+		cart = gson.fromJson(data, CartWrap.class);
 		int cartCount = 0;
-		if(data != null) {
-			cart = gson.fromJson(data, CartWrap.class);
+		if(cart != null) {
 			cartCount = cart.getCartWrap().size();
 		}
 		req.setAttribute("cartCount", cartCount);

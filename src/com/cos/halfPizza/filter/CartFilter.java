@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cos.halfPizza.domain.cart.CartWrap;
 import com.cos.halfPizza.domain.delivery.AddrWrap;
+import com.cos.halfPizza.util.Script;
 import com.google.gson.Gson;
 
 public class CartFilter implements Filter {
@@ -41,6 +42,10 @@ public class CartFilter implements Filter {
 			cart = gson.fromJson(data, CartWrap.class);
 		}else {
 			cart = null;
+		}
+		if(cart == null) {
+			Script.flash(resp, "선택하신 메뉴가 없습니다.주문하실 메뉴를 선택해주세요.", "/halfPizza/menu");
+			return;
 		}
 		req.setAttribute("cart", cart);
 		chain.doFilter(req, resp);	
