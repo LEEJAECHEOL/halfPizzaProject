@@ -560,6 +560,13 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .subpage-box .order-success-box .success-complete-button .btn-blue{margin: 0;}
 .subpage-box .order-success-box .success-complete-button .btn-gray{background: #6b6b6b; color: #fff;}
 
-
+/* non-member-order *//* non-member-order *//* non-member-order *//* non-member-order *//* non-member-order */
+.non-member-order{padding: 90px 70px; background: #fff; border-radius: 40px; font-family: NR;}
+.non-member-order h3{font-size: 20px; padding: 5px 0;}
+.non-member-order p{margin-bottom: 30px; font-size: 20px;}
+.non-member-order .non-member-phone{height: 60px; line-height: 60px; margin-bottom: 50px;}
+.non-member-order .non-member-phone span{font-size: 17px; margin-right: 10px;}
+.non-member-order .non-member-phone input{width: 350px; height: 100%; border-radius: 50px; border: 1px solid #bfbfbf; padding: 0 30px;}
+.non-member-order button{height: 70px; width: 250px; border-radius: 50px; border: none; background: #ffe100; font-size: 20px; font-weight: bold;}
 
 

@@ -23,5 +23,9 @@ public class OrderController {
 	public String success() {
 		return "/order/success.jsp";
 	}
+	@RequestMapping("/order/noMemberOrderSearch")
+	public String noMemberOrderSearch() {
+		return "/order/noMemberOrderSearch.jsp";
+	}
 	
 }
