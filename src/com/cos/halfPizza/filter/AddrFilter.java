@@ -12,10 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cos.halfPizza.domain.cart.CartWrap;
-import com.google.gson.Gson;
-
-public class CartCountFilter implements Filter {
+public class AddrFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -24,24 +21,15 @@ public class CartCountFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse)response;
 		
-
 		Cookie[] cookies = req.getCookies();
-		String data = null;
-		for(int i = 0; i < cookies.length; i++) {
-			if(cookies[i].getName().equals("cart")){
-				data = URLDecoder.decode(cookies[i].getValue()).replace("path=/halfPizza", "");
-				break;
+		
+		String value = null;
+		for(int i = 0; i < cookies.length; i++ ) {
+			if(cookies[i].getName().equals("selectedAddr")) {
+				value =  URLDecoder.decode(cookies[i].getValue()).replace("path=/halfPizza", "");
 			}
 		}
-		Gson gson = new Gson();
-		CartWrap cart = new CartWrap();
-		int cartCount = 0;
-		if(data != null) {
-			cart = gson.fromJson(data, CartWrap.class);
-			cartCount = cart.getCartWrap().size();
-		}
-		req.setAttribute("cartCount", cartCount);
-		
+		req.setAttribute("selectedAddr", value);
 		chain.doFilter(req, resp);
 	}
 
