@@ -162,7 +162,7 @@
                         <a href="${pageContext.request.contextPath}/community/event">이벤트</a>
                         <a href="${pageContext.request.contextPath}/community/notice">공지사항</a>
                         <a href="${pageContext.request.contextPath}/community/faq">FAQ</a>
-                        <a href="#a">고객의 소리</a>
+                        <a href="${pageContext.request.contextPath}/community/contact">고객의 소리</a>
                         <a href="#a">채용하기</a>
                     </li>
                     <li>
