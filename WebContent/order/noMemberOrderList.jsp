@@ -33,7 +33,7 @@
 				                            <td><fmt:formatNumber value="${list.paidAmount}" pattern="#,###" />원</td>
 				                        </tr>
 				                    </table>
-				                    <button class="open3"><span>상세</span>
+				                    <button class="open3" type="button" onclick="detailBtn('${list.id}')"><span>상세</span>
 				                        <p>보기</p>
 				                    </button>
 				                </div>
@@ -48,6 +48,86 @@
         </div>
         <br>
     </main>
+    
 <%@ include file="../layouts/footer.jsp" %>
+<div class="popup3">
+	<div class="pop3-info">
+        <span>매장정보</span>
+        <h4 id="popAddr"></h4>
+    </div>
+    <div class="pop3-info">
+        <span>주문날짜</span>
+        <h4 id="popDate"></h4>
+    </div>
+    <div class="pop3-info">
+        <span>주문번호</span>
+        <h4 id="popId"></h4>
+    </div>
+    <div class="pop3-pizza-info">
+        <table width="100%" id="popMenu">
+        </table>
+        <p><span>할인</span><b>0</b></p>
+        <p><span>최종결제금액</span><strong id="totalPrice"></strong></p>
+    </div>
+    <div class="delivery-shop">
+        <div class="delivery-shop-info">
+            <span>매장주소</span>
+            <p>부산 남구 용소로 19번길 88 부산남구점</p>
+        </div>
+        <div class="delivery-shop-info">
+            <span>전화번호</span>
+            <p>010-9062-2304</p>
+        </div>
+        <div class="delivery-shop-info">
+            <span>요청사항</span>
+            <p id="popText"></p>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="close3">확인</button>
+    </div>
+</div>
+<div class="dim"></div>
+<script>
+	function detailBtn(id){
+		$.ajax({
+            type : "GET",
+            url : "http://localhost:8000/halfPizza/order/findDetail?id=" + id,
+            dataType:"json"
+         })
+         .done(function(result){
+	        document.querySelector('#popAddr').textContent = result.data.addr;
+	        document.querySelector('#popDate').textContent = result.data.createDate;
+	        document.querySelector('#popId').textContent = result.data.id;
+	        document.querySelector('#totalPrice').textContent = result.data.paidAmount+"원";
+	        document.querySelector('#popText').textContent = result.data.text;
+			let info = JSON.parse(result.data.info);
+	        let content = "<colgroup><col width='50%'><col width='15%'><col width='35%'></colgroup>";
+	        for(let i = 0; i < info.cartWrap.length; i++){
+		        content += "<tr>";
+	        	content += "<td>" + info.cartWrap[i].menu.title +"</td>";
+	        	content += "<td> x" + info.cartWrap[i].count +"</td>";
+	        	content += "<td>" + info.cartWrap[i].menu.price +"원</td>";
+	        	content += "</tr>"
+		        content += "<tr>";
+	        	content += "<td>" + info.cartWrap[i].size.text +"</td>";
+	        	content += "<td></td>";
+	        	content += "<td>" + info.cartWrap[i].size.price +"원</td>";
+	        	content += "</tr>"
+		       	for(let j = 0; j < info.cartWrap[i].option.length; j++){
+			        content += "<tr>";
+		        	content += "<td>" + info.cartWrap[i].option[j].text +"</td>";
+		        	content += "<td></td>";
+		        	content += "<td>" + info.cartWrap[i].option[j].price +"원</td>";
+		        	content += "</tr>"
+	       		}
+	        }
+	        document.querySelector('#popMenu').innerHTML = content;
+            console.log(info);
+         });
+			
+		
+	}
+</script>
 </body>
 </html>

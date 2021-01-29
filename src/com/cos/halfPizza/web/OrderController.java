@@ -42,7 +42,6 @@ public class OrderController {
 	@RequestMapping("/order/noMemberOrderSearchProc")
 	public String noMemberOrderSearchProc(OrderSearchReqDto dto, HttpServletRequest req, HttpServletResponse resp) {
 		List<OrderSearchRespDto> entityDto = oderService.비회원주문목록가져오기(dto);
-		System.out.println(entityDto);
 		if(entityDto != null) {
 			req.setAttribute("dto", entityDto);
 		}else{

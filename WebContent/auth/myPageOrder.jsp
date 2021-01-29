@@ -110,7 +110,6 @@
             </div>
         </div>
         <div class="btn-group">
-            <button class="retry-order">재주문</button>
             <button class="close3">확인</button>
         </div>
     </div>

@@ -355,7 +355,7 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .popup2{display: none; position: fixed; padding: 30px 30px 70px; z-index: 100; width: 550px; height: 543px; left: 50%; top: 50%; transform: translate(-50%,-50%); box-sizing: border-box; background: #fff;}
 .popup .close,
 .popup2 .close2 {position: absolute; right: 30px; top: 25px; width: 30px; height: 30px; background: url(../images/popup/btn-close.png)no-repeat center; color: transparent;}
-.dim{display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 99; background: rgba(0,0,0,.5);}
+.dim{display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 110; background: rgba(0,0,0,.5);}
 
 .popup h2,
 .popup2 h2{color: #00a0e9; font-size: 22px; margin-bottom: 15px;}

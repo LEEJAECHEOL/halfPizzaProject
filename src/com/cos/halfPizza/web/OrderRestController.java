@@ -11,7 +11,7 @@ import com.cos.halfPizza.anno.RestController;
 import com.cos.halfPizza.domain.CommonRespDto;
 import com.cos.halfPizza.domain.order.Order;
 import com.cos.halfPizza.domain.order.dto.OrderReqDto;
-import com.cos.halfPizza.domain.order.dto.OrderSearchReqDto;
+import com.cos.halfPizza.domain.order.dto.OrderSearchIdReqDto;
 import com.cos.halfPizza.service.OrderService;
 import com.google.gson.Gson;
 
@@ -34,8 +34,8 @@ public class OrderRestController {
 		return oderService.save(dto);
 	}
 	
-	@RequestMapping("order/findDetail")
-	public String detailOrder(OrderSearchReqDto dto) {
+	@RequestMapping("/order/findDetail")
+	public String detailOrder(OrderSearchIdReqDto dto) {
 		Order entityDto = oderService.주문상세보기(dto);
 		CommonRespDto<Order> commonRespDto = new CommonRespDto();
 		

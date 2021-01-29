@@ -43,10 +43,10 @@ create table users(
     updateDate timestamp
 );
 create table menu(
-    id int primary key auto_increment,
+	id int primary key auto_increment,
     gubun varchar(10),
-    originFileName varchar(200) null,
-    changeFileName varchar(100) null,
+    originFileName1 varchar(200) null,
+    changeFileName1 varchar(100) null,
     path varchar(100) null,
     title varchar(100) not null,
     content text null,
@@ -94,6 +94,7 @@ create table orders(
     phone varchar(13),
     addr varchar(200),
     info longText,
+    text varchar(200),
     impId varchar(100),
     merchantId varchar(100),
     paidAmount int,

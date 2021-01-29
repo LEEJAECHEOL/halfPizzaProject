@@ -5,6 +5,7 @@ import java.util.List;
 import com.cos.halfPizza.domain.order.Order;
 import com.cos.halfPizza.domain.order.OrderRepository;
 import com.cos.halfPizza.domain.order.dto.OrderReqDto;
+import com.cos.halfPizza.domain.order.dto.OrderSearchIdReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchRespDto;
 
@@ -19,7 +20,7 @@ public class OrderService {
 		return orderRepository.findAllByPhone(dto);
 	}
 	
-	public Order 주문상세보기(OrderSearchReqDto dto) {
+	public Order 주문상세보기(OrderSearchIdReqDto dto) {
 		return orderRepository.findById(dto);
 	}
 }

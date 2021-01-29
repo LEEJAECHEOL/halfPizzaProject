@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.cos.halfPizza.config.DBConn;
 import com.cos.halfPizza.domain.order.dto.OrderReqDto;
+import com.cos.halfPizza.domain.order.dto.OrderSearchIdReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchRespDto;
 
@@ -72,14 +73,14 @@ public class OrderRepository {
 		}
 		return null;
 	}
-	public Order findById(OrderSearchReqDto dto) {
+	public Order findById(OrderSearchIdReqDto dto) {
 		String sql = "SELECT * FROM orders WHERE id = ?";
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getPhone());
+			pstmt.setInt(1, dto.getId());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				return Order.builder()
