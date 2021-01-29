@@ -30,7 +30,8 @@ button{cursor: pointer;}
 ::-webkit-scrollbar-track { background: #ffe100;padding-right: 5px;	padding-left: 5px; }
 /* 핸들 (Handle) */
 ::-webkit-scrollbar-thumb { background: #00a0e9; border-radius: 10px;}
-
+.logo{display:flex; align-items: center;}
+.logo b{color:#00a0e9;}
 .container{width: 1200px; margin: 0 auto;}
 header{background: #fff;}
 header .container h3{color: #00a0e9; font-size: 22px; padding: 15px 0; display: flex; align-items: center;}
@@ -135,3 +136,8 @@ main .container .option-add form button{display: block; margin: 25px auto; width
 .faq-add form div.faq-add-content{display: flex;}
 .faq-add form div.faq-add-content textarea{width: 600px; height: 150px; padding: 0 20px;}
 .faq-add form button{width: 150px; height: 50px; border-radius: 50px; border: none; background: #ffe100; font-weight: bold;}
+
+.order-list{padding: 30px; background: #fff; border-radius: 30px;}
+.order-list table th{color: #00a0e9;}
+.order-list table td{text-align: center; font-weight: bold;}
+

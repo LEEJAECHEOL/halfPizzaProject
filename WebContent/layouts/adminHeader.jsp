@@ -20,7 +20,7 @@
 <body>
     <header>
         <div class="container">
-            <h3><img src="${pageContext.request.contextPath}/images/common/img_logo.png" alt="">Ad<span>min</span></h3>
+            <h3><a href="${pageContext.request.contextPath}/admin" class="logo"><img src="${pageContext.request.contextPath}/images/common/img_logo.png" alt=""><b>Ad</b><span>min</span></a></h3>
             <nav>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/admin/menu/list">메뉴관리</a></li>
@@ -28,7 +28,7 @@
                     <li><a href="${pageContext.request.contextPath}/admin/notice/list">공지사항관리</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/faq/list">FAQ관리</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/event/list">이벤트관리</a></li>
-                    <li><a href="#a">판매량</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/order/list">판매량</a></li>
                 </ul>
             </nav>
         </div>

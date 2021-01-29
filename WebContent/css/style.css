@@ -614,3 +614,39 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 #selectByEmail p{margin-bottom: 20px;}
 #selectByEmail p span{margin-right: 15px;}
 #selectByEmail button{width: 100px; height: 40px; border-radius: 50px; border: none; background: #00a0e9; color: #fff;}
+
+
+/*coupon*//*coupon*//*coupon*//*coupon*//*coupon*/
+.Ecoupon-box{padding: 90px 70px; background: #fff; border-radius: 40px; display: flex; align-items: center; font-family: NR; margin-bottom: 40px;} 
+.Ecoupon-box > *{flex-basis: 50%;}
+.Ecoupon-box .Ecoupon-box-left h3{font-size: 20px; margin-bottom: 30px;}
+.Ecoupon-box .Ecoupon-box-left div span{display: inline-block; width: 90px; font-size: 17px; color: #494949;}
+.Ecoupon-box .Ecoupon-box-left div input{height: 60px; width: 330px; border-radius: 50px; border: 1px solid #bfbfbf; padding: 0 30px;}
+.Ecoupon-box .Ecoupon-box-left div button{width: 60px; height: 60px; border-radius: 50%; border: none; background: #ffe100; color: transparent; margin-left: 5px; position: relative;}
+.Ecoupon-box .Ecoupon-box-left div button:after{content: '\e97a'; font-family: 'xeicon'; position: absolute; left: 50%; top: 50%; font-size: 22px; color: #000; transform: translate(-50%,-50%);}
+.Ecoupon-box .Ecoupon-box-right {color: #ff0000;}
+.Ecoupon-box .Ecoupon-box-right h4{font-size: 17px; margin-bottom: 25px;}
+.Ecoupon-box .Ecoupon-box-right p{font-size: 13px;}
+.Ecoupon-box .Ecoupon-box-right p sup{margin-right: 2px;}
+.Ecoupon-box .Ecoupon-box-right h5{text-indent: 10px; font-size: 13px; margin-top: 5px; font-weight: normal;}
+.Ecoupon-info{padding: 10px 70px; font-family: NR; font-size: 16px;}
+.Ecoupon-info p{margin-top: 5px;}
+.Ecoupon-info p sup{margin-right: 5px; color: #616161;}
+
+
+.my-coupon-box{padding: 30px 70px; background: #fff; border-radius: 50px; font-family: NR;}
+.my-coupon-box .my-coupon-box-top h3{padding: 60px 0 30px; font-size: 20px;}
+.my-coupon-box .my-coupon-box-top div{padding-bottom: 50px; border-bottom: 1px solid #666}
+.my-coupon-box .my-coupon-box-top div span{display: inline-block; width: 80px; font-size: 17px;}
+.my-coupon-box .my-coupon-box-top div input{width: 300px; height: 60px; border-radius: 50px; border: 1px solid #bfbfbf; padding: 0 30px;}
+.my-coupon-box .my-coupon-box-top div button{width: 157px; height: 60px; border-radius: 50px; border: none; background: #ffe100; font-weight: bold; margin-left: 6px;}
+.my-coupon-box .my-coupon-box-bottom{padding-top: 50px;}
+.my-coupon-box .my-coupon-box-bottom p{font-size: 14px;}
+.my-coupon-box .my-coupon-box-bottom p sup{margin-right: 5px;}
+.my-coupon-box .my-coupon-box-bottom p:last-child{margin-top: 50px;}
+.stamp-box{padding: 90px 70px; background: #fff; border-radius: 50px; font-family: NR;}
+.stamp-box i{color: #00a0e9; font-size: 50px; margin-right: 10px;}
+.stamp-box h1{margin-bottom: 30px;}
+.stamp-box p{text-indent: 70px; margin-top: 5px; font-size: 14px; color: #616161;}
+.stamp-box p sup{margin-right: 5px;}
+

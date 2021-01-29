@@ -11,8 +11,8 @@
             <div class="mypage-list">
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/auth/myPage">주문내역</a></li>
-                    <li><a href="#a">쿠폰함</a></li>
-                    <li><a href="#a">스탬프</a></li>
+                    <li><a href="${pageContext.request.contextPath}/auth/myCoupon">쿠폰함</a></li>
+                    <li><a href="${pageContext.request.contextPath}/auth/myStamp">스탬프</a></li>
                     <li><a href="${pageContext.request.contextPath}/auth/updateChk" class="selected">개인정보수정</a></li>
                 </ul>
             </div>
