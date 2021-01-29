@@ -22,15 +22,17 @@ public class AddrFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse)response;
 		
 		Cookie[] cookies = req.getCookies();
-		
-		String value = null;
-		for(int i = 0; i < cookies.length; i++ ) {
-			if(cookies[i].getName().equals("selectedAddr")) {
-				value =  URLDecoder.decode(cookies[i].getValue()).replace("path=/halfPizza", "");
-				req.setAttribute("selectedAddr", value);
-				break;
+		if(cookies != null){
+			String value = null;
+			for(int i = 0; i < cookies.length; i++ ) {
+				if(cookies[i].getName().equals("selectedAddr")) {
+					value =  URLDecoder.decode(cookies[i].getValue()).replace("path=/halfPizza", "");
+					req.setAttribute("selectedAddr", value);
+					break;
+				}
 			}
 		}
+		
 		chain.doFilter(req, resp);
 	}
 
