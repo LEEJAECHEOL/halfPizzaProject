@@ -6,9 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
-import com.cos.halfPizza.domain.faq.Faq;
 import com.cos.halfPizza.domain.notice.Notice;
-import com.cos.halfPizza.service.FaqService;
+import com.cos.halfPizza.domain.notice.dto.SelectReqDto;
 import com.cos.halfPizza.service.NoticeService;
 
 @Controller
@@ -20,5 +19,12 @@ public class NoticeController {
 		List<Notice> notices = noticeService.공지목록가져오기();
 		req.setAttribute("notices", notices);
 		return "/community/notice.jsp";
+	}
+	
+	@RequestMapping("/community/detail")
+	public String detail(SelectReqDto dto, HttpServletRequest req) {
+		Notice entityDto = noticeService.공지상세보기(dto);
+		req.setAttribute("dto", entityDto);
+		return "/community/noticeDetail.jsp";
 	}
 }

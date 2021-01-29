@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Script {
 	public static void back(HttpServletResponse response, String msg) {
+		response.setContentType("text/html;charset=utf-8;");
 		PrintWriter out;
 		try {
 			out = response.getWriter();
@@ -21,6 +22,7 @@ public class Script {
 		}
 	}
 	public static void responseData(HttpServletResponse response, String jsonData) {
+		response.setContentType("text/html;charset=utf-8;");
 		PrintWriter out;
 		try {
 			out = response.getWriter();
@@ -31,6 +33,7 @@ public class Script {
 		}
 	}
 	public static void flash(HttpServletResponse response, String msg, String path) {
+		response.setContentType("text/html;charset=utf-8;");
 		PrintWriter out;
 		try {
 			out = response.getWriter();

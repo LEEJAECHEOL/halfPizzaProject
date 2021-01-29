@@ -106,7 +106,7 @@ public class NoticeRepository {
 	
 	public int update(NoticeUpdateReqDto dto) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE notice SET title = ?, content = ?, createDate = now() ");
+		sb.append("UPDATE notice SET title = ?, content = ?, updateDate = now() ");
 		sb.append("WHERE id = ?");
 		String sql = sb.toString();
 		Connection conn = DBConn.getConnection();

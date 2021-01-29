@@ -11,9 +11,8 @@
     <title>관리자페이지</title>
 
     <!--공통css-->
-    <style>
-    	<%@ include file="../css/admin.css"%>
-	</style>
+ 
+	<link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 

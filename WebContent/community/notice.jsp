@@ -22,7 +22,7 @@
 				<c:when test="${notices!=null}">
 					<c:forEach var="n" items="${notices}">
 						<div class="notice-item">
-							<a href="#a">
+							<a href="${pageContext.request.contextPath}/community/detail?id=${n.id}">
 								<h3>${n.title}</h3> <span><b>${n.createDate}</b></span>
 							</a>
 						</div>

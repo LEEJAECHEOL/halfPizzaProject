@@ -22,7 +22,11 @@
             .create( document.querySelector( '#content' ),{
             	ckfinder: {
         			uploadUrl: '/halfPizza/ck/fileupload'
-        		}
+        		},
+    			alignment: {
+    	            options: [ 'left', 'right', 'center' ]
+    	        },
+    	        
              })
             .catch( error => {
                 console.error( error );

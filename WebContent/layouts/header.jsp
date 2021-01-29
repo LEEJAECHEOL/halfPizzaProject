@@ -12,15 +12,12 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>반올림피자</title>
-
     <!--Fontawesome & xeicon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"  />
-	<style>
-	     <%@ include file="../css/style.css"%>
-	</style>
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
+
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -28,10 +25,10 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     
+   	<script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script defer src="${pageContext.request.contextPath}/js/pop.js" charset="utf-8"></script>
-   	
 </head>
 
 <body>

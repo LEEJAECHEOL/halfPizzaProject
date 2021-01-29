@@ -68,16 +68,12 @@ public class AdminNoticeController {
 	public String updateForm(HttpServletRequest request, HttpServletResponse response) {
 		int id = Integer.parseInt(request.getParameter("id"));
 		NoticeUpdateRespDto dto = noticeService.공지수정페이지(id);
-		System.out.println(dto);
 		request.setAttribute("dto", dto);
 		return "/admin/notice/updateForm.jsp";
 	}
 	
 	@RequestMapping("/admin/notice/updateProc")
 	public void update(NoticeUpdateReqDto dto, HttpServletResponse response) {
-		System.out.println(dto.getId());
-		System.out.println(dto.getTitle());
-		System.out.println(dto.getContent());
 		int result = noticeService.공지수정하기(dto);
 		if (result == 1) {
 			try {

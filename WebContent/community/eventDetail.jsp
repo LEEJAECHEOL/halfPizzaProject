@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../layouts/header.jsp"%>
-${dto }
 	<main>
         <div class="container">
             <div class="sub-p-title">

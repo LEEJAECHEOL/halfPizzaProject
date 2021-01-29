@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	 <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+	 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+	 <script src="${pageContext.request.contextPath}/js/build/ckeditor.js" type="text/javascript"></script>
 </head>
 <body>
 	<form
@@ -21,11 +22,15 @@
 	</form>
 	
     <script>
-        ClassicEditor
-            .create( document.querySelector( '#content' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+	    ClassicEditor
+	    .create( document.querySelector( '#content' ),{
+	    	ckfinder: {
+				uploadUrl: '/halfPizza/ck/fileupload'
+			},
+	     })
+	    .catch( error => {
+	        console.error( error );
+	    } );
     </script>
 
 

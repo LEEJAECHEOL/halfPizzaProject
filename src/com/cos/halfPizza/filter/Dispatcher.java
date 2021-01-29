@@ -37,7 +37,7 @@ public class Dispatcher implements Filter {
 		String endPoint = req.getRequestURI().replaceAll(req.getContextPath(), "");
 //		System.out.println("엔드포인트 : " + endPoint);
 		
-		if(exclusionUri(endPoint)) {
+		if(exclusionUri(endPoint, resp)) {
 			chain.doFilter(request, response);
 			return;
 		} 
@@ -148,7 +148,7 @@ public class Dispatcher implements Filter {
 		
 	}
 	
-	private boolean exclusionUri(String endPoint) {
+	private boolean exclusionUri(String endPoint, HttpServletResponse resp) {
 		String[] exclusions  = { "/js", "/css", "/font", "/images", "/index.jsp"};
 		if(endPoint.length() == 1){
 			return true;
