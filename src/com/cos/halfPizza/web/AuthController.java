@@ -49,6 +49,7 @@ public class AuthController {
 		return "/auth/updateChkForm.jsp";
 	}
 	
+	
 	@RequestMapping("/auth/updateProc")
 	public String updateProc(UpdateReqDto dto, HttpServletResponse response, HttpSession session) {
 		int result = authService.update(dto);
@@ -64,6 +65,7 @@ public class AuthController {
 		}
 		return null;
 	}
+	
 	
 	
 	@RequestMapping("/auth/updateChkProc")
@@ -135,4 +137,16 @@ public class AuthController {
 	public void findPassword() {
 		System.out.println("findPassword()");
 	}
+	
+	@RequestMapping("/auth/selectByEmailFormId")
+	public String selectByEmailFormId() {
+		return "/auth/selectByEmail.jsp";
+	}
+	
+	@RequestMapping("/auth/selectByIdFormPass")
+	public String selectByIdFormPass() {
+		System.out.println("실행됨?");
+		return "/auth/selectById.jsp";
+	}
+	
 }

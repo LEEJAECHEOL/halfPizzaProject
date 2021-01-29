@@ -176,7 +176,9 @@ main .container .subpage-box{height: 546px; width: 100%; background: #fff; displ
 .join-box input[type='password'],
 .join-box input[type='date'],
 .join-box input[type='email']{height: 50px; width: 255px; border-radius: 50px; text-indent: 20px; font-size: 18px; color: #000; margin-bottom: 10px; outline: none; border: 1px solid #ddd;}
-.join-box .userIdCheck{width: 150px; height: 50px; border-radius: 50px; border: none; color: #000; background: #ffe100; font-family: inherit; letter-spacing: 1px; font-weight: bold}
+.join-box .userIdCheck{width: 150px; height: 50px; border-radius: 50px; border: none; color: #000; background: #ffe100; font-family: inherit; letter-spacing: 1px; font-weight: bold;}
+.join-box .emailCheck,
+.mypage-update-box .emailCheck{width: 150px; height: 50px; border-radius: 50px; border: none; color: #000; background: #ffe100; font-family: inherit; letter-spacing: 1px; font-weight: bold; margin-left:10px;}
 .join-box .phone,
 .join-box .email{margin-bottom: 50px;}
 .join-box .email input{height: 50px; width: 150px;}
@@ -187,8 +189,16 @@ main .container .subpage-box{height: 546px; width: 100%; background: #fff; displ
 .join-box .marketing .lbl:after{top: -1px;}
 .join-box .marketing .checkbox input:checked +.lbl:after{top:10px;}
 .join-box .btn-blue{display: block; margin: 0 auto;}
-.join-box p.warning {padding-left:90px;color:red;margin-bottom:5px;display:none;}
-.join-box p.good {padding-left:90px;color:#009900;margin-bottom:5px;display:none;}
+p.warning {padding-left:90px;color:red;margin-bottom:5px;display:none;}
+h4.warning {padding-left:100px;color:red;margin-bottom:5px;display:none;}
+p.good {padding-left:90px;color:#009900;margin-bottom:5px;display:none;}
+
+
+.agree-form .searchByEmail>input{width: 80%; margin-bottom: 10px;}
+.agree-form .searchByEmail input,
+.agree-form .searchByEmail select{height: 50px; border-radius: 50px; border: 1px solid #ddd; text-indent: 20px;}
+.agree-form .searchByEmail select{text-indent: 0;}
+.agree-form .searchByEmail div{margin:30px 0 28px;}
 
 
 /*login*//*login*//*login*//*login*//*login*/
@@ -597,4 +607,10 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .non-member-order .non-member-phone input{width: 350px; height: 100%; border-radius: 50px; border: 1px solid #bfbfbf; padding: 0 30px;}
 .non-member-order button{height: 70px; width: 250px; border-radius: 50px; border: none; background: #ffe100; font-size: 20px; font-weight: bold;}
 
-
+#selectByEmail{position: absolute; left: 50%; top: 50%; background: #fff; padding: 60px 100px; transform: translate(-50%,-50%); border-radius: 50px; border: 2px solid #ffe100; font-family: NR; display: none;}
+#selectSuccess{display: none;}
+#selectFail{display: none;}
+#selectByEmail h3{margin-bottom: 20px;}
+#selectByEmail p{margin-bottom: 20px;}
+#selectByEmail p span{margin-right: 15px;}
+#selectByEmail button{width: 100px; height: 40px; border-radius: 50px; border: none; background: #00a0e9; color: #fff;}

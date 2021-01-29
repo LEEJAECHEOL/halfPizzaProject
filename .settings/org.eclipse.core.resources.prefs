@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/auth/selectByEmail.jsp=UTF-8
 encoding//WebContent/auth/updateChkForm.jsp=UTF-8
 encoding//src/com/cos/halfPizza/domain/admin/NoticeRepository.java=UTF-8
 encoding//src/com/cos/halfPizza/domain/auth/AuthRepository.java=UTF-8
