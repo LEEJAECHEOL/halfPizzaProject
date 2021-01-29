@@ -1,26 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form action="${pageContext.request.contextPath}/admin/faq/registProc" method="post">
-		<select name="gubun">
-			<option value="계정 관련">계정 관련</option>
-			<option value="배달관련">배달관련</option>
-			<option value="스탬프 적립 관련">스탬프 적립 관련</option>
-			<option value="온라인주문 관련">온라인주문 관련</option>
-			<option value="주문확인/취소">주문확인/취소</option>
-			<option value="포장주문 관련">포장주문 관련</option>
-			<option value="할인정책 관련">할인정책 관련</option>
-		</select>
-		<label>제목 : </label><input type="text" name="title">
-		<label>답변 : </label><textarea name="content" rows="3" cols=""></textarea>
-		<button>저장</button>
-	</form>
-	
+	pageEncoding="UTF-8"%>
+<%@ include file="../../layouts/adminHeader.jsp"%>
+ <main>
+        <div class="container">
+            <div class="sub-p-title">
+                <h3 class="underLine"><span>FAQ 등록하기</span></h3>
+            </div>
+
+            <div class="faq-add">
+                <h3>FAQ추가</h3>
+                <form action="${pageContext.request.contextPath}/admin/faq/registProc" method="post">
+                    <select name="gubun">
+                        <option value="계정 관련">계정 관련</option>
+                        <option value="배달관련">배달관련</option>
+                        <option value="스탬프 적립 관련">스탬프 적립 관련</option>
+                        <option value="온라인주문 관련">온라인주문 관련</option>
+                        <option value="주문확인/취소">주문확인/취소</option>
+                        <option value="포장주문 관련">포장주문 관련</option>
+                        <option value="할인정책 관련">할인정책 관련</option>
+                    </select>
+                    <div class="faq-add-title">
+                        <span>제목 : </span>
+                        <input type="text" name="title">
+                    </div>
+                    <div class="faq-add-content">
+                        <span>답변 : </span>
+                        <textarea name="content" rows="3" cols=""></textarea>
+                    </div>
+                    <button>저장</button>
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

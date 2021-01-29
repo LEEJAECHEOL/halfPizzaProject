@@ -71,7 +71,8 @@ main .container .index-table-bottom table td{text-align: center; padding: 10px 0
 
 /*menu-manage*/
 main .container .addMenu{display: inline-block; padding: 20px 50px; background: #ffe100; color: #000; font-weight: bold; font-family: NR; border-radius: 50px; margin-bottom: 50px;}
-main .container .menu-list{display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 30px; font-family: NR;}
+main .container .menu-list,
+main .container .option-list{display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 30px; font-family: NR;}
 main .container .menu-list .menu-item{display: flex; flex-direction: column; border: 1px solid #ffe100; padding: 20px 0; border-radius: 50px; background: #ffe100; box-shadow: 26px 39px 62px -37px rgba(0, 0, 0, 0.3);}
 main .container .menu-list .menu-item img{display: block; padding: 0 50px 50px;}
 main .container .menu-list .menu-item .menu-item-content{padding-left: 15px;}
@@ -94,3 +95,43 @@ main .container .menu-add form > div textarea{display: block; height: 100px; wid
 main .container .menu-add form > div:nth-of-type(5){margin-bottom: 80px;}
 #image_container {padding-left:160px; height:1px;}
 main .container .menu-add form button{display: block; margin: 25px auto; width: 250px;height: 60px; border-radius: 50px; border: none; background: #00a0e9; color: #fff; font-weight: bold;font-size:18px;}
+
+.option-list .option-item{text-align: center; background: #ffe100; padding: 50px 0; border-radius: 50px; font-size: 22px; font-family: NR;}
+.option-list .option-item .option-item-content p {margin-bottom: 20px;}
+.option-list .option-item .option-item-content button{background: #00a0e9; color: #fff; border: none; width: 100px; height: 50px; border-radius: 50px; font-size: 18px;}
+main .container .option-add{width: 1000px; margin: 0 auto; padding: 50px 30px; background: #fff; border-radius: 50px; font-family: NR;}
+.option-add div{margin-bottom: 10px;}
+.option-add div span{display: inline-block; width: 100px; height: 60px; line-height: 60px; color: #00a0e9; font-weight: bold;}
+.option-add div input{width:350px; height: 60px; border-radius: 50px; border: 1px solid #bfbfbf; padding:0 30px;}
+main .container .option-add form button{display: block; margin: 25px auto; width: 250px;height: 60px; border-radius: 50px; border: none; background: #00a0e9; color: #fff; font-weight: bold;font-size:18px;}
+
+
+.event-list{display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 30px; font-family: NR;}
+.event-list .event-item{text-align: center; background: #ffe100; padding: 50px 0; border-radius: 50px; font-size: 22px; font-family: NR;}
+.event-list .event-item img{margin-bottom: 20px;}
+.event-list .event-item a,
+.event-list .event-item button{font-size: 18px; display: block; background: #00a0e9; height: 50px; width: 100px; margin: 0 auto; border-radius: 50px; color: #fff; border: none;}
+.event-list .event-item a{line-height: 50px; margin: 10px auto;}
+
+.event-add{width: 1000px; margin: 0 auto; padding: 50px 30px; background: #fff; border-radius: 50px; font-family: NR;}
+.event-add h3{margin-bottom: 30px;}
+.event-add div{margin-bottom: 20px;}
+.event-add div input[type=file]{width: 350px; height: auto;}
+.event-add div input{width:350px; height: 60px; border-radius: 50px; border: 1px solid #bfbfbf; padding: 0 30px;}
+.event-add div span{display: inline-block; width: 100px;}
+.event-add button{font-size: 18px; display: block; background: #00a0e9; height: 50px; width: 100px; margin: 0 auto; border-radius: 50px; color: #fff; border: none;}
+.faq-list{display: grid; grid-template-columns: repeat(1, 1fr); grid-gap: 30px; font-family: NR;}
+.faq-list .faq-item{background: #fff; padding: 20px 50px; border-radius: 30px;}
+.faq-list .faq-item p{font-size: 20px; margin-bottom: 10px;}
+.faq-list .faq-item a{display: inline-block; width: 100px; background: #ffe100; text-align: center; height: 50px; line-height: 50px; border-radius: 50px; color: #fff; font-weight: bold;}
+.faq-list .faq-item button{width: 100px; height: 50px; border-radius: 50px; background: #00a0e9; color: #fff; border: none; font-weight: bold;}
+
+.faq-add{width: 1000px; margin: 0 auto; padding: 50px 30px; background: #fff; border-radius: 50px; font-family: NR;}
+.faq-add h3 {margin-bottom: 30px; font-size: 22px;}
+.faq-add form select{width: 300px; height: 60px; border-radius: 50px; padding: 0 30px; margin-bottom: 30px;}
+.faq-add form div{margin-bottom: 30px;}
+.faq-add form div span{display: inline-block; width: 100px;}
+.faq-add form div input{width: 300px; height: 50px; border-radius: 50px; padding: 0 30px; border: 1px solid #bfbfbf;}
+.faq-add form div.faq-add-content{display: flex;}
+.faq-add form div.faq-add-content textarea{width: 600px; height: 150px; padding: 0 20px;}
+.faq-add form button{width: 150px; height: 50px; border-radius: 50px; border: none; background: #ffe100; font-weight: bold;}
