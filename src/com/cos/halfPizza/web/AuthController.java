@@ -46,6 +46,16 @@ public class AuthController {
 		return "/auth/updateChkForm.jsp";
 	}
 	
+	@RequestMapping("/auth/myCoupon")
+	public String myCoupon() {
+		return "/auth/myCoupon.jsp";
+	}
+	
+	@RequestMapping("/auth/myStamp")
+	public String myStamp() {
+		return "/auth/myStamp.jsp";
+	}
+	
 	
 	@RequestMapping("/auth/updateProc")
 	public String updateProc(UpdateReqDto dto, HttpServletResponse response, HttpSession session) {
