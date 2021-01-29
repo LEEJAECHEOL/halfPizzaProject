@@ -123,7 +123,6 @@
 	       		}
 	        }
 	        document.querySelector('#popMenu').innerHTML = content;
-            console.log(info);
          });
 			
 		

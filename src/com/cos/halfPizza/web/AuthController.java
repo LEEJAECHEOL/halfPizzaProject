@@ -2,6 +2,7 @@ package com.cos.halfPizza.web;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,19 +10,22 @@ import javax.servlet.http.HttpSession;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
-import com.cos.halfPizza.domain.auth.AuthRepository;
 import com.cos.halfPizza.domain.auth.User;
 import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
 import com.cos.halfPizza.domain.auth.dto.UpdateChkReqDto;
 import com.cos.halfPizza.domain.auth.dto.UpdateReqDto;
+import com.cos.halfPizza.domain.order.dto.OrderSearchRespDto;
+import com.cos.halfPizza.domain.order.dto.OrderSearchUserReqDto;
 import com.cos.halfPizza.service.AuthService;
+import com.cos.halfPizza.service.OrderService;
 import com.cos.halfPizza.util.Script;
 
 @Controller
 public class AuthController {
 	
 	private AuthService authService = new AuthService();
+	OrderService oderService = new OrderService();
 	
 	@RequestMapping("/auth/login")
 	public String login() {
@@ -29,19 +33,12 @@ public class AuthController {
 	}
 	
 	@RequestMapping("/auth/myPage")
-	public String myPage(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		if(session!=null) {
-			User user = (User)session.getAttribute("user");
-//			int id = user.getId();
-//			System.out.println(user);
-//			System.out.println(id);
-			return "/auth/myPageOrder.jsp";
+	public String myPage(OrderSearchUserReqDto dto, HttpServletRequest req) {
+		if(dto.getDate() != null) {
+			List<OrderSearchRespDto> entityDto = oderService.회원주문목록가져오기(dto);
+			req.setAttribute("dto", entityDto);
 		}
-		else {
-			Script.back(response, "로그인 해주세요");
-			return "/auth/login";
-		}		
+		return "/auth/myPageOrder.jsp";
 	}
 	
 	@RequestMapping("/auth/updateChk")

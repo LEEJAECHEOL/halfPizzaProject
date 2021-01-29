@@ -8,6 +8,7 @@ import com.cos.halfPizza.domain.order.dto.OrderReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchIdReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchRespDto;
+import com.cos.halfPizza.domain.order.dto.OrderSearchUserReqDto;
 
 public class OrderService {
 	private OrderRepository orderRepository = new OrderRepository();
@@ -22,5 +23,8 @@ public class OrderService {
 	
 	public Order 주문상세보기(OrderSearchIdReqDto dto) {
 		return orderRepository.findById(dto);
+	}
+	public List<OrderSearchRespDto> 회원주문목록가져오기(OrderSearchUserReqDto dto) {
+		return orderRepository.findAllByUserIdAndDate(dto);
 	}
 }

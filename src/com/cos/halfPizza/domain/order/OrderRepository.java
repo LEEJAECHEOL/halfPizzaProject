@@ -11,6 +11,7 @@ import com.cos.halfPizza.domain.order.dto.OrderReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchIdReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchReqDto;
 import com.cos.halfPizza.domain.order.dto.OrderSearchRespDto;
+import com.cos.halfPizza.domain.order.dto.OrderSearchUserReqDto;
 
 public class OrderRepository {
 	
@@ -98,6 +99,34 @@ public class OrderRepository {
 						.createDate(rs.getTimestamp("createDate"))
 						.build();
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return null;
+	}
+	
+	public List<OrderSearchRespDto> findAllByUserIdAndDate(OrderSearchUserReqDto dto) {
+		List<OrderSearchRespDto> list = new ArrayList<>();
+		String sql = "SELECT id, text, paidAmount, createDate FROM orders WHERE userId = ? AND Date(createDate) = Date(?)";
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getId());
+			pstmt.setString(2, dto.getDate());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				OrderSearchRespDto entityDto = new OrderSearchRespDto();
+				entityDto.setId(rs.getInt("id"));
+				entityDto.setText(rs.getString("text"));
+				entityDto.setPaidAmount(rs.getInt("paidAmount"));
+				entityDto.setCreateDate(rs.getTimestamp("createDate"));
+				list.add(entityDto);
+			}
+			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

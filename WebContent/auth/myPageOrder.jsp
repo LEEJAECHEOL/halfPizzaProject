@@ -10,45 +10,57 @@
             </div>
             <div class="mypage-list">
                 <ul>
-                    <li><a href="#a" class="selected">주문내역</a></li>
+                    <li><a href="${pageContext.request.contextPath}/auth/myPage" class="selected">주문내역</a></li>
                     <li><a href="#a">쿠폰함</a></li>
                     <li><a href="#a">스탬프</a></li>
                     <li><a href="${pageContext.request.contextPath}/auth/updateChk">개인정보수정</a></li>
                 </ul>
             </div>
-            <div class="order-lookup">
-                <h3>주문내역 변경 전 취소는 고객센터로 문의주시기 바랍니다.</h3>
-                <span>기간 선택</span>
-                <input type="date">
-                <button>주문조회</button>
-            </div>
-            <div class="order-info-wrap">
-	            <div class="order-info">
-	                <h3>주문번호 1000113328</h3>
-	                <div class="order-info-detail">
-	                    <table width="80%">
-	                        <colgroup>
-	                            <col width="30%">
-	                            <col width="30%">
-	                            <col width="30%">
-	                        </colgroup>
-	                        <tr>
-	                            <th>주문일자</th>
-	                            <th>주문매장</th>
-	                            <th>결제금액</th>
-	                        </tr>
-	                        <tr>
-	                            <td>2021-01-16</td>
-	                            <td>부산남구점(051-628-3888)</td>
-	                            <td>31,900원</td>
-	                        </tr>
-	                    </table>
-	                    <button class="open3"><span>상세</span>
-	                        <p>보기</p>
-	                    </button>
-	                </div>
+            ${request.date }
+            <form action="" method="get">
+	            <div class="order-lookup">
+	            	<input type="hidden" name="id" value="${sessionScope.user.id}">
+	                <h3>주문내역 변경 전 취소는 고객센터로 문의주시기 바랍니다.</h3>
+	                <span>기간 선택</span>
+	                <input type="date" name="date" value="${param.date }" required>
+	                <button>주문조회</button>
 	            </div>
-                <button class="order-list-more">더보기+</button>
+            </form>
+            <div class="order-info-wrap">
+            	<c:choose>
+				  	<c:when test="${dto!=null}">
+						<c:forEach var="list" items="${dto}">
+							 <div class="order-info">
+				                <h3>주문번호 ${list.id }</h3>
+				                <div class="order-info-detail">
+				                    <table width="80%">
+				                        <colgroup>
+				                            <col width="30%">
+				                            <col width="30%">
+				                            <col width="30%">
+				                        </colgroup>
+				                        <tr>
+				                            <th>주문일자</th>
+				                            <th>요구사항</th>
+				                            <th>결제금액</th>
+				                        </tr>
+				                        <tr>
+				                            <td>${list.createDate }</td>
+				                            <td>${list.text }</td>
+				                            <td><fmt:formatNumber value="${list.paidAmount}" pattern="#,###" />원</td>
+				                        </tr>
+				                    </table>
+				                    <button class="open3" type="button" onclick="detailBtn('${list.id}')"><span>상세</span>
+				                        <p>보기</p>
+				                    </button>
+				                </div>
+				            </div>
+						</c:forEach>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<h3>주문내역이 없습니다.</h3>
+				  	</c:otherwise>
+			  	</c:choose>
             </div>
         </div>
         <br>
@@ -57,63 +69,83 @@
     <%@ include file="../layouts/footer.jsp" %>
     
     <div class="popup3">
-        <div class="pop3-info">
-            <span>매장정보</span>
-            <h4>부산남구점(051-628-3888)</h4>
-        </div>
-        <div class="pop3-info">
-            <span>주문날짜</span>
-            <h4>2021-01-16 13:32:02</h4>
-        </div>
-        <div class="pop3-info">
-            <span>주문번호</span>
-            <h4>1000113328</h4>
-        </div>
-        <div class="pop3-pizza-info">
-            <table width="100%">
-                <colgroup>
-                    <col width="50%">
-                    <col width="15%">
-                    <col width="35%">
-                </colgroup>
-                <tr>
-                    <td>통마늘 불고기 소보로</td>
-                    <td>1</td>
-                    <td>20,900</td>
-                </tr>
-                <tr>
-                    <td>Regualr</td>
-                    <td></td>
-                    <td>0원</td>
-                </tr>
-                <tr>
-                    <td>스프라이트</td>
-                    <td></td>
-                    <td>1,500원</td>
-                </tr>
-            </table>
-            <p><span>할인</span><b>0</b></p>
-            <p><span>최종결제금액</span><strong>22,400원</strong></p>
-        </div>
-        <div class="delivery-shop">
-            <div class="delivery-shop-info">
-                <span>매장주소</span>
-                <p>부산 남구 용소로 19번길 88 부산남구점</p>
-            </div>
-            <div class="delivery-shop-info">
-                <span>전화번호</span>
-                <p>010-9062-2304</p>
-            </div>
-            <div class="delivery-shop-info">
-                <span>요청사항</span>
-                <p></p>
-            </div>
-        </div>
-        <div class="btn-group">
-            <button class="close3">확인</button>
-        </div>
+		<div class="pop3-info">
+	        <span>매장정보</span>
+	        <h4 id="popAddr"></h4>
+	    </div>
+	    <div class="pop3-info">
+	        <span>주문날짜</span>
+	        <h4 id="popDate"></h4>
+	    </div>
+	    <div class="pop3-info">
+	        <span>주문번호</span>
+	        <h4 id="popId"></h4>
+	    </div>
+	    <div class="pop3-pizza-info">
+	        <table width="100%" id="popMenu">
+	        </table>
+	        <p><span>할인</span><b>0</b></p>
+	        <p><span>최종결제금액</span><strong id="totalPrice"></strong></p>
+	    </div>
+	    <div class="delivery-shop">
+	        <div class="delivery-shop-info">
+	            <span>매장주소</span>
+	            <p>부산 남구 용소로 19번길 88 부산남구점</p>
+	        </div>
+	        <div class="delivery-shop-info">
+	            <span>전화번호</span>
+	            <p>010-9062-2304</p>
+	        </div>
+	        <div class="delivery-shop-info">
+	            <span>요청사항</span>
+	            <p id="popText"></p>
+	        </div>
+	    </div>
+	    <div class="btn-group">
+	        <button class="close3">확인</button>
+	    </div>
     </div>
     <div class="dim"></div>
+<script>
+	function detailBtn(id){
+		$.ajax({
+            type : "GET",
+            url : "http://localhost:8000/halfPizza/order/findDetail?id=" + id,
+            dataType:"json"
+         })
+         .done(function(result){
+	        document.querySelector('#popAddr').textContent = result.data.addr;
+	        document.querySelector('#popDate').textContent = result.data.createDate;
+	        document.querySelector('#popId').textContent = result.data.id;
+	        document.querySelector('#totalPrice').textContent = result.data.paidAmount+"원";
+	        document.querySelector('#popText').textContent = result.data.text;
+			let info = JSON.parse(result.data.info);
+	        let content = "<colgroup><col width='50%'><col width='15%'><col width='35%'></colgroup>";
+	        for(let i = 0; i < info.cartWrap.length; i++){
+		        content += "<tr>";
+	        	content += "<td>" + info.cartWrap[i].menu.title +"</td>";
+	        	content += "<td> x" + info.cartWrap[i].count +"</td>";
+	        	content += "<td>" + info.cartWrap[i].menu.price +"원</td>";
+	        	content += "</tr>"
+		        content += "<tr>";
+	        	content += "<td>" + info.cartWrap[i].size.text +"</td>";
+	        	content += "<td></td>";
+	        	content += "<td>" + info.cartWrap[i].size.price +"원</td>";
+	        	content += "</tr>"
+		       	for(let j = 0; j < info.cartWrap[i].option.length; j++){
+			        content += "<tr>";
+		        	content += "<td>" + info.cartWrap[i].option[j].text +"</td>";
+		        	content += "<td></td>";
+		        	content += "<td>" + info.cartWrap[i].option[j].price +"원</td>";
+		        	content += "</tr>"
+	       		}
+	        }
+	        document.querySelector('#popMenu').innerHTML = content;
+         });
+			
+		
+	}
+</script>
 </body>
 
 </html>
