@@ -21,16 +21,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class ImageUploadFilter implements Filter {
 	
-	public static String getrndnum(int loopcount){
-		String str = "";
-		int d = 0;
-		for (int i = 1; i <= loopcount; i++){
-			Random r = new Random();
-			d = r.nextInt(9);
-			str = str + Integer.toString(d);
-		}
-		return str;
-	}
 
    @Override
    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -46,6 +36,10 @@ public class ImageUploadFilter implements Filter {
 		
 		if(contentType != null && contentType.equals("multipart/form-data")) {
 			String endPoint = req.getRequestURI().replaceAll(req.getContextPath(), "");
+			// ck 파일업로드는 따로 처리하기 때문에 예외로처리해줌
+			if(endPoint.equals("/ck/fileupload")) {
+				chain.doFilter(req, resp); return;
+			}
 			int maxSize = 1024 * 1024 * 10;	//10M
 			String path = "";
 			if(endPoint.equals("/admin/menu/registProc") || endPoint.equals("/admin/menu/updateProc")) {
@@ -76,7 +70,7 @@ public class ImageUploadFilter implements Filter {
 					String fileName = multi.getFilesystemName(file);
 					SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SS");
 					String type = (multi.getContentType(file)).split("/")[1];
-					String newFileName = gubun[i - 1] + "_" + format.format(new Date())+ '_' + getrndnum(10) + '.' + type;
+					String newFileName = gubun[i - 1] + "_" + format.format(new Date())+ '_' + Script.getrndnum(10) + '.' + type;
 					File oldFile = new File(uploadPath + fileName);
 			        File newFile = new File(uploadPath + newFileName);
 			        oldFile.renameTo(newFile);

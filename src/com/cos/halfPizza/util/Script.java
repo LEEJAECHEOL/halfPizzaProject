@@ -2,6 +2,7 @@ package com.cos.halfPizza.util;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -41,5 +42,15 @@ public class Script {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	public static String getrndnum(int loopcount){
+		String str = "";
+		int d = 0;
+		for (int i = 1; i <= loopcount; i++){
+			Random r = new Random();
+			d = r.nextInt(9);
+			str = str + Integer.toString(d);
+		}
+		return str;
 	}
 }

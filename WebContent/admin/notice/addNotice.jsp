@@ -19,7 +19,11 @@
 	
     <script>
         ClassicEditor
-            .create( document.querySelector( '#content' ) )
+            .create( document.querySelector( '#content' ),{
+            	ckfinder: {
+        			uploadUrl: '/halfPizza/ck/fileupload'
+        		}
+             })
             .catch( error => {
                 console.error( error );
             } );
