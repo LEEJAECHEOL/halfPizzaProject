@@ -18,4 +18,7 @@ public class OptionalService {
 		return optionalRepository.findAll();
 	}
 
+	public int 옵션삭제하기(int id) {
+		return optionalRepository.delete(id);
+	}
 }

@@ -153,7 +153,6 @@
     </main>
 	<%@ include file="../layouts/footer.jsp" %>
    
-
     <!--Script-->
     <script>
         $('.visual1').slick({

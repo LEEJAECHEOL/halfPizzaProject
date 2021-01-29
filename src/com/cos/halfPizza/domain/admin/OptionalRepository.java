@@ -54,5 +54,24 @@ public class OptionalRepository {
 		}
 		return -1;
 	}
-
+	
+	public int delete(int id) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("DELETE FROM optional ");
+		sb.append("WHERE id = ?");
+		String sql = sb.toString();
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return -1;
+	}
 }
