@@ -42,18 +42,23 @@
                     <h3>이메일정보 입력</h3>
                     <div class="email">
                         <span>이메일</span>
+                        <input type="hidden" id="checkEmail">
                         <input type="text" name="emailFront" id="emailFront" required>
                         @
                         <input type="text" name="emailBack" id="emailBack" required>
                         <input type="hidden" name="email" id="email">
                         <select name="eSelect" id="eSelect">
-                            <option value="">직접입력</option>
-                            <option value="naver.com">naver.com</option>
-                            <option value="nate.com">nate.com</option>
-                            <option value="google.com">google.com</option>
+                            <option class="option" value="">직접입력</option>
+                            <option class="option" value="naver.com">naver.com</option>
+                            <option class="option" value="nate.com">nate.com</option>
+                            <option class="option" value="google.com">google.com</option>
                         </select>
+                        <button type="button" class="emailCheck" id="emailCheck">중복확인</button>
+                    <p class="good" id="goodEmail">사용가능한 이메일입니다.</p>
+                    <p class="warning" id="warnEmail">이미 사용중인 이메일입니다.</p>
                     </div>
-
+					
+                    
                     <!--여기 아이디값 체크하세용-->
                     <h3>마케팅 정보 동의</h3>
                     <div class="marketing">
@@ -105,6 +110,7 @@
 		document.querySelector('#phone').addEventListener("focus", function(){
 			this.value = this.value.replace(/[^0-9]/g,'');
 		});
+		
 		document.querySelector('#submitBtn').addEventListener('click', function(){
 			if(document.querySelector('#checkId').value !== 'ok'){
 				alert('아이디 중복확인을 해주세요!');document.querySelector('#username').focus();  return;
@@ -112,9 +118,13 @@
 			if(document.querySelector('#checkPw').value !== 'ok'){
 				alert('비밀번호가 일치하지 않습니다.');document.querySelector('#password').focus();  return;
 			}
+			if(document.querySelector('#checkEmail').value !== 'ok'){
+				alert('중복된 이메일입니다');document.querySelector('#emailBack').focus();  return;
+			}
 			document.querySelector('#registerForm').submit();
 			
 		});
+		
 		document.querySelector('#passwordCheck').addEventListener("change", function(){
 			let _pass1 = document.querySelector('#password').value;
 			let _pass2 = document.querySelector('#passwordCheck').value;
@@ -126,11 +136,25 @@
 				document.querySelector('#warnPw').style.display = "block";
 			}
 		});
+
+		document.querySelector('#password').addEventListener("change", function(){
+			let _pass1 = document.querySelector('#password').value;
+			let _pass2 = document.querySelector('#passwordCheck').value;
+			if(_pass1 === _pass2){
+				document.querySelector('#checkPw').value="ok";
+				document.querySelector('#warnPw').style.display = "none";
+			}else {
+				document.querySelector('#checkPw').value="";
+				document.querySelector('#warnPw').style.display = "block";
+			}
+		});
+		
 		function inputEmail(){
 			let _first = document.querySelector('#emailFront').value;
 			let _end = document.querySelector('#emailBack').value;
 			document.querySelector('#email').value = _first + '@' + _end;
 		}
+		
 		document.querySelector('#usernameCheck').addEventListener('click', function(){
 			let _username = document.querySelector('#username').value;
 			if(_username === ''){
@@ -158,6 +182,36 @@
 					_input.readOnly = true;
 					document.querySelector('#checkId').value = 'ok';
 					document.querySelector('#password').focus();
+				}
+			});
+		});
+
+		document.querySelector('#emailCheck').addEventListener('click', function(){
+			let _ckEmail = document.querySelector('#email').value;
+			$.ajax({
+				type : "GET",
+				url : "http://localhost:8000/halfPizza/auth/findEmailCheck?email=" + _ckEmail,
+				contentType : "application/json;charset=utf-8",
+				dataType:"json"
+			})
+			.done(function(result){
+				let _good = document.querySelector("#goodEmail");
+				let _warn = document.querySelector("#warnEmail");
+				let _inputFr = document.querySelector("#emailFront");
+				let _inputBc = document.querySelector("#emailBack");
+				let _eSelect = document.querySelector("#eSelect");
+				if(result.data === 'ok'){
+					_good.style.display = 'none';
+					_warn.style.display = 'block';
+					_inputFr.readOnly = false;
+					_inputBc.readOnly = false;
+					document.querySelector('#checkEmail').value = '';
+				}else{
+					_good.style.display = 'block';
+					_warn.style.display = 'none';
+					_inputFr.readOnly = true;
+					_eSelect.style.display = 'none';
+					document.querySelector('#checkEmail').value = 'ok';
 				}
 			});
 		});

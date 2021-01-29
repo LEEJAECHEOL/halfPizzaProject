@@ -6,8 +6,7 @@ import lombok.Data;
 public class UpdateReqDto {
 	private int id;
 	private String password;
-	private String emailFront;
-	private String emailBack;
+	private String email;
 	private int emailAd;
 	private int smsAd;
 	

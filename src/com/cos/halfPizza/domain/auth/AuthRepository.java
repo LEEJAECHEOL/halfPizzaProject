@@ -8,8 +8,11 @@ import com.cos.halfPizza.config.DBConn;
 import com.cos.halfPizza.domain.CommonDto;
 import com.cos.halfPizza.domain.auth.dto.LoginReqDto;
 import com.cos.halfPizza.domain.auth.dto.RegisterReqDto;
+import com.cos.halfPizza.domain.auth.dto.SelectIdReqDto;
+import com.cos.halfPizza.domain.auth.dto.SelectPassReqDto;
 import com.cos.halfPizza.domain.auth.dto.UpdateChkReqDto;
 import com.cos.halfPizza.domain.auth.dto.UpdateReqDto;
+import com.cos.halfPizza.domain.auth.dto.UserEmailCheckReqDto;
 import com.cos.halfPizza.domain.auth.dto.UsernameCheckReqDto;
 import com.google.gson.Gson;
 
@@ -53,7 +56,7 @@ public class AuthRepository {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getPassword());
-			pstmt.setString(2, dto.getEmailFront()+dto.getEmailBack());
+			pstmt.setString(2, dto.getEmail());
 			pstmt.setInt(3, dto.getEmailAd());
 			pstmt.setInt(4, dto.getSmsAd());
 			pstmt.setInt(5, dto.getId());
@@ -85,6 +88,95 @@ public class AuthRepository {
 			}else {
 				responseDto.setData("no");
 			}
+			return gson.toJson(responseDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {	
+			DBConn.close(conn, pstmt, rs);
+		}
+		CommonDto<String> responseDto = new CommonDto<String>();
+		responseDto.setStatusCode(400);
+		return gson.toJson(responseDto);
+	}
+	
+	public String findByEmail(UserEmailCheckReqDto dto) {
+		String sql = "SELECT * FROM users WHERE email=?";
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Gson gson = new Gson();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmail());
+			rs = pstmt.executeQuery();
+			CommonDto<String> responseDto = new CommonDto<String>();
+			responseDto.setStatusCode(200);
+			if(rs.next()) {
+				responseDto.setData("ok");
+			}else {
+				responseDto.setData("no");
+			}
+			return gson.toJson(responseDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {	
+			DBConn.close(conn, pstmt, rs);
+		}
+		CommonDto<String> responseDto = new CommonDto<String>();
+		responseDto.setStatusCode(400);
+		return gson.toJson(responseDto);
+	}
+	
+	public String findByNameAndEmail(SelectIdReqDto dto) {
+		String sql = "SELECT username FROM users WHERE email=? and name = ?";
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Gson gson = new Gson();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmail());
+			pstmt.setString(2, dto.getName());
+			rs = pstmt.executeQuery();
+			CommonDto<String> responseDto = new CommonDto<String>();
+			responseDto.setStatusCode(200);
+			if(rs.next()) {
+				responseDto.setData(rs.getString("username"));
+			}else {
+				responseDto.setData("no");
+			}
+			System.out.println(responseDto.getData());
+			return gson.toJson(responseDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {	
+			DBConn.close(conn, pstmt, rs);
+		}
+		CommonDto<String> responseDto = new CommonDto<String>();
+		responseDto.setStatusCode(400);
+		return gson.toJson(responseDto);
+	}
+	
+	public String findByUsernameAndEmail(SelectPassReqDto dto) {
+		String sql = "SELECT password FROM users WHERE email = ? and name = ? and username = ?";
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Gson gson = new Gson();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmail());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, dto.getUsername());
+			rs = pstmt.executeQuery();
+			CommonDto<String> responseDto = new CommonDto<String>();
+			responseDto.setStatusCode(200);
+			if(rs.next()) {
+				responseDto.setData(rs.getString("password"));
+			}else {
+				responseDto.setData("no");
+			}
+			System.out.println(responseDto.getData());
 			return gson.toJson(responseDto);
 		} catch (Exception e) {
 			e.printStackTrace();
