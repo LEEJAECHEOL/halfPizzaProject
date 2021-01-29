@@ -27,19 +27,22 @@ public class CartCountFilter implements Filter {
 
 		Cookie[] cookies = req.getCookies();
 		String data = null;
-		for(int i = 0; i < cookies.length; i++) {
-			if(cookies[i].getName().equals("cart")){
-				data = URLDecoder.decode(cookies[i].getValue()).replace("path=/halfPizza", "");
-				break;
+		int cartCount = 0;
+		if(cookies != null) {
+			for(int i = 0; i < cookies.length; i++) {
+				if(cookies[i].getName().equals("cart")){
+					data = URLDecoder.decode(cookies[i].getValue()).replace("path=/halfPizza", "");
+					break;
+				}
+			}
+			Gson gson = new Gson();
+			CartWrap cart = new CartWrap();
+			cart = gson.fromJson(data, CartWrap.class);
+			if(cart != null) {
+				cartCount = cart.getCartWrap().size();
 			}
 		}
-		Gson gson = new Gson();
-		CartWrap cart = new CartWrap();
-		cart = gson.fromJson(data, CartWrap.class);
-		int cartCount = 0;
-		if(cart != null) {
-			cartCount = cart.getCartWrap().size();
-		}
+		
 		req.setAttribute("cartCount", cartCount);
 		
 		chain.doFilter(req, resp);
