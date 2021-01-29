@@ -215,6 +215,7 @@
 					let data = "name=" + _name +"&";
 					data += "phone=" + _phone +"&";
 					data += "userId=" + _userId +"&";
+					data += "text=" + _text +"&";
 					data += "impId=" + rsp.imp_uid +"&";
 					data += "addr=" + getCookie("selectedAddr").replace('path=/halfPizza', '') +"&";
 					data += "info=" + getCookie("cart").replace('path=/halfPizza', '') +"&";

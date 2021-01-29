@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
-import com.cos.halfPizza.domain.admin.dto.CommonRespDto;
+import com.cos.halfPizza.domain.CommonRespDto;
 import com.cos.halfPizza.domain.admin.dto.FaqUpdateReqDto;
 import com.cos.halfPizza.domain.admin.dto.FaqUpdateRespDto;
 import com.cos.halfPizza.domain.admin.dto.NoticeUpdateReqDto;

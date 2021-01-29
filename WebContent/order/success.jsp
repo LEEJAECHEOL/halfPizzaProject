@@ -17,7 +17,14 @@
                     </div>
                     <div class="success-complete-button">
                         <button class="btn-gray" type="button" onclick="home()">메인으로</button>
-                        <button class="btn-blue" type="button" onClick="orderlist()">주문내역확인</button>
+                        <c:choose>
+						  	<c:when test="${sessionScope.user!=null}">
+						  		<a href="${pageContext.request.contextPath}/auth/myPage?id=${user.id}" class="btn-blue">주문내역확인</a>
+						  	</c:when>
+						  	<c:otherwise>
+								<a href="${pageContext.request.contextPath}/order/noMemberOrderSearch" class="btn-blue">주문내역확인</a>
+						  	</c:otherwise>
+						  </c:choose>
                     </div>
                 </div>
             </div>
@@ -27,9 +34,6 @@
     <script>
 		function home(){
 			location.href="/halfPizza/";
-		}
-		function orderlist(){
-
 		}
     </script>
 <%@ include file="../layouts/footer.jsp" %>

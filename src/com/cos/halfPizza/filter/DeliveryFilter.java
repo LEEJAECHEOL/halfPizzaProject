@@ -41,7 +41,6 @@ public class DeliveryFilter implements Filter {
 		}else {
 			addr = null;
 		}
-		System.out.println(addr);
 		
 		req.setAttribute("addr", addr);
 		chain.doFilter(req, resp);

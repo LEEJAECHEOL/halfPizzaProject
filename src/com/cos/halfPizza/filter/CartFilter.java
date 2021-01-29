@@ -40,6 +40,9 @@ public class CartFilter implements Filter {
 		CartWrap cart = new CartWrap();
 		if(data != null) {
 			cart = gson.fromJson(data, CartWrap.class);
+			if(cart.getCartWrap().size() == 0) {
+				cart = null;
+			}
 		}else {
 			cart = null;
 		}

@@ -1,4 +1,4 @@
-package com.cos.halfPizza.domain.admin.dto;
+package com.cos.halfPizza.domain;
 
 import lombok.Data;
 

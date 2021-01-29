@@ -19,7 +19,16 @@
          $(".dim").hide();
      });
  });
-
+$(document).ready(function () {
+     $(".open3").on('click', function () {
+         $(".popup3").show();
+         $(".dim").show();
+     });
+     $(".close3").on('click', function () {
+         $(".popup3").hide();
+         $(".dim").hide();
+     });
+ });
 function moneyComma(val){
 	return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
 }

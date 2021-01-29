@@ -60,14 +60,32 @@
                     </div>
                     <div class="choice-menu-detail-left-bottom">
                         <div class="menu-request">
-                       		<h4 data-id=${menu.id} data-title=${menu.title} data-price=${menu.price - 2000 }><span>${menu.title }</span><b><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" /> 원</b></h4>
-                        	<p id="size" data-size="R" data-price="0"><span>+ Regular</span><b>0 원</b></p>
+                        <c:choose>
+						  	<c:when test="${menu.isR eq 1}">
+						  		<h4 data-id=${menu.id} data-title=${menu.title} data-price=${menu.price - 2000 }><span>${menu.title }</span><b><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" /> 원</b></h4>
+                        		<p id="size" data-size="R" data-price="0"><span>+ Regular</span><b>0 원</b></p>
+						  	</c:when>
+						  	<c:otherwise>
+						  		<h4 data-id=${menu.id} data-title=${menu.title} data-price=${menu.price}><span>${menu.title}</span><b><fmt:formatNumber value="${menu.price}" pattern="#,###" /> 원</b></h4>
+                        		<p id="size" data-size="L" data-price="0"><span>+ Large</span><b>0 원</b></p>
+						  		
+						  	</c:otherwise>
+					  	</c:choose>
                         </div>
                         <h5>
                         	<span>총 주문금액</span>
-                        	<b id="totalPrice" data-total=${menu.price - 2000 }>
-                        		<fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" />원
-                       		</b>
+                        	<c:choose>
+							  	<c:when test="${menu.isR eq 1}">
+							  		<b id="totalPrice" data-total=${menu.price - 2000 }>
+		                        		<fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" />원
+		                       		</b>
+							  	</c:when>
+							  	<c:otherwise>
+							  		<b id="totalPrice" data-total=${menu.price }>
+		                        		<fmt:formatNumber value="${menu.price }" pattern="#,###" /> 원
+		                       		</b>
+							  	</c:otherwise>
+						  	</c:choose>
                         </h5>
                         <button type="button" id="cartBtn">담기</button>
                     </div>
@@ -76,8 +94,15 @@
                     <div class="choice-menu-detail-right-top">
                         <h3>[필수]기본</h3>
                         <ul class="choice-size">
-                            <li class="selected" data-size="R" data-price=0>Regular</li>
-                            <li data-size="L" data-price=2000>Large</li>
+	                        <c:choose>
+							  	<c:when test="${menu.isR eq 1}">
+		                            <li class="selected" data-size="R" data-price=0>Regular</li>
+		                            <li data-size="L" data-price=2000>Large</li>
+							  	</c:when>
+							  	<c:otherwise>
+							  		<li class="selected" data-size="L" data-price=0>Large</li>
+							  	</c:otherwise>
+						  	</c:choose>
                         </ul>
                     </div>
                     <div class="choice-menu-detail-right-bottom">
@@ -104,6 +129,7 @@
 		document.querySelector('.choice-size').addEventListener('click', function(e){
 			if(e.target && e.target.tagName==="LI"){
 				let _li = e.target;
+				console.log(_li);
 				document.querySelector('.choice-size li.selected').classList.remove('selected');
 				_li.classList.add('selected');
 				let _p =document.querySelector('.menu-request #size');
@@ -111,16 +137,16 @@
 				let _totalPrice = document.querySelector('#totalPrice');
 				if(_size === 'R'){
 					if(_p.dataset.size === 'L'){
-						_totalPrice.dataset.total = Number(_totalPrice.dataset.total) - 2000;
+						_totalPrice.dataset.total = Number(_totalPrice.dataset.total) - Number(_li.dataset.price);
 					}
 					_p.children[0].textContent = "+ Regular";
-					_p.children[1].textContent = "0 원";
+					_p.children[1].textContent = moneyComma(Number(_li.dataset.price));
 				}else{
 					if(_p.dataset.size === 'R'){
-						_totalPrice.dataset.total = Number(_totalPrice.dataset.total) + 2000;
+						_totalPrice.dataset.total = Number(_totalPrice.dataset.total) + Number(_li.dataset.price);
 					}
 					_p.children[0].textContent = "+ Large";
-					_p.children[1].textContent = "2,000 원";
+					_p.children[1].textContent = moneyComma(Number(_li.dataset.price));
 				}
 				_p.dataset.size = _li.dataset.size;
 				_p.dataset.price = _li.dataset.price;

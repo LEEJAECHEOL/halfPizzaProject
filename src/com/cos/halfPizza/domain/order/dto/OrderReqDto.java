@@ -9,6 +9,7 @@ public class OrderReqDto {
 	private String phone;
 	private String addr;
 	private String info;
+	private String text;
 	private String impId;
 	private String merchantId;
 	private int paidAmount;

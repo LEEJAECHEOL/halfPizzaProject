@@ -27,9 +27,10 @@ public class AddrFilter implements Filter {
 		for(int i = 0; i < cookies.length; i++ ) {
 			if(cookies[i].getName().equals("selectedAddr")) {
 				value =  URLDecoder.decode(cookies[i].getValue()).replace("path=/halfPizza", "");
+				req.setAttribute("selectedAddr", value);
+				break;
 			}
 		}
-		req.setAttribute("selectedAddr", value);
 		chain.doFilter(req, resp);
 	}
 

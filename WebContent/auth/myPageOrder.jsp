@@ -22,30 +22,32 @@
                 <input type="date">
                 <button>주문조회</button>
             </div>
-            <div class="order-info">
-                <h3>주문번호 1000113328</h3>
-                <div class="order-info-detail">
-                    <table width="80%">
-                        <colgroup>
-                            <col width="30%">
-                            <col width="30%">
-                            <col width="30%">
-                        </colgroup>
-                        <tr>
-                            <th>주문일자</th>
-                            <th>주문매장</th>
-                            <th>결제금액</th>
-                        </tr>
-                        <tr>
-                            <td>2021-01-16</td>
-                            <td>부산남구점(051-628-3888)</td>
-                            <td>31,900원</td>
-                        </tr>
-                    </table>
-                    <button class="open3"><span>상세</span>
-                        <p>보기</p>
-                    </button>
-                </div>
+            <div class="order-info-wrap">
+	            <div class="order-info">
+	                <h3>주문번호 1000113328</h3>
+	                <div class="order-info-detail">
+	                    <table width="80%">
+	                        <colgroup>
+	                            <col width="30%">
+	                            <col width="30%">
+	                            <col width="30%">
+	                        </colgroup>
+	                        <tr>
+	                            <th>주문일자</th>
+	                            <th>주문매장</th>
+	                            <th>결제금액</th>
+	                        </tr>
+	                        <tr>
+	                            <td>2021-01-16</td>
+	                            <td>부산남구점(051-628-3888)</td>
+	                            <td>31,900원</td>
+	                        </tr>
+	                    </table>
+	                    <button class="open3"><span>상세</span>
+	                        <p>보기</p>
+	                    </button>
+	                </div>
+	            </div>
                 <button class="order-list-more">더보기+</button>
             </div>
         </div>
