@@ -23,6 +23,7 @@ public class OptionalRepository {
 				list.add(Optional.builder()
 							.id(rs.getInt("id"))
 							.title(rs.getString("title"))
+							.gubun(rs.getString("gubun"))
 							.price(rs.getInt("price"))
 							.build()
 						);

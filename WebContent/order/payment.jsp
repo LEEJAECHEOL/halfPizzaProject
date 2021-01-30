@@ -80,10 +80,12 @@
 				                                    <col width="80%">
 				                                    <col width="20%">
 				                                </colgroup>
-				                                <tr>
-				                                    <td>${item.size.text}</td>
-				                                    <td><fmt:formatNumber value="${item.size.price}" pattern="#,###" />원</td>
-				                                </tr>
+				                                <c:if test="${item.size != null }">
+						                            <tr class="size">
+						                                <td>${item.size.text}</td>
+						                                <td><fmt:formatNumber value="${item.size.price}" pattern="#,###" />원</td>
+						                            </tr>
+					                            </c:if>
 					                            <c:forEach var="option" items="${item.option}" varStatus="status">
 					                            	<tr>
 						                                <td>${option.text}</td>

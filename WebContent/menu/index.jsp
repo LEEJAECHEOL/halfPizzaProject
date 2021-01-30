@@ -9,6 +9,7 @@
                 <h3 class="underLine"><span>메뉴</span></h3>
             </div>
             <div class="menu-list">
+            	<input type="hidden" name="gubun" value="${param.gubun}">
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/menu" class="selected">피자</a></li>
                     <li><a href="${pageContext.request.contextPath}/menu?gubun=oneplus">1+1</a></li>
@@ -21,7 +22,7 @@
 				  	<c:when test="${menu!=null}">
 						<c:forEach var="m" items="${menu}">
 			                <div class="pizza-item">
-			                    <a href="${pageContext.request.contextPath}/menu/menuView?id=${m.id}">
+			                    <a href="${pageContext.request.contextPath}/menu/menuView?gubun=pizza&id=${m.id}">
 			                        <img src="${pageContext.request.contextPath}${m.path}${m.changeFileName1}" alt="">
 			                        <h3>${m.title }</h3>
 			                        <p>

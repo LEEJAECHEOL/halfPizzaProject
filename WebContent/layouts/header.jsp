@@ -112,8 +112,11 @@
 						<li><img
 							src="${pageContext.request.contextPath}/images/common/ico_gnb_menu1.png"
 							alt="">
-							<h3>메뉴</h3> <a href="${pageContext.request.contextPath}/menu">피자</a>
-							<a href="#a">1+1</a> <a href="#a">세트</a> <a href="#a">사이드</a></li>
+							<h3>메뉴</h3>
+							<a href="${pageContext.request.contextPath}/menu">피자</a>
+							<a href="${pageContext.request.contextPath}/menu?gubun=oneplus">1+1</a>
+							<a href="${pageContext.request.contextPath}/menu?gubun=set">세트</a>
+							<a href="${pageContext.request.contextPath}/menu?gubun=side">사이드</a></li>
 						<li><img
 							src="${pageContext.request.contextPath}/images/common/ico_gnb_menu2.png"
 							alt="">

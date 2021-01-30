@@ -13,5 +13,6 @@ import lombok.Data;
 public class Optional {
 	private int id;
 	private String title;
+	private String gubun;
 	private int price;
 }

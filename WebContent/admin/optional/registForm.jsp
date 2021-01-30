@@ -13,6 +13,14 @@
                         <span>상품명</span>
                         <input type="text" name="title">
                     </div>
+                    <div class="option-add-title">
+                        <span>구분</span>
+                        <select name="gubun">
+                            <option value="side">사이드</option>
+                            <option value="pizza">피자</option>
+                            <option value="seupageti">스파게티</option>
+                        </select>
+                    </div>
                     <div class="option-add-price">
                         <span>가격</span>
                         <input type="text" name="price">

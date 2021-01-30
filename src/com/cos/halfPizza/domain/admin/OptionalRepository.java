@@ -11,6 +11,7 @@ import com.cos.halfPizza.domain.admin.dto.RegistOptionalReqDto;
 import com.cos.halfPizza.domain.menu.Optional;
 
 public class OptionalRepository {
+	
 	public List<Optional> findAll() {
 		List<Optional> list = new ArrayList<>();
 		String sql = "SELECT * FROM optional";
@@ -24,6 +25,7 @@ public class OptionalRepository {
 				list.add(Optional.builder()
 							.id(rs.getInt("id"))
 							.title(rs.getString("title"))
+							.gubun(rs.getString("gubun"))
 							.price(rs.getInt("price"))
 							.build()
 						);
@@ -37,13 +39,14 @@ public class OptionalRepository {
 		return null;
 	}
 	public int save(RegistOptionalReqDto dto) {
-		String sql = "INSERT INTO optional(title, price) VALUES(?, ?)";
+		String sql = "INSERT INTO optional(title, gubun, price) VALUES(?, ?, ?)";
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getTitle());
-			pstmt.setInt(2, dto.getPrice());
+			pstmt.setString(2, dto.getGubun());
+			pstmt.setInt(3, dto.getPrice());
 			
 			int result = pstmt.executeUpdate();
 			return result;

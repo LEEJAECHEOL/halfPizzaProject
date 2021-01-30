@@ -8,7 +8,6 @@
             <div class="sub-p-title">
                 <h3 class="underLine"><span>주문하기</span></h3>
             </div>
-
             <div class="choice-menu-detail">
                 <div class="choice-menu-detail-left">
                     <div class="choice-menu-detail-left-top">
@@ -21,10 +20,7 @@
                         </div>
                         <p>${menu.content }</p>
                         <h5>
-                        	<c:if test="${menu.isR eq 1}">
-                        		<span>R</span><b><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" />원</b>	
-                        	</c:if>
-	                        <span>L</span><b><fmt:formatNumber value="${menu.price }" pattern="#,###" />원</b>
+	                        <b><fmt:formatNumber value="${menu.price }" pattern="#,###" />원</b>
                         </h5>
                     </div>
                     <div class="choice-menu-detail-left-middle">
@@ -60,50 +56,51 @@
                     </div>
                     <div class="choice-menu-detail-left-bottom">
                         <div class="menu-request">
-                        <c:choose>
-						  	<c:when test="${menu.isR eq 1}">
-						  		<h4 data-id=${menu.id} data-title=${menu.title} data-price=${menu.price - 2000 }><span>${menu.title }</span><b><fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" /> 원</b></h4>
-                        		<p id="size" data-size="R" data-price="0"><span>+ Regular</span><b>0 원</b></p>
-						  	</c:when>
-						  	<c:otherwise>
-						  		<h4 data-id=${menu.id} data-title=${menu.title} data-price=${menu.price}><span>${menu.title}</span><b><fmt:formatNumber value="${menu.price}" pattern="#,###" /> 원</b></h4>
-                        		<p id="size" data-size="L" data-price="0"><span>+ Large</span><b>0 원</b></p>
-						  		
-						  	</c:otherwise>
-					  	</c:choose>
+                        	<h4 data-id=${menu.id} data-title=${menu.title} data-price=${menu.price}><span>${menu.title}</span><b><fmt:formatNumber value="${menu.price}" pattern="#,###" /> 원</b></h4>
                         </div>
                         <h5>
                         	<span>총 주문금액</span>
-                        	<c:choose>
-							  	<c:when test="${menu.isR eq 1}">
-							  		<b id="totalPrice" data-total=${menu.price - 2000 }>
-		                        		<fmt:formatNumber value="${menu.price - 2000 }" pattern="#,###" />원
-		                       		</b>
-							  	</c:when>
-							  	<c:otherwise>
-							  		<b id="totalPrice" data-total=${menu.price }>
-		                        		<fmt:formatNumber value="${menu.price }" pattern="#,###" /> 원
-		                       		</b>
-							  	</c:otherwise>
-						  	</c:choose>
+					  		<b id="totalPrice" data-total=${menu.price }>
+                        		<fmt:formatNumber value="${menu.price }" pattern="#,###" /> 원
+                       		</b>
                         </h5>
                         <button type="button" id="cartBtn">담기</button>
                     </div>
                 </div>
                 <div class="choice-menu-detail-right">
-                    <div class="choice-menu-detail-right-top">
-                        <h3>[필수]기본</h3>
-                        <ul class="choice-size">
-	                        <c:choose>
-							  	<c:when test="${menu.isR eq 1}">
-		                            <li class="selected" data-size="R" data-price=0>Regular</li>
-		                            <li data-size="L" data-price=2000>Large</li>
-							  	</c:when>
-							  	<c:otherwise>
-							  		<li class="selected" data-size="L" data-price=0>Large</li>
-							  	</c:otherwise>
-						  	</c:choose>
-                        </ul>
+                    <div class="choice-menu-detail-right-bottom">
+						<h3>[필수]피자 선택 1</h3>
+						<div class="choice-menu-detail-right-bottom-list choice-pizza1">
+						<c:choose>
+						  	<c:when test="${optional!=null}">
+								<c:forEach var="opt" items="${optional}">
+									<c:if test="${opt.gubun eq 'pizza'}">
+										<span data-id=${opt.id} data-price=${opt.price}>${opt.title}</span>
+									</c:if>
+								</c:forEach>
+						  	</c:when>
+						  	<c:otherwise>
+						  		<h3>등록된 메뉴가 없습니다.</h3>
+						  	</c:otherwise>
+					  	</c:choose>
+					  	</div>
+                    </div>
+                    <div class="choice-menu-detail-right-bottom">
+						<h3>[필수]피자 선택 2</h3>
+						<div class="choice-menu-detail-right-bottom-list choice-pizza2">
+						<c:choose>
+						  	<c:when test="${optional!=null}">
+								<c:forEach var="opt" items="${optional}">
+									<c:if test="${opt.gubun eq 'pizza'}">
+										<span data-id=${opt.id} data-price=${opt.price}>${opt.title}</span>
+									</c:if>
+								</c:forEach>
+						  	</c:when>
+						  	<c:otherwise>
+						  		<h3>등록된 메뉴가 없습니다.</h3>
+						  	</c:otherwise>
+					  	</c:choose>
+					  	</div>
                     </div>
                     <div class="choice-menu-detail-right-bottom">
                         <h3>추가선택</h3>
@@ -128,34 +125,56 @@
     </main>
     
     <script>
-		document.querySelector('.choice-size').addEventListener('click', function(e){
-			if(e.target && e.target.tagName==="LI"){
-				let _li = e.target;
-				console.log(_li);
-				document.querySelector('.choice-size li.selected').classList.remove('selected');
-				_li.classList.add('selected');
-				let _p =document.querySelector('.menu-request #size');
-				let _size = _li.dataset.size;
-				let _totalPrice = document.querySelector('#totalPrice');
-				if(_size === 'R'){
-					if(_p.dataset.size === 'L'){
-						_totalPrice.dataset.total = Number(_totalPrice.dataset.total) - Number(_li.dataset.price);
-					}
-					_p.children[0].textContent = "+ Regular";
-					_p.children[1].textContent = moneyComma(Number(_li.dataset.price));
-				}else{
-					if(_p.dataset.size === 'R'){
-						_totalPrice.dataset.total = Number(_totalPrice.dataset.total) + Number(_li.dataset.price);
-					}
-					_p.children[0].textContent = "+ Large";
-					_p.children[1].textContent = moneyComma(Number(_li.dataset.price));
+	    document.querySelector('.choice-pizza1').addEventListener('click', function(e){
+	    	if(e.target && e.target.tagName==="SPAN"){
+	    		let _span = e.target;
+				if(_span.classList.contains("selected")){
+					return;
 				}
-				_p.dataset.size = _li.dataset.size;
-				_p.dataset.price = _li.dataset.price;
+	    		if(document.querySelector('.choice-pizza1 span.selected')){
+	    			document.querySelector('.choice-pizza1 span.selected').classList.remove('selected');
+	    		}
+	    		_span.classList.add('selected');
+	    		let _request = document.querySelector('.menu-request');
+				let _id = _span.dataset.id;
+				let _price = _span.dataset.price;
+				let _text = _span.textContent;
+				let _totalPrice = document.querySelector('#totalPrice');
+				if(document.querySelector('.menu-request p.pizza1')){
+					_totalPrice.dataset.total = Number(_totalPrice.dataset.total) - Number(document.querySelector('.menu-request p.pizza1').dataset.price);
+					document.querySelector('.menu-request p.pizza1').remove();
+				}
+				let _content = "<p class='pizza1' data-id='" + _id + "' data-price='" + _price + "'><span>+ " + _text + "</span><b>" + moneyComma(_price) + "</b></p> ";
+				_request.insertAdjacentHTML("beforeend", _content);
+				_totalPrice.dataset.total = Number(_totalPrice.dataset.total) + Number(_price);
 				_totalPrice.textContent = moneyComma(_totalPrice.dataset.total);
-			}
-		});
-		
+	    	}
+	    });
+	    document.querySelector('.choice-pizza2').addEventListener('click', function(e){
+	    	if(e.target && e.target.tagName==="SPAN"){
+	    		let _span = e.target;
+				if(_span.classList.contains("selected")){
+					return;
+				}
+	    		if(document.querySelector('.choice-pizza2 span.selected')){
+	    			document.querySelector('.choice-pizza2 span.selected').classList.remove('selected');
+	    		}
+	    		_span.classList.add('selected');
+	    		let _request = document.querySelector('.menu-request');
+				let _id = _span.dataset.id;
+				let _price = _span.dataset.price;
+				let _text = _span.textContent;
+				let _totalPrice = document.querySelector('#totalPrice');
+				if(document.querySelector('.menu-request p.pizza2')){
+					_totalPrice.dataset.total = Number(_totalPrice.dataset.total) - Number(document.querySelector('.menu-request p.pizza2').dataset.price);
+					document.querySelector('.menu-request p.pizza2').remove();
+				}
+				let _content = "<p class='pizza2' data-id='" + _id + "' data-price='" + _price + "'><span>+ " + _text + "</span><b>" + moneyComma(_price) + "</b></p> ";
+				_request.insertAdjacentHTML("beforeend", _content);
+				_totalPrice.dataset.total = Number(_totalPrice.dataset.total) + Number(_price);
+				_totalPrice.textContent = moneyComma(_totalPrice.dataset.total);
+	    	}
+	    });
 		document.querySelector('.choice-option').addEventListener('click', function(e){
 			if(e.target && e.target.tagName==="SPAN"){
 				let _span = e.target;
@@ -185,12 +204,13 @@
 			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
 		}
 		document.querySelector('#cartBtn').addEventListener('click', function(){
-
+			if(!document.querySelector('.menu-request p.pizza1') || !document.querySelector('.menu-request p.pizza2')){
+				alert("피자를 선택해주세요.");return;
+			}
 			let cookieName = "cart";
 			let name = "cart";
 			
 			let data = null;
-			console.log(getCookie(cookieName) );
 	    	if(getCookie(cookieName) !== null && getCookie(cookieName) !== '' ){
 	    		data = JSON.parse((decodeURIComponent(getCookie(cookieName))).replace('path=/halfPizza', ''));
 			}else{
@@ -212,7 +232,7 @@
 
 			let _option = document.querySelectorAll('.menu-request p');
 			let optionArray = [];
-			for(let i = 1; i < _option.length; i++){
+			for(let i = 0; i < _option.length; i++){
 				let content = {
 					id : _option[i].dataset.id,
 					price : _option[i].dataset.price,
@@ -221,7 +241,6 @@
 				optionArray.push(content);
 			}
 			let _menu = document.querySelector('.menu-request h4');
-			let _size = document.querySelector('.menu-request p#size');
 			let _total = document.querySelector('#totalPrice');
 			let request = {
 				name : name,
@@ -230,11 +249,6 @@
 					title : _menu.dataset.title,
 					price : _menu.dataset.price,
 					src : "${pageContext.request.contextPath}${menu.path}${menu.changeFileName1}"
-				},
-				size : {
-					size : _size.dataset.size,
-					price : _size.dataset.price,
-					text : _size.children[0].textContent
 				},
 				option : optionArray,
 				totalPrice : _total.dataset.total,
@@ -264,7 +278,6 @@
 			  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
 			  return value? value[2] : null;
 		}
-		/* console.log(decodeURIComponent(getCookie('cart2'))); */
     </script>
 
 

@@ -6,6 +6,7 @@ import lombok.Data;
 public class RegistOptionalReqDto {
 	private String title;
 	private int price;
+	private String gubun;
 	
 	public void setPrice(String value) {
 		this.price = Integer.parseInt(value);

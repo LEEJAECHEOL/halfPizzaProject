@@ -48,10 +48,23 @@ public class MenuController {
 	}
 	@RequestMapping("/menu/menuView")
 	public String detail(MenuViewReqDto dto, HttpServletRequest req) {
+		String gubun = req.getParameter("gubun");
+		if(gubun == null) {
+			gubun ="pizza";
+		}
 		MenuViewRespDto respDto = menuService.메뉴상세보기(dto);
 		List<Optional> opt = OptionalService.추가선택목록가져오기();
 		req.setAttribute("menu", respDto);
 		req.setAttribute("optional", opt);
+		if(gubun.equals("pizza")) {
+			return "/menu/menuView.jsp";
+		}else if(gubun.equals("oneplus")) {
+			return "/menu/onePlusView.jsp";
+		}else if(gubun.equals("set")) {
+			return "/menu/setView.jsp";
+		}else if(gubun.equals("side")) {
+			return "/menu/sideView.jsp";
+		}
 		return "/menu/menuView.jsp";
 	}
 }
