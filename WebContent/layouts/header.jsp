@@ -105,7 +105,7 @@
 						href="${pageContext.request.contextPath}/store">스토어</a></li>
 					<li class="nav-item"><a href="#a">커뮤니티</a></li>
 					<li class="nav-item"><a href="#a">프랜차이즈</a></li>
-					<li class="nav-item"><a href="#a">브랜드</a></li>
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/brand">브랜드</a></li>
 				</div>
 				<ul class="detail-menu">
 					<div class="container">
@@ -127,12 +127,12 @@
 						<li><img
 							src="${pageContext.request.contextPath}/images/common/ico_gnb_menu4.png"
 							alt="">
-							<h3>커뮤니티</h3> <a
-							href="${pageContext.request.contextPath}/community/event">이벤트</a>
+							<h3>커뮤니티</h3> 
+							<a href="${pageContext.request.contextPath}/community/event">이벤트</a>
 							<a href="${pageContext.request.contextPath}/community/notice">공지사항</a>
-							<a href="${pageContext.request.contextPath}/community/faq	">FAQ</a>
-							<a href="${pageContext.request.contextPath}/community/contact">고객의
-								소리</a> <a href="#a">채용하기</a></li>
+							<a href="${pageContext.request.contextPath}/community/faq">FAQ</a>
+							<a href="${pageContext.request.contextPath}/community/contact">고객의	소리</a> 
+							<a href="${pageContext.request.contextPath}/community/employment">채용하기</a></li>
 						<li><img
 							src="${pageContext.request.contextPath}/images/common/ico_gnb_menu5.png"
 							alt="">
@@ -140,7 +140,7 @@
 						<li><img
 							src="${pageContext.request.contextPath}/images/common/ico_gnb_menu6.png"
 							alt="">
-							<h3>브랜드</h3> <a href="#a">회사소개</a> <a href="#a">BI</a></li>
+							<h3>브랜드</h3> <a href="${pageContext.request.contextPath}/brand">회사소개</a> <a href="${pageContext.request.contextPath}/brand/slogan">BI</a></li>
 					</div>
 				</ul>
 			</ul>
