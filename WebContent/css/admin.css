@@ -141,3 +141,6 @@ main .container .option-add form button{display: block; margin: 25px auto; width
 .order-list table th{color: #00a0e9;}
 .order-list table td{text-align: center; font-weight: bold;}
 
+.map-box {display:flex;}
+.map-box div {flex:1;}
+

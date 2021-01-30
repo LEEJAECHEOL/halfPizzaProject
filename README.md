@@ -101,4 +101,14 @@ create table orders(
     state varchar(20),
     createDate timestamp
 );
+create table store(
+	id int primary key auto_increment,
+    xPos double,
+    yPos double,
+    name varchar(200),
+    tel varchar(13),
+    addr varchar(200),
+    addr2 varchar(200),
+    createDate timestamp
+);
 ```

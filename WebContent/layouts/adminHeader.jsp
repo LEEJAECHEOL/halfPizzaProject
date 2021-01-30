@@ -27,6 +27,7 @@
                     <li><a href="${pageContext.request.contextPath}/admin/notice/list">공지사항관리</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/faq/list">FAQ관리</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/event/list">이벤트관리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/admin/store">스토어관리</a></li>
                     <li><a href="${pageContext.request.contextPath}/admin/order/list">판매량</a></li>
                 </ul>
             </nav>

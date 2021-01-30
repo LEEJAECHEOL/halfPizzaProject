@@ -75,7 +75,6 @@
                         </div>
                     </div>
                 </div>
-                <a href="#a">포장주문</a>
             </div>
         </div>
     </main>

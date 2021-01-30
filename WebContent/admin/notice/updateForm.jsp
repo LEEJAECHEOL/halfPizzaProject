@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
-	 <script src="${pageContext.request.contextPath}/js/build/ckeditor.js" type="text/javascript"></script>
 </head>
 <body>
 	<form
