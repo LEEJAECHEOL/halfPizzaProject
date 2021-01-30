@@ -54,7 +54,7 @@
 			</c:choose>
 
 
-			<button class="notice-more">더보기+</button>
+			<button class="notice-more" id="faqMore">더보기+</button>
 		</div>
 	</div>
 </main>
@@ -66,6 +66,26 @@
                 this.classList.toggle('full');
             });
         });
+
+		let count = 1;
+			
+        document.querySelector('#faqMore').addEventListener('click', function(){
+			$.ajax({
+				type : "GET",
+				url : "http://localhost:8000/halfPizza/community/faqMore?count=" + count,
+				contentType : "application/json;charset=utf-8",
+				dataType:"json"
+			})
+			.done(function(result){
+				if(result.statusCode == 1){
+					alert("성공");
+				}
+				else{
+					alert("불러오기 실패");
+				}
+			});
+		});
+  
     </script>
 </body>
 
