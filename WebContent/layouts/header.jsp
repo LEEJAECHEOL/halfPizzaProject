@@ -82,7 +82,7 @@
                 <div class="container">
                     <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/images/common/img_logo.png" alt=""></a>
                     <li class="nav-item"><a href="${pageContext.request.contextPath}/menu">메뉴</a></li>
-                    <li class="nav-item"><a href="#a">E쿠폰</a></li>
+                    <li class="nav-item"><a href="${pageContext.request.contextPath}/coupon">E쿠폰</a></li>
                     <li class="nav-item"><a href="${pageContext.request.contextPath}/store">스토어</a></li>
                     <li class="nav-item"><a href="#a">커뮤니티</a></li>
                     <li class="nav-item"><a href="#a">프랜차이즈</a></li>
@@ -101,7 +101,7 @@
                     <li>
                         <img src="${pageContext.request.contextPath}/images/common/ico_gnb_menu2.png" alt="">
                         <h3>E쿠폰</h3>
-                        <a href="#a">E쿠폰주문</a>
+                        <a href="${pageContext.request.contextPath}/coupon">E쿠폰주문</a>
                     </li>
                     <li>
                         <img src="${pageContext.request.contextPath}/images/common/ico_gnb_menu3.png" alt="">

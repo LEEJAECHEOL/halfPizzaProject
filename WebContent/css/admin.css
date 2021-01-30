@@ -51,23 +51,15 @@ main .container .sub-p-title {text-align: center; padding: 20px 0;}
 
 
 /*index*//*index*//*index*//*index*//*index*/
-main .container .index-table-top,
-main .container .index-table-bottom{ background: #ffe100; border-radius: 50px; height: 400px; overflow-y: scroll;}
+main .container .index-table-top{ background: #ffe100; border-radius: 50px; height: 800px; overflow-y: scroll;}
 main .container .index-table-top{margin-bottom: 50px;}
-main .container .index-table-top h3,
-main .container .index-table-bottom h3{text-align: center; color: #00a0e9; padding: 15px 0;}
-main .container .index-table-top table,
-main .container .index-table-bottom table{padding: 50px 70px;}
+main .container .index-table-top h3{text-align: center; color: #00a0e9; padding: 15px 0;}
+main .container .index-table-top table{padding: 50px 70px;}
 main .container .index-table-top table th,
-main .container .index-table-top table td,
-main .container .index-table-bottom table th,
-main .container .index-table-bottom table td{font-size: 15px;}
+main .container .index-table-top table td{font-size: 15px;}
 main .container .index-table-top table th,
-main .container .index-table-top table td,
-main .container .index-table-bottom table th,
-main .container .index-table-bottom table td{border-bottom: 1px solid #00a0e9;}
-main .container .index-table-top table td,
-main .container .index-table-bottom table td{text-align: center; padding: 10px 0;}
+main .container .index-table-top table td{border-bottom: 1px solid #00a0e9;}
+main .container .index-table-top table td{text-align: center; padding: 10px 0;}
 
 
 /*menu-manage*/
