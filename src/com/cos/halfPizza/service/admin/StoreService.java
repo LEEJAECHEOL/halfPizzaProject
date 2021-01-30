@@ -6,6 +6,9 @@ import com.cos.halfPizza.domain.admin.StoreRepository;
 import com.cos.halfPizza.domain.admin.dto.StoreDeleteReqDto;
 import com.cos.halfPizza.domain.admin.dto.StoreSaveReqDto;
 import com.cos.halfPizza.domain.store.Store;
+import com.cos.halfPizza.domain.store.dto.SelectAreaReqDto;
+import com.cos.halfPizza.domain.store.dto.SelectAreaRespDto;
+import com.cos.halfPizza.domain.store.dto.SelectReqDto;
 
 public class StoreService {
 	private StoreRepository storeRepository = new StoreRepository();
@@ -24,5 +27,12 @@ public class StoreService {
 	
 	public int 스토어삭제(StoreDeleteReqDto dto) {
 		return storeRepository.deleteById(dto);
+	}
+	
+	public List<SelectAreaRespDto> 스토어지역찾기(SelectAreaReqDto dto) {
+		return storeRepository.findByArea(dto);
+	}
+	public Store 스토어찾기(SelectReqDto dto) {
+		return storeRepository.findById(dto);
 	}
 }

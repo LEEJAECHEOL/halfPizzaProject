@@ -35,13 +35,7 @@
                 </div>
                 <div>
                    <i class="xi-angle-down"></i>
-                    <select name="" id="" class="gu">
-                        <option value="">시/구/군</option>
-                    </select>
-                </div>
-                <div>
-                   <i class="xi-angle-down"></i>
-                    <select name="" id="" class="dong">
+                    <select name="" id="" class="store" onChange="selectStore(this)">
                         <option value="">-</option>
                     </select>
                 </div>
@@ -50,6 +44,8 @@
 				<c:choose>
 					<c:when test="${dto!=null}">
 		                <div class="map-box">
+		                	<input type="hidden" id="xPos" value="${dto.getXPos()}">
+		                	<input type="hidden" id="yPos" value="${dto.getYPos()}">
 		                    <div class="map-left" id ="map" style="height:400px">
 		                    </div>
 		                    <div class="map-right">
@@ -75,21 +71,60 @@
             </div>
         </div>
     </main>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6a5e93ecd3972432d6d24bd35c2f22b5"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6a5e93ecd3972432d6d24bd35c2f22b5&libraries=services"></script>
 	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
-		var marker = new daum.maps.Marker({
-	        position: new daum.maps.LatLng(33.450701, 126.9786567),
-	        map: map
-	    });
-
-		var map = new kakao.maps.Map(container, options);
-		function GuList(e){
-			let _data = e.value;
+		var x = document.querySelector('#xPos').value;
+		var y = document.querySelector('#yPos').value;
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    	mapOption = { 
+		        center: new kakao.maps.LatLng(Number(y), Number(x)), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+	    };
+	
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(Number(y), Number(x)); 
+		
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+		
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+		function GuList(_this){
+			$.ajax({
+				type:"GET",
+				url:"/halfPizza/store/findPoint?area="+_this.value,
+				dataType: "json",
+			}).done(function(result){
+				let content = "<option value=''>-</option>";
+				if(result.data.length !== 0){
+					for(let i = 0; i < result.data.length; i++){
+						content += "<option value='" + result.data[i].id + "'>" + result.data[i].name + "</option>";
+					}
+				}
+				document.querySelector(".store").innerHTML = content;
+			});
+		}
+		function selectStore(_this){
+			let value = _this.value;
+			if(value === ''){
+				return;
+			}
+			$.ajax({
+				type:"GET",
+				url:"/halfPizza/store/findStore?id=" + value,
+				dataType: "json",
+			}).done(function(result){
+				console.log(result);
+				document.querySelector("#storeName").textContent = result.data.name;
+				document.querySelector("#storeTel").textContent = result.data.tel;
+				document.querySelector("#storeAddr").textContent = result.data.addr + ' ' + result.data.addr2;
+				map.setCenter(new kakao.maps.LatLng(result.data.yPos, result.data.xPos));
+				marker.setPosition(new kakao.maps.LatLng(result.data.yPos, result.data.xPos));
+	            marker.setMap(map);
+			});
 		}
 	</script>
 <%@ include file="../layouts/footer.jsp" %>
