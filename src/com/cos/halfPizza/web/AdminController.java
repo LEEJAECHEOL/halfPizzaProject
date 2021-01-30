@@ -1,7 +1,13 @@
 package com.cos.halfPizza.web;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
+import com.cos.halfPizza.domain.auth.User;
+import com.cos.halfPizza.domain.order.Order;
 import com.cos.halfPizza.service.admin.AdminService;
 
 @Controller
@@ -10,7 +16,11 @@ public class AdminController {
 	private AdminService adminService = new AdminService();
 	
 	@RequestMapping("/admin")
-	public String index() {
+	public String index(HttpServletRequest req) {
+		List<User> users = adminService.회원목록가져오기();
+		System.out.println(users);
+		req.setAttribute("users", users);
+		System.out.println("실행됨?");
 		return "/admin/index.jsp";
 	}
 	

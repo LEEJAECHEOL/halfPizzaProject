@@ -54,10 +54,10 @@
                             <c:set var="e" value="${user.email}"/>
                             <input type="text" name="emailFront" id="emailFront" value="${fn:substringBefore(e, '@')}">
                             <input type="text" name="emailBack" id="emailBack" value="${fn:substringAfter(e, '@')}">
-                            <input type="hidden" name="email" id="email">
+                            <input type="hidden" name="email" id="email" value="${user.email}">
                             
                         <select name="eSelect" id="eSelect">
-							<option value="1" selected="selected">직접입력</option>
+							<option value="" selected="selected">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="nate.com">nate.com</option>
 							<option value="google.com">google.com</option>
