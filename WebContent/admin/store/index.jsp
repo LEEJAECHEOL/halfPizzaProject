@@ -33,19 +33,21 @@
 </main>
 <script>
 	function deleteById(id){
-		$.ajax({
-			type:"POST",
-			url:"/halfPizza/admin/store/delete",
-			data:"id="+id,
-			dataType: "json",
-		}).done(function(result){
-			if(result.data === 'ok'){
-				location.href="/halfPizza/admin/store";
-			}
-			else{
-				alert("삭제 실패");
-			}
-		});
+		if(confirm('해당 스토어를 삭제하시겠습니까?')){
+			$.ajax({
+				type:"POST",
+				url:"/halfPizza/admin/store/delete",
+				data:"id="+id,
+				dataType: "json",
+			}).done(function(result){
+				if(result.data === 'ok'){
+					location.href="/halfPizza/admin/store";
+				}
+				else{
+					alert("삭제 실패");
+				}
+			});
+		}
 	}
 </script>
 </body>

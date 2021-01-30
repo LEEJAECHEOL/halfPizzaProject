@@ -12,7 +12,33 @@ import com.cos.halfPizza.domain.admin.dto.StoreSaveReqDto;
 import com.cos.halfPizza.domain.store.Store;
 
 public class StoreRepository {
-	
+	public Store selectOne() {
+		String sql = "SELECT * FROM store LIMIT 1";
+		Connection conn = DBConn.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				return Store.builder()
+							.id(rs.getInt("id"))
+							.xPos(rs.getDouble("xPos"))
+							.yPos(rs.getDouble("yPos"))
+							.name(rs.getString("name"))
+							.tel(rs.getString("tel"))
+							.addr(rs.getString("addr"))
+							.addr2(rs.getString("addr2"))
+							.createDate(rs.getTimestamp("createDate"))
+							.build();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {	
+			DBConn.close(conn, pstmt, rs);
+		}
+		return null;
+	}
 	public List<Store> findAll() {
 		List<Store> list = new ArrayList<>();
 		String sql = "SELECT * FROM store";

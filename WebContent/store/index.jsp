@@ -46,35 +46,32 @@
                     </select>
                 </div>
             </div>
-
             <div class="map">
-                <div class="map-box">
-                    <div class="map-left" id ="map">
-					
-                    </div>
-                    <div class="map-right">
-                        <div class="store-info">
-                            <p>매장명</p>
-                            <h3>강남2호점</h3>
-                        </div>
-                        <div class="store-info">
-                            <p>전화번호</p>
-                            <h3>02-542-0050</h3>
-                        </div>
-                        <div class="store-info">
-                            <p>매장주소</p>
-                            <h3>서울 강남구 봉은사로 57길 57</h3>
-                        </div>
-                        <div class="store-info">
-                            <p>영업시간</p>
-                            <h3>12:00~23:00</h3>
-                        </div>
-                        <div class="store-info">
-                            <p>전화번호</p>
-                            <span>배달</span><span>포장</span>
-                        </div>
-                    </div>
-                </div>
+				<c:choose>
+					<c:when test="${dto!=null}">
+		                <div class="map-box">
+		                    <div class="map-left" id ="map" style="height:400px">
+		                    </div>
+		                    <div class="map-right">
+		                        <div class="store-info">
+		                            <p>매장명</p>
+		                            <h3 id="storeName">${dto.name}</h3>
+		                        </div>
+		                        <div class="store-info">
+		                            <p>전화번호</p>
+		                            <h3 id="storeTel">${dto.tel}</h3>
+		                        </div>
+		                        <div class="store-info">
+		                            <p>매장주소</p>
+		                            <h3 id="storeAddr">${dto.addr} ${dto.addr2}</h3>
+		                        </div>
+		                    </div>
+		                </div>
+				 	</c:when>
+				 	<c:otherwise>
+            			<h2 style="text-align:center">등록된 스토어가 없습니다.</h2>
+				 	</c:otherwise>
+				 </c:choose>
             </div>
         </div>
     </main>
@@ -85,6 +82,10 @@
 			center: new kakao.maps.LatLng(33.450701, 126.570667),
 			level: 3
 		};
+		var marker = new daum.maps.Marker({
+	        position: new daum.maps.LatLng(33.450701, 126.9786567),
+	        map: map
+	    });
 
 		var map = new kakao.maps.Map(container, options);
 		function GuList(e){

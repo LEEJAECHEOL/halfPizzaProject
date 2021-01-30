@@ -10,6 +10,10 @@ import com.cos.halfPizza.domain.store.Store;
 public class StoreService {
 	private StoreRepository storeRepository = new StoreRepository();
 	
+	public Store 스토어하나가져오기() {
+		return storeRepository.selectOne();
+	}
+	
 	public List<Store> 스토어리스트가져오기() {
 		return storeRepository.findAll();
 	}

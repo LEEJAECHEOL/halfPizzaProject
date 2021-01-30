@@ -20,7 +20,8 @@ public class AdminStoreController {
 	
 	@RequestMapping("/admin/store")
 	public String index(HttpServletRequest req) {
-		List<Store> entityDto = storeService.스토어리스트가져오기();
+		Store entityDto = storeService.스토어하나가져오기();
+		System.out.println(entityDto);
 		req.setAttribute("dto", entityDto);
 		return "/admin/store/index.jsp";
 	}
