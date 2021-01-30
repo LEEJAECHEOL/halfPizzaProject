@@ -6,7 +6,7 @@
         
         <div class="sub-p-title">
 			<h3 class="underLine">
-				<span>옵션 리스트</span>
+				<span>회원 리스트</span>
 			</h3>
 		</div>
             <div class="index-table-top">

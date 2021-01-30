@@ -41,7 +41,7 @@ header .container{display: flex; align-items: center;}
 header .container nav{width: 100%;}
 header .container ul{display: flex;}
 header .container ul li{flex: 1; text-align: center;}
-header .container ul li a{display: inline-block; padding: 30px; color: #000; font-weight: bold;}
+header .container ul li a{display: inline-block; padding: 30px 15px; color: #000; font-weight: bold; font-size:18px;}
 body{background: #f3f3f3; padding-bottom: 50px;}
 main .container{padding-top: 60px;}
 main .container .sub-p-title {text-align: center; padding: 20px 0;}
@@ -133,6 +133,12 @@ main .container .option-add form button{display: block; margin: 25px auto; width
 .order-list table th{color: #00a0e9;}
 .order-list table td{text-align: center; font-weight: bold;}
 
-.map-box {display:flex;}
+.map-box {display:flex; font-family: NR;}
 .map-box div {flex:1;}
+.map-box .map-left{background: #000;}
+.map-box .map-right{padding-left: 30px; display:flex; flex-direction: column;}
+.map-box .map-right > *{flex:1;}
+.map-box .map-right input{width: 350px; height: 60px; border-radius: 50px; border: 1px solid #bfbfbf; padding: 0 15px;}
+.map-box .map-right button{display: inline-block; width: 100px; height: 60px; background: #ffe100; border-radius: 50px; border: none; font-weight: bold;}
+
 

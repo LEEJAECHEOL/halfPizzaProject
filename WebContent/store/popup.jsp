@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>스토어찾기</title>
+<style>
+	.list{padding: 30px 10px; background: #fff;}
+	.list > div{background: #ffe100; padding: 15px; border-radius: 50px; margin-bottom: 10px; cursor: pointer; font-weight: bold; opacity: .6; transition: opacity .5s;}
+	.list > div:hover{opacity: 1; border: 2px solid #00a0e9;}
+	.list > div b{color: #00a0e9;}
+</style>
 </head>
 <body>
 	<main>
@@ -14,7 +20,7 @@
 				<c:when test="${dto!=null}">
 					<c:forEach var="item" items="${dto}">
 						<div data-tel=${item.tel }>
-							${item.addr} (${item.name})
+							<p>${item.addr}<b>(${item.name})</b></p>
 						</div>
 		
 					</c:forEach>
