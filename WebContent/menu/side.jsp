@@ -10,10 +10,10 @@
             </div>
             <div class="menu-list">
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/menu" class="selected">피자</a></li>
+                    <li><a href="${pageContext.request.contextPath}/menu">피자</a></li>
                     <li><a href="${pageContext.request.contextPath}/menu?gubun=oneplus">1+1</a></li>
                     <li><a href="${pageContext.request.contextPath}/menu?gubun=set">세트</a></li>
-                    <li><a href="${pageContext.request.contextPath}/menu?gubun=side">사이드</a></li>
+                    <li><a href="${pageContext.request.contextPath}/menu?gubun=side" class="selected">사이드</a></li>
                 </ul>
             </div>
             <div class="pizza-list">

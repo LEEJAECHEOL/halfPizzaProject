@@ -1,8 +1,10 @@
 package com.cos.halfPizza.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
@@ -20,10 +22,29 @@ public class MenuController {
 	private OptionalService OptionalService = new OptionalService();
 	
 	@RequestMapping("/menu")
-	public String index(HttpServletRequest req) {
-		List<MenuListRespDto> menu = menuService.findAll();
-		req.setAttribute("menu", menu);
-		return "/menu/index.jsp";
+	public String index(HttpServletRequest req, HttpServletResponse resp) {
+		String gubun = req.getParameter("gubun");
+		if(gubun == null) {
+			gubun ="pizza";
+		}
+		List<MenuListRespDto> menu = menuService.findAll(gubun);
+		req.setAttribute("menu", menu);	
+		if(gubun.equals("pizza")) {
+			return "/menu/index.jsp";
+		}else if(gubun.equals("oneplus")) {
+			return "/menu/onePlus.jsp";
+		}else if(gubun.equals("set")) {
+			return "/menu/set.jsp";
+		}else if(gubun.equals("side")) {
+			return "/menu/side.jsp";
+		}else {
+			try {
+				resp.sendRedirect("/halfPizza/menu");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return "";
 	}
 	@RequestMapping("/menu/menuView")
 	public String detail(MenuViewReqDto dto, HttpServletRequest req) {

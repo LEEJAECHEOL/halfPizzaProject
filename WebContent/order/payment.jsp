@@ -216,7 +216,7 @@
 			       pay_method : 'card',	// 결제 수단
 			       merchant_uid : 'merchant_' + new Date().getTime(),
 			      name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
-			       amount : '100',	// 결제 금액
+			       amount : _price,	// 결제 금액
 			       buyer_email : '',	// 구매자 email
 			      buyer_name :  _name,	// 구매자 이름
 			       buyer_tel :  _phone,	// 구매자 전화번호

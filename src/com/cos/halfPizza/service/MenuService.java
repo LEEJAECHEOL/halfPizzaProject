@@ -11,8 +11,8 @@ public class MenuService {
 	
 	private MenuRepository menuRepository = new MenuRepository();
 	
-	public List<MenuListRespDto> findAll(){
-		return menuRepository.findAll();
+	public List<MenuListRespDto> findAll(String gubun){
+		return menuRepository.findAll(gubun);
 	}
 	public MenuViewRespDto 메뉴상세보기(MenuViewReqDto dto) {
 		return menuRepository.findById(dto);

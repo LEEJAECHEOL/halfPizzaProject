@@ -93,6 +93,8 @@ create table orders(
     name varchar(20),
     phone varchar(13),
     addr varchar(200),
+    storeTel varchar(13),
+    storeAddr varchar(200),
     info longText,
     text varchar(200),
     impId varchar(100),

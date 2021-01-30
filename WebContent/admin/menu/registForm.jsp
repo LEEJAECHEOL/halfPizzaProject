@@ -34,6 +34,7 @@
                        <span>메뉴 구분</span>
                         <select name="gubun">
                             <option value="pizza">피자</option>
+                            <option value="oneplus">원플러스원</option>
                             <option value="set">세트</option>
                             <option value="side">사이드</option>
                         </select>
