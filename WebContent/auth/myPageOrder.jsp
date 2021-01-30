@@ -90,11 +90,11 @@
 	    <div class="delivery-shop">
 	        <div class="delivery-shop-info">
 	            <span>매장주소</span>
-	            <p>부산 남구 용소로 19번길 88 부산남구점</p>
+	            <p id="storeAddr"></p>
 	        </div>
 	        <div class="delivery-shop-info">
 	            <span>전화번호</span>
-	            <p>010-9062-2304</p>
+	            <p id="storeTel"></p>
 	        </div>
 	        <div class="delivery-shop-info">
 	            <span>요청사항</span>
@@ -119,6 +119,8 @@
 	        document.querySelector('#popId').textContent = result.data.id;
 	        document.querySelector('#totalPrice').textContent = result.data.paidAmount+"원";
 	        document.querySelector('#popText').textContent = result.data.text;
+	        document.querySelector('#storeAddr').textContent = result.data.storeAddr;
+	        document.querySelector('#storeTel').textContent = result.data.storeTel;
 			let info = JSON.parse(result.data.info);
 	        let content = "<colgroup><col width='50%'><col width='15%'><col width='35%'></colgroup>";
 	        for(let i = 0; i < info.cartWrap.length; i++){

@@ -93,6 +93,8 @@ public class OrderRepository {
 						.phone(rs.getString("phone"))
 						.addr(rs.getString("addr"))
 						.info(rs.getString("info"))
+						.storeAddr(rs.getString("storeAddr"))
+						.storeTel(rs.getString("storeTel"))
 						.text(rs.getString("text"))
 						.impId(rs.getString("impId"))
 						.merchantId(rs.getString("merchantId"))
