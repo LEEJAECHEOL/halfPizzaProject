@@ -14,6 +14,7 @@
 - git
 - lucy
 - cos
+- ckeditor(cdn)
 
 
 ## MySQL 데이터베이스 생성 및 사용자 생성
@@ -55,8 +56,9 @@ create table menu(
     createDate timestamp
 );
 create table optional(
-    id int primary key auto_increment,
+	id int primary key auto_increment,
     title varchar(100) not null,
+    gubun varchar(10),
     price int not null
 );
 
