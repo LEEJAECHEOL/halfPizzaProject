@@ -654,3 +654,336 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .stamp-box p{text-indent: 70px; margin-top: 5px; font-size: 14px; color: #616161;}
 .stamp-box p sup{margin-right: 5px;}
 
+
+
+
+
+
+
+
+
+
+
+
+/*브랜드*//*브랜드*//*브랜드*//*브랜드*//*브랜드*//*브랜드*/
+.brand-stroy-list{display: flex; font-family: NR; margin-bottom: 50px;}
+.brand-stroy-list li{flex: 1; text-align: center; background: #fff;;  font-size: 20px; margin-left: 36px; box-shadow: 0px 15px 40px -13px rgba(0, 0, 0, 0.4); position: relative;}
+.brand-stroy-list li.selected{background: #ffe100;}
+.brand-stroy-list li:first-child{margin: 0;}
+.brand-stroy-list li a{display: block; width: 100%; height: 50px; line-height: 50px; color: #000; font-weight: bold;}
+.brand-stroy-list li:after{content: ''; position: absolute; right: -15px; top: 0; width: 30px; height: 100%; transform: skewX(-20deg); background: #fff;}
+.brand-stroy-list li:first-child:after{right: -15px;}
+.brand-stroy-list li.selected:first-child:after{background: #ffe100;}
+.brand-stroy-list li:last-child:after{left: -15px;}
+.brand-stroy-list li.selected:last-child:after{background: #ffe100;}
+.company-info{padding: 70px; background: #fff; font-family: NR;}
+.company-info .company-info-top{background: url(../images/contents/brand-stroy/bg_introduce.jpg)no-repeat center; padding: 50px; color: #fff; font-size: 19px; border-radius: 30px;}
+
+
+
+/*브랜드애니메이션*//*브랜드애니메이션*//*브랜드애니메이션*//*브랜드애니메이션*//*브랜드애니메이션*/
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+.animated.infinite {
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite
+}
+
+.animated.hinge {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s
+}
+
+.animated.bounceIn,
+.animated.bounceOut,
+.animated.flipOutX,
+.animated.flipOutY {
+    -webkit-animation-duration: .75s;
+    animation-duration: .75s
+}
+
+@-webkit-keyframes bounce {
+
+    0%,
+    20%,
+    53%,
+    80%,
+    to {
+        -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0)
+    }
+
+    40%,
+    43% {
+        -webkit-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0)
+    }
+
+    40%,
+    43%,
+    70% {
+        -webkit-animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+        animation-timing-function: cubic-bezier(.755, .05, .855, .06)
+    }
+
+    70% {
+        -webkit-transform: translate3d(0, -15px, 0);
+        transform: translate3d(0, -15px, 0)
+    }
+
+    90% {
+        -webkit-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0)
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    53%,
+    80%,
+    to {
+        -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0)
+    }
+
+    40%,
+    43% {
+        -webkit-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0)
+    }
+
+    40%,
+    43%,
+    70% {
+        -webkit-animation-timing-function: cubic-bezier(.755, .05, .855, .06);
+        animation-timing-function: cubic-bezier(.755, .05, .855, .06)
+    }
+
+    70% {
+        -webkit-transform: translate3d(0, -15px, 0);
+        transform: translate3d(0, -15px, 0)
+    }
+
+    90% {
+        -webkit-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0)
+    }
+}
+
+.bounce {
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom
+}
+
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1)
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05)
+    }
+
+    to {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1)
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1)
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05)
+    }
+
+    to {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1)
+    }
+}
+
+.pulse {
+    -webkit-animation-name: pulse;
+    animation-name: pulse
+}
+
+/*brandOriginal*//*brandOriginal*//*brandOriginal*//*brandOriginal*//*brandOriginal*/
+.brandCont{background: #fff;padding:70px;border-radius: 50px;margin-bottom:30px;}
+.brandCont .brandStory{margin-top:30px;padding:50px;color:#fff;background-image: url('../images/contents/brand-stroy/bg_introduce.jpg');background-position: center; border-radius: 30px;overflow: hidden;position: relative;}
+.brandCont .brandStory span{position: relative;font-size:20px;display: block;margin-top:15px;letter-spacing: -1px;line-height: 1.5;}
+.brandCont .brandStory span i{display: inline-block;position: relative;padding:0 2px;}
+.brandCont .brandStory span i:before{content: ''; position: absolute;left:0;top:3px;width:100%;height:24px;background: #00a0e9;}
+.brandCont .brandStory.CustomAnimate i:before{
+-webkit-animation-name: lineAnimation;
+animation-name: lineAnimation;
+-webkit-animation-duration: .5s;
+animation-duration:.5s;
+-webkit-animation-delay: .3s;
+animation-delay:.3s;
+-webkit-animation-fill-mode: both;
+animation-fill-mode: both;
+}
+.brandCont .brandStory span i.stroke_2:before{
+-webkit-animation-delay: .6s;
+animation-delay:.6s;
+}
+.brandCont .brandStory span i.stroke_3:before {
+-webkit-animation-delay: .9s;
+animation-delay:.9s;
+}
+.brandCont .brandStory span i em{position: relative;}
+.brandCont .brandStory span:first-child{margin-top:0;}
+.brandCont h5{font-size:24px;color:#27a9ea;margin-top:100px;}
+.brandCont .brandConcept{margin-top:55px;font-size:0;}
+.brandCont .brandConcept li{font-weight: 800;display: inline-block;color:#fff;background:#00aeef;border-radius:50%;font-size:26px;text-align: center;margin-left:60px;width:220px;line-height:220px;height:220px;}
+.brandCont .brandConcept.CustomAnimate li{
+-webkit-animation-name: fadeInLeft;
+animation-name: fadeInLeft;
+-webkit-animation-duration: .7s;
+animation-duration:.7s;
+-webkit-animation-fill-mode: both;
+animation-fill-mode: both;
+}
+.brandCont .brandConcept.CustomAnimate li:first-child + li{
+-webkit-animation-delay: .3s;
+animation-delay:.3s;
+}
+.brandCont .brandConcept.CustomAnimate li:first-child + li + li{
+-webkit-animation-delay: .6s;
+animation-delay:.6s;
+}
+.brandCont .brandConcept li:first-child{margin-left:0;}
+.brandCont .conceptTxt{font-size:20px;margin-top:45px;line-height:1.5;color:#000;}
+@keyframes lineAnimation {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+}
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to { opacity: 1 }
+}
+.brandCont .logoConcept{box-sizing: border-box;padding-left:315px;position: relative;margin-top:70px}
+.brandCont .logoConcept .logoImg{position: absolute;left:0;top:5px;margin-top:0;}
+.brandCont .logoConcept .logoImg:before,
+.brandCont .logoConcept .logoImg:after{content:'';display: block;position: absolute;background:#ffa9a9;opacity: .5;}
+.brandCont .logoConcept.CustomAnimate .logoImg:before,
+.brandCont .logoConcept.CustomAnimate .logoImg:after {
+opacity: .5;
+-webkit-animation-name: lineAnimation;
+animation-name: lineAnimation;
+-webkit-animation-duration: .7s;
+animation-duration:.7s;
+-webkit-animation-fill-mode: both;
+animation-fill-mode: both;
+}
+.brandCont .logoConcept .logoImg:after{
+-webkit-animation-delay: .5s;
+animation-delay:.5s;
+}
+.brandCont .logoConcept .logoImg:before{width:230px;height:113px;top:-16px;}
+.brandCont .logoConcept .logoImg:after{width:163px;height:67px;left:45px;top:130px;}
+.brandCont .logoConcept .logoImg + li{margin-top:0;}
+.brandCont .logoConcept li{font-size: 20px;color:#5d5d5d;margin-top:30px;position: relative;}
+.brandCont .logoConcept li:before,
+.brandCont .logoConcept .logoImg + li + li:after{content:'';display:block;height:1px;background: #000;position: absolute;opacity: 0;
+-webkit-transition: 1s 1s opacity ease;
+transition: 1s 1s opacity ease;
+}
+.brandCont .logoConcept .logoImg + li:before{width:80px;left:-85px;top:13px;}
+.brandCont .logoConcept .logoImg + li + li:before{width:52px;left:-57px;top:13px;}
+.brandCont .logoConcept .logoImg + li + li:after{width: 32px;left: -73px;top: 29px;transform: rotate(90deg);}
+.brandCont .logoConcept .logoImg + li+ li + li:before{width:52px;left:-57px;top:13px;}
+.brandCont .logoConcept .logoImg + li + li + li + li:before{width:100px;left:-107px;top:13px;}
+.brandCont .logoConcept.CustomAnimate li:before,
+.brandCont .logoConcept.CustomAnimate .logoImg+li+li:after{opacity:1;}
+.brandCont .colorSpecCont{border:2px #ddd solid;border-radius: 50px;box-sizing: border-box;padding:55px;margin-top:50px;}
+.brandCont .colorSpecCont dl{width:50%;float:left;height:250px;}
+.brandCont .colorSpecCont dl dt{font-size:20px;color: #000;font-weight: 800;}
+.brandCont .colorSpecCont dl dd{position: relative;box-sizing: border-box;padding-left:225px;top:50%;
+-webkit-transform: translateY(-50%);
+transform: translateY(-50%);
+}
+.brandCont .colorSpecCont dl dd i{position: absolute;left:0;width:186px;top:50%;margin-top:-66px;}
+.brandCont .colorSpecCont dl dd i img{width:100%;}
+.brandCont .colorSpecCont dl dd p{box-sizing:border-box;position: relative;padding:15px 0;padding-left:65px;}
+.brandCont .colorSpecCont dl dd p span{display: block;font-size:16px;}
+.brandCont .colorSpecCont dl dd p:before{content:'';display: block;width:50px;height:50px;border-radius: 50%;position: absolute;left:0;top:50%;margin-top:-25px;}
+.brandCont .colorSpecCont dl dd p.yellow:before{background:#ffde00}
+.brandCont .colorSpecCont dl dd p.blue:before{background:#00aeef;}
+.brandCont .colorSpecCont:after{content:'';display: block;clear: both;}
+
+/* �귣�� ���丮 - ���ΰ� */
+.sloganCont h5{margin-top:0;}
+.sloganCont .brandSloganCont + h5{margin-top:90px;}
+.sloganCont .brandSloganCont{border:2px #ddd solid;border-radius: 50px;padding:60px;margin-top:40px;}
+.sloganCont .slogan h2{font-size:0;width:812px;height:153px;background-image: url('../image/contents/brandStory/img_brandSlogan.jpg');margin:10px auto;opacity: 0;}
+.sloganCont .slogan.CustomAnimate h2{
+-webkit-animation-name: fadeInBottom;
+animation-name: fadeInBottom;
+-webkit-animation-duration: .7s;
+animation-duration:.7s;
+-webkit-animation-fill-mode: both;
+animation-fill-mode: both;
+}
+.sloganCont .motif{position: relative;height:560px;box-sizing: border-box;overflow: hidden;}
+.sloganCont .motif li{position: absolute;
+-webkit-animation-duration: 1s;
+animation-duration:1s;
+-webkit-animation-fill-mode: both;
+animation-fill-mode: both;
+}
+.sloganCont .motif li:first-child{left:155px;top:55px;}
+.sloganCont .motif li:first-child + li{top:100px;left:420px;}
+.sloganCont .motif li:first-child + li + li{left:185px;top:313px;}
+.sloganCont .motif li:first-child + li + li + li{top:289px;left:490px;}
+.sloganCont .motif li:first-child + li + li + li + li{left:703px;top:286px;}
+.sloganCont .motif.CustomAnimate li:first-child {
+-webkit-animation-name: rollFromLeft;
+animation-name: rollFromLeft;
+}
+.sloganCont .motif.CustomAnimate li:first-child+li {
+-webkit-animation-name: fadeInTop;
+animation-name: fadeInTop;
+}
+.sloganCont .motif.CustomAnimate li:first-child+li+li {
+-webkit-animation-name: elevateRight;
+animation-name: elevateRight;
+}
+.sloganCont .motif.CustomAnimate li:first-child+li+li+li {
+-webkit-animation-name: bounceInTop;
+animation-name: bounceInTop;
+}
+.sloganCont .motif.CustomAnimate li:first-child+li+li+li+li {
+-webkit-animation-name: rotateYIn;
+animation-name: rotateYIn;
+}
+/*브랜드스토리*/
+.brandCont{font-family: NR;}
+.brandSloganCont{text-align: center; font-family: NR;}
+.brandSloganCont h1{color: #00a0e9; font-size: 50px;}

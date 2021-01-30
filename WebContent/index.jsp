@@ -107,28 +107,28 @@
             </div>
 
             <div class="communication">
-                <a href="#a">
+                <a href="https://www.youtube.com/channel/UCOj3KZVKRMben6zlfSH8uAw" target="_blank">
                     <div class="communication-item">
-                        <h3>facebook</h3>
+                        <h3>youtube</h3>
                         <img src="${pageContext.request.contextPath}/images/contents-main/ico_main_bottom_5.png" alt="">
                     </div>
                 </a>
 
-                <a href="#a">
+                <a href="${pageContext.request.contextPath}/community/notice">
                     <div class="communication-item">
                         <h3>공지사항</h3>
                         <img src="${pageContext.request.contextPath}/images/contents-main/ico_main_bottom_4.png" alt="">
                     </div>
                 </a>
 
-                <a href="#a">
+                <a href="${pageContext.request.contextPath}/community/event">
                     <div class="communication-item">
                         <h3>이벤트</h3>
                         <img src="${pageContext.request.contextPath}/images/contents-main/ico_main_bottom_3.png" alt="">
                     </div>
                 </a>
 
-                <a href="#a">
+                <a href="${pageContext.request.contextPath}/store">
                     <div class="communication-item">
                         <h3>매장안내</h3>
                         <img src="${pageContext.request.contextPath}/images/contents-main/ico_main_bottom_2.png" alt="">
@@ -142,7 +142,7 @@
                     </div>
                 </a>
 
-                <a href="#a">
+                <a href="${pageContext.request.contextPath}/community/contact">
                     <div class="communication-item">
                         <h3>고객의 소리</h3>
                         <img src="${pageContext.request.contextPath}/images/contents-main/ico_main_bottom_0.png" alt="">
