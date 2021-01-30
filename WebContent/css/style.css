@@ -547,10 +547,12 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .payment-box .payment-left .myPizza .myPizza-right table td{border-bottom: 10px solid transparent;}
 .payment-box .payment-left .myPizza .myPizza-right table tr td:last-child {text-align:right;}
 
+.payment-box .payment-left .selectStore,
 .payment-box .payment-left .sunbool,
 .payment-box .payment-left .coupon,
 .payment-box .payment-left .delivery-info,
 .payment-box .payment-left .pay-method{background: #fff; padding: 50px 70px; border-radius: 50px; margin-bottom: 30px;}
+.payment-box .payment-left .selectStore h3,
 .payment-box .payment-left .sunbool h3,
 .payment-box .payment-left .coupon h3,
 .payment-box .payment-left .delivery-info h3,
@@ -564,7 +566,8 @@ main .container .subpage-box .login-form >a>span{position: relative; top: -12px;
 .payment-box .payment-left .delivery-info table td{font-size: 18px; border-bottom: 25px solid transparent;}
 .payment-box .payment-left .delivery-info table td span{background: #ffe100; padding: 10px 20px; border-radius: 50px; font-weight: bold;}
 .payment-box .payment-left .pay-method button{padding: 20px 50px; border-radius: 50px; border: none; background: #ffe100; font-size: 18px; font-weight: bold;}
-
+.payment-box .payment-left .selectStore input {height: 60px; width: 74%; border-radius: 50px; border: 1px solid #666; position: relative;padding-left:20px;}
+.payment-box .payment-left .selectStore button,
 .payment-box .payment-left .sunbool .sunbool-point button,
 .payment-box .payment-left .coupon .coupon-discount button{height: 60px; width: 150px; border-radius: 60px; background: #ffe100; border: none; color: #000; font-weight: bold; font-size: 18px; position: relative;}
 

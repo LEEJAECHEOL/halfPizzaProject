@@ -111,6 +111,14 @@
 						  	</c:otherwise>
 					  	</c:choose>
                     </div>
+                    <div class="selectStore">
+                        <h3>스토어선택</h3>
+                        <div class="sunbool-point">
+                        	<input type="hidden" name="storeTel" id="storeTel">
+                            <input type="text" name="storeAddr" id="storeAddr"  readOnly>
+                            <button type="button" id="searchStoreBtn">스토어찾기</button>
+                        </div>
+                    </div>
                     <div class="sunbool">
                         <h3>선불금액권</h3>
                         <div class="sunbool-point">
@@ -191,11 +199,16 @@
 			let _text = document.querySelector('#text').value;
 			let _price = document.querySelector('#cartToltalPrice').dataset.price;
 			let _addr = document.querySelector('#addr').textContent;
+			let _storeAddr = document.querySelector('#storeAddr').value;
+			let _storeTel = document.querySelector('#storeTel').value;
 			if(_name === '' || _phone === '' || _text === ''){
 				alert("고객정보를 입력해주세요."); return ;
 			}
 			if(!_check){
 				alert("개인정보처리방침을 동의해주세요.");return;	
+			}
+			if(_storeAddr === ''){
+				alert("스토어를 선택해주세요.");return;
 			}
 			IMP.init('imp27033422'); 
 			IMP.request_pay({
@@ -216,9 +229,11 @@
 					data += "phone=" + _phone +"&";
 					data += "userId=" + _userId +"&";
 					data += "text=" + _text +"&";
-					data += "impId=" + rsp.imp_uid +"&";
+					data += "storeAddr=" + _storeAddr +"&";
+					data += "storeTel=" + _storeTel +"&";
 					data += "addr=" + getCookie("selectedAddr").replace('path=/halfPizza', '') +"&";
 					data += "info=" + getCookie("cart").replace('path=/halfPizza', '') +"&";
+					data += "impId=" + rsp.imp_uid +"&";
 					data += "merchantId=" + rsp.merchant_uid +"&";
 					data += "paidAmount=" + rsp.paid_amount;
 					
@@ -252,6 +267,9 @@
 
 		document.querySelector('#phone').addEventListener("focus", function(){
 			this.value = this.value.replace(/[^0-9]/g,'');
+		});
+		document.querySelector('#searchStoreBtn').addEventListener("click", function(){
+			window.open("/halfPizza/store/popup","new","width=500,height=500,top=100,left=100");
 		});
     </script>
 <%@ include file="../layouts/footer.jsp" %>

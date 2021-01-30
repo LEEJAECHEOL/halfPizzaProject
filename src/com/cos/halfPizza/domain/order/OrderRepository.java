@@ -17,8 +17,8 @@ public class OrderRepository {
 	
 	public String save(OrderReqDto dto) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("INSERT INTO orders(userId, name, phone, addr, info, text, impId, merchantId, paidAmount, state, createDate) ");
-		sb.append("VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, '주문완료',now())");
+		sb.append("INSERT INTO orders(userId, name, phone, addr, info, storeAddr, storeTel, text, impId, merchantId, paidAmount, state, createDate) ");
+		sb.append("VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '주문완료',now())");
 		String sql = sb.toString();
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
@@ -29,10 +29,12 @@ public class OrderRepository {
 			pstmt.setString(3, dto.getPhone());
 			pstmt.setString(4, dto.getAddr());
 			pstmt.setString(5, dto.getInfo());
-			pstmt.setString(6, dto.getText());
-			pstmt.setString(7, dto.getImpId());
-			pstmt.setString(8, dto.getMerchantId());
-			pstmt.setInt(9, dto.getPaidAmount());
+			pstmt.setString(6, dto.getStoreAddr());
+			pstmt.setString(7, dto.getStoreTel());
+			pstmt.setString(8, dto.getText());
+			pstmt.setString(9, dto.getImpId());
+			pstmt.setString(10, dto.getMerchantId());
+			pstmt.setInt(11, dto.getPaidAmount());
 			
 			int result = pstmt.executeUpdate();
 			if(result == 1) {

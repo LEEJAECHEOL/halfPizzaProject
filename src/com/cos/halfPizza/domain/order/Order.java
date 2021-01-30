@@ -18,6 +18,8 @@ public class Order {
 	private String name;
 	private String phone;
 	private String addr;
+	private String storeAddr;
+	private String storeTel;
 	private String info;
 	private String text;
 	private String impId;
