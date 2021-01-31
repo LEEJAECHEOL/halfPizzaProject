@@ -4,7 +4,7 @@ import com.cos.halfPizza.anno.Controller;
 import com.cos.halfPizza.anno.RequestMapping;
 
 @Controller
-public class employController {
+public class EmployController {
 	@RequestMapping("/community/employment")
 	public String slogan() {
 		return "/community/employment.jsp";

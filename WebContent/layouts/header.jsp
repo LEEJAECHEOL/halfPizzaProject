@@ -102,7 +102,7 @@
 					<li class="nav-item"><a
 						href="${pageContext.request.contextPath}/store">스토어</a></li>
 					<li class="nav-item"><a href="#a">커뮤니티</a></li>
-					<li class="nav-item"><a href="#a">프랜차이즈</a></li>
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/franchise">프랜차이즈</a></li>
 					<li class="nav-item"><a href="${pageContext.request.contextPath}/brand">브랜드</a></li>
 				</div>
 				<ul class="detail-menu">
@@ -137,7 +137,7 @@
 						<li><img
 							src="${pageContext.request.contextPath}/images/common/ico_gnb_menu5.png"
 							alt="">
-							<h3>프렌차이즈</h3> <a href="#a">창업지원시스템</a> <a href="#a">창업문의</a></li>
+							<h3>프렌차이즈</h3> <a href="${pageContext.request.contextPath}/franchise">창업지원시스템</a> <a href="${pageContext.request.contextPath}/franchise/inquiry">창업문의</a></li>
 						<li><img
 							src="${pageContext.request.contextPath}/images/common/ico_gnb_menu6.png"
 							alt="">

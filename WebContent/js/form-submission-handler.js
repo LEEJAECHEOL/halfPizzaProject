@@ -91,8 +91,10 @@
             formElements.style.display = "none"; // hide form
           }
           var thankYouMessage = form.querySelector(".thankyou_message");
+          var dim = document.querySelector(".dim");
           if (thankYouMessage) {
             thankYouMessage.style.display = "block";
+            dim.style.display = "block";  
           }
           return;
       };
