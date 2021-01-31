@@ -1191,3 +1191,5 @@ animation-delay:.7s;
 .franchise-button {display: block; width: 450px; height: 60px; text-align: center; background: #00a0e9; line-height: 60px; border-radius: 50px; font-weight: bold; font-size: 22px; color: #fff;}
 
 
+.table.table-bordered {width:100%;border-collapse: collapse;}
+.table.table-bordered td, .table.table-bordered th {border: 1px solid #ececec;padding: 5px 3px;}
