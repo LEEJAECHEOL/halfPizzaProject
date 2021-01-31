@@ -14,6 +14,11 @@ public class MenuService {
 	public List<MenuListRespDto> findAll(String gubun){
 		return menuRepository.findAll(gubun);
 	}
+	
+	public List<MenuListRespDto> findAll(){
+		return menuRepository.findAll();
+	}
+	
 	public MenuViewRespDto 메뉴상세보기(MenuViewReqDto dto) {
 		return menuRepository.findById(dto);
 	}

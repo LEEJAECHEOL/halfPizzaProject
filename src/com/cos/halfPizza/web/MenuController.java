@@ -46,6 +46,7 @@ public class MenuController {
 		}
 		return "";
 	}
+	
 	@RequestMapping("/menu/menuView")
 	public String detail(MenuViewReqDto dto, HttpServletRequest req) {
 		String gubun = req.getParameter("gubun");
