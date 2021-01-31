@@ -9,21 +9,20 @@ import com.cos.halfPizza.config.DBConn;
 import com.cos.halfPizza.domain.notice.dto.SelectReqDto;
 
 public class NoticeRepository {
-	public List<Notice> findAll() {
+	public List<Notice> findAll(int page) {
 		List<Notice> list = new ArrayList<>();
-		String sql = "SELECT * FROM notice";
+		String sql = "SELECT * FROM notice ORDER BY id DESC LIMIT ?, 5";
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, page * 5);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(Notice.builder()
 							.id(rs.getInt("id"))
 							.title(rs.getString("title"))
-							.content(rs.getString("content"))
-							.updateDate(rs.getTimestamp("updateDate"))
 							.createDate(rs.getTimestamp("createDate"))
 							.build()
 						);
