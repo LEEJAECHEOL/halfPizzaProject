@@ -26,12 +26,12 @@ public class AdminFilter implements Filter {
 		HttpSession session = req.getSession();
 		
 		if(session.getAttribute("user") == null) {
-			Script.back(resp, "로그인 후 이용해주세요.");
+			Script.flash(resp, "로그인 후 이용해주세요.", "/halfPizza/auth/login");
 			return;
 		}
 		User user = (User)session.getAttribute("user");
 		if(user.getRole().equals("USER")) {
-			Script.back(resp, "이용권한이 없습니다. 관리자에게 문의해주세요.");
+			Script.flash(resp, "이용권한이 없습니다. 관리자에게 문의해주세요.", "/halfPizza/");
 			return;
 		}
 		chain.doFilter(req, resp);

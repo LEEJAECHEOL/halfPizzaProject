@@ -29,7 +29,7 @@ public class AuthFilter implements Filter{
 		for (String exclusion : exclusions) {
 			if(endPoint.contains(exclusion)) {
 				if(session.getAttribute("user") == null) {
-					Script.back(resp, "로그인 후 이용해주세요.");
+					Script.flash(resp, "로그인 후 이용해주세요.", "/halfPizza/auth/login");
 				}
 			}
 		}
