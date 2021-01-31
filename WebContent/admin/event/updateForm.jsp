@@ -8,7 +8,7 @@
             </div>
             <div class="event-add">
                 <h3>이벤트 수정</h3>
-                <form action="/halfPizza/admin/event/registProc" method="post" enctype="multipart/form-data">
+                <form action="/halfPizza/admin/event/updateProc" method="post" enctype="multipart/form-data">
                    <input type="hidden" name="id" value="${dto.id}">
                     <div class="event-add-image">
                         <span>썸네일</span>
