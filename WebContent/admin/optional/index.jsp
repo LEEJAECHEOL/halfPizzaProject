@@ -19,6 +19,7 @@
 							<div class="option-item-content">
 								<input type="hidden" name="id" value="${opt.id}">
 								<p>상품명 : ${opt.title }</p>
+								<p>구분 : ${opt.gubun}</p>
 								<p>가격 : ${opt.price}원</p>
 								<button onclick="deleteById(${opt.id})">삭제하기</button>
 							</div>

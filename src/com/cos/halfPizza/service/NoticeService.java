@@ -9,8 +9,8 @@ import com.cos.halfPizza.domain.notice.dto.SelectReqDto;
 public class NoticeService {
 	private NoticeRepository noticeRepository = new NoticeRepository();
 	
-	public List<Notice> 공지목록가져오기() {
-		return noticeRepository.findAll();
+	public List<Notice> 공지목록가져오기(int page) {
+		return noticeRepository.findAll(page);
 	}
 	
 	public Notice 공지상세보기(SelectReqDto dto) {
