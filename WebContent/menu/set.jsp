@@ -25,10 +25,7 @@
 			                        <img src="${pageContext.request.contextPath}${m.path}${m.changeFileName1}" alt="">
 			                        <h3>${m.title }</h3>
 			                        <p>
-			                        	<c:if test="${m.isR eq 1}">
-			                        		<strong>R</strong><span><fmt:formatNumber value="${m.price - 2000 }" pattern="#,###" />원</span>	
-			                        	</c:if>
-				                        <strong>L</strong><span><fmt:formatNumber value="${m.price }" pattern="#,###" />원</span>
+				                        <span><fmt:formatNumber value="${m.price }" pattern="#,###" />원</span>
 			                        </p>
 			                    </a>
 			                </div>

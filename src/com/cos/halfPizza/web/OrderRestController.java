@@ -27,6 +27,7 @@ public class OrderRestController {
 		for(int i = 0; i < cookies.length; i++) {
 			if(cookies[i].getName().equals("cart")) {
 				Cookie cookie = new Cookie("cart", "");
+				cookie.setPath("/halfPizza");
 				cookie.setMaxAge(0);
 				resp.addCookie(cookie);
 			}

@@ -245,7 +245,6 @@
 						data : data
 					})
 					.done(function(result){
-						document.cookie = 'cart=; expire=Thu, 01 Jan 1999 00:00:10 GMT; domain=localhost; path=/halfPizza';
 						location.href="/halfPizza/order/payment/success";
 					});
 				} else { // 실패시

@@ -38,8 +38,9 @@ public class CartFilter implements Filter {
 		}
 		Gson gson = new Gson();
 		CartWrap cart = new CartWrap();
-		if(data != null) {
+		if(data != null && !data.equals("")) {
 			cart = gson.fromJson(data, CartWrap.class);
+			System.out.println(cart);
 			if(cart.getCartWrap().size() == 0) {
 				cart = null;
 			}

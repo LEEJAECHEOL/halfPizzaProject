@@ -121,9 +121,6 @@
 			  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
 			  return value? value[2] : null;
 		}
-		function deleteCookie(name) {
-			document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
-		}
 		function moneyComma(val){
 			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원";
 		}
