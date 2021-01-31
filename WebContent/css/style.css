@@ -127,7 +127,9 @@ footer div > p{color: #666;}
 .visual1 .visual-item .visual-content{position: relative; text-align: center; font-size: 20px;}
 .visual1 .visual-item .visual-content img{width: 100%;top:-50px; height: 100%; padding: 15%; padding-bottom: 0; padding-top: 0; position: relative; margin-bottom: 10px;}
 .visual1 .visual-item .visual-content a{color: #000;}
-.visual1 .visual-item .visual-content button {bottom: -40px;position: relative;}
+.visual1 .visual-item .visual-content a p > strong{background: #ffe100; display: inline-block;width: 26px; height: 26px; text-align: center; line-height: 26px; border-radius: 50%; margin-right: 2px;} 
+.visual1 .visual-item .visual-content a p > span{font-weight: bold; margin-right: 10px; font-size: 20px; position: relative; top: 3px}
+.visual1 .visual-item .visual-content .menu-select {bottom: -40px;position: relative; display:flex; margin: 0 auto; justify-content:center; align-items: center; flex-direction:column; color: #fff;}
 .visual1 .visual-item .menu-select{width: 84px; height: 84px; background: #00a0e9; color: #fff; border-radius: 50%; border: none; font-size: 20px;}
 
 .communication{width: 1200px; margin: 0 auto; display: flex; font-family: NR; justify-content:center;}

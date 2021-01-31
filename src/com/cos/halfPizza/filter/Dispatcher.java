@@ -150,9 +150,10 @@ public class Dispatcher implements Filter {
 	
 	private boolean exclusionUri(String endPoint, HttpServletResponse resp) {
 		String[] exclusions  = { "/js", "/css", "/font", "/images", "/index.jsp"};
-		if(endPoint.length() == 1){
-			return true;
-		}
+//		System.out.println(endPoint);
+//		if(endPoint.length() == 1){
+//			return false;
+//		}
 		for (String exclusion : exclusions) {
 			if(endPoint.contains(exclusion)) {
 				return true;

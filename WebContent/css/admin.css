@@ -95,7 +95,8 @@ main .container .menu-add form button{display: block; margin: 25px auto; width: 
 main .container .option-add{width: 1000px; margin: 0 auto; padding: 50px 30px; background: #fff; border-radius: 50px; font-family: NR;}
 .option-add div{margin-bottom: 10px;}
 .option-add div span{display: inline-block; width: 100px; height: 60px; line-height: 60px; color: #00a0e9; font-weight: bold;}
-.option-add div input{width:350px; height: 60px; border-radius: 50px; border: 1px solid #bfbfbf; padding:0 30px;}
+.option-add div input,
+.option-add div select{width:350px; height: 60px; border-radius: 50px; border: 1px solid #bfbfbf; padding:0 30px;}
 main .container .option-add form button{display: block; margin: 25px auto; width: 250px;height: 60px; border-radius: 50px; border: none; background: #00a0e9; color: #fff; font-weight: bold;font-size:18px;}
 
 
