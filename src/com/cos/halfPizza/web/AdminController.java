@@ -18,9 +18,7 @@ public class AdminController {
 	@RequestMapping("/admin")
 	public String index(HttpServletRequest req) {
 		List<User> users = adminService.회원목록가져오기();
-		System.out.println(users);
 		req.setAttribute("users", users);
-		System.out.println("실행됨?");
 		return "/admin/index.jsp";
 	}
 	

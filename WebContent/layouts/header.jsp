@@ -101,7 +101,7 @@
 						href="${pageContext.request.contextPath}/coupon">E쿠폰</a></li>
 					<li class="nav-item"><a
 						href="${pageContext.request.contextPath}/store">스토어</a></li>
-					<li class="nav-item"><a href="#a">커뮤니티</a></li>
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/community/event">커뮤니티</a></li>
 					<li class="nav-item"><a href="${pageContext.request.contextPath}/franchise">프랜차이즈</a></li>
 					<li class="nav-item"><a href="${pageContext.request.contextPath}/brand">브랜드</a></li>
 				</div>
