@@ -36,8 +36,8 @@ public class ImageUploadFilter implements Filter {
 		
 		if(contentType != null && contentType.equals("multipart/form-data")) {
 			String endPoint = req.getRequestURI().replaceAll(req.getContextPath(), "");
-			// ck 파일업로드는 따로 처리하기 때문에 예외로처리해줌
-			if(endPoint.equals("/ck/fileupload")) {
+			// 파일업로드는 따로 처리하기 때문에 예외로처리해줌
+			if(endPoint.equals("/summer/fileupload")) {
 				chain.doFilter(req, resp); return;
 			}
 			int maxSize = 1024 * 1024 * 10;	//10M

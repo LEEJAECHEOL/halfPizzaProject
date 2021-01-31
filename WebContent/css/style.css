@@ -987,3 +987,6 @@ animation-name: rotateYIn;
 .brandCont{font-family: NR;}
 .brandSloganCont{text-align: center; font-family: NR;}
 .brandSloganCont h1{color: #00a0e9; font-size: 50px;}
+
+.table.table-bordered {width:100%;border-collapse: collapse;}
+.table.table-bordered td, .table.table-bordered th {border: 1px solid #ececec;padding: 5px 3px;}

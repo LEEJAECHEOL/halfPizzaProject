@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 @RestController
 public class AdminRestController {
 
-	@RequestMapping("/ck/fileupload")
+	@RequestMapping("/summer/fileupload")
 	public String fileUpload(HttpServletRequest req) {
 		int maxSize = 1024 * 1024 * 10;	//10M
 		String path = "/images/notice/";
