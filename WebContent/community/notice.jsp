@@ -47,7 +47,7 @@
 			dataType:"json"
 		})
 		.done(function(result){
-			if(result.statusCode === 400){
+			if(result.statusCode === 200){
 				if(result.data.length !== 0){
 					let content = "";
 					for(let i = 0; i < result.data.length; i++){

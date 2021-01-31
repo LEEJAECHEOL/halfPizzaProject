@@ -23,7 +23,7 @@ public class NoticeRestController {
 		CommonDto<List<Notice>> dto = new CommonDto<List<Notice>>();
 		
 		if(notices != null) {
-			dto.setStatusCode(400);
+			dto.setStatusCode(200);
 			dto.setData(notices);
 		}else {
 			dto.setStatusCode(400);
