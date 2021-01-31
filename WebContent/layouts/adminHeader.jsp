@@ -33,5 +33,6 @@
                     <li><a href="${pageContext.request.contextPath}/admin/order/list">판매량</a></li>
                 </ul>
             </nav>
+            <a href="${pageContext.request.contextPath}/"><span>US</span><b>ER</b></a>
         </div>
     </header>
