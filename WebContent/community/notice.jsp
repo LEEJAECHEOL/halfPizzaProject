@@ -43,7 +43,7 @@
 	document.querySelector('.notice-more').addEventListener('click', function(){
 		$.ajax({
 			type : "GET",
-			url : "http://localhost:8000/halfPizza/community/notice/more?page=" + page,
+			url : "/halfPizza/community/notice/more?page=" + page,
 			dataType:"json"
 		})
 		.done(function(result){

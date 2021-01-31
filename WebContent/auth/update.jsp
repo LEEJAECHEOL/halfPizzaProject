@@ -172,7 +172,7 @@
 			let _ckEmail = document.querySelector('#email').value;
 			$.ajax({
 				type : "GET",
-				url : "http://localhost:8000/halfPizza/auth/findEmailCheck?email=" + _ckEmail,
+				url : "/halfPizza/auth/findEmailCheck?email=" + _ckEmail,
 				contentType : "application/json;charset=utf-8",
 				dataType:"json"
 			})

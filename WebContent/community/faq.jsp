@@ -63,7 +63,7 @@
 		let _keyword = document.querySelector('#keyword').value;
 		$.ajax({
 			type : "GET",
-			url : "http://localhost:8000/halfPizza/community/faq/more?page=" + page + "&gubun=" + _gubun + "&keyword=" + _keyword,
+			url : "/halfPizza/community/faq/more?page=" + page + "&gubun=" + _gubun + "&keyword=" + _keyword,
 			dataType:"json"
 		})
 		.done(function(result){
@@ -94,7 +94,7 @@
 		page = 0;
 		$.ajax({
 			type : "GET",
-			url : "http://localhost:8000/halfPizza/community/faq/more?page=" + page + "&gubun=" + _gubun + "&keyword=" + _keyword,
+			url : "/halfPizza/community/faq/more?page=" + page + "&gubun=" + _gubun + "&keyword=" + _keyword,
 			dataType:"json"
 		})
 		.done(function(result){

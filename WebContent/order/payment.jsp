@@ -241,7 +241,7 @@
 					
 					$.ajax({
 						type : "POST",
-						url : "http://localhost:8000/halfPizza/order/complete",
+						url : "/halfPizza/order/complete",
 						data : data
 					})
 					.done(function(result){

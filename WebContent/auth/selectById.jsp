@@ -103,7 +103,7 @@
 			let _ckUsername = document.querySelector('#username').value;
 			$.ajax({
 				type : "GET",
-				url : "http://localhost:8000/halfPizza/auth/findByUsername?email=" + _ckEmail+"&name="+_ckName+"&username="+_ckUsername,
+				url : "/halfPizza/auth/findByUsername?email=" + _ckEmail+"&name="+_ckName+"&username="+_ckUsername,
 				contentType : "application/json;charset=utf-8",
 				dataType:"json"
 			})

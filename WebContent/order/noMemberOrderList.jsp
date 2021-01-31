@@ -92,7 +92,7 @@
 	function detailBtn(id){
 		$.ajax({
             type : "GET",
-            url : "http://localhost:8000/halfPizza/order/findDetail?id=" + id,
+            url : "/halfPizza/order/findDetail?id=" + id,
             dataType:"json"
          })
          .done(function(result){
