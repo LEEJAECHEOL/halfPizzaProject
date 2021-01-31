@@ -16,9 +16,7 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String index(HttpServletResponse resp, HttpServletRequest req) {
-		System.out.println("실행됨?");
 		List<MenuListRespDto> menu = menuService.findAll();
-		System.out.println(menu);
 		req.setAttribute("menu", menu);	
 		return "index.jsp";
 	}

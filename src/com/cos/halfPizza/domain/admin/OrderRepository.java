@@ -12,7 +12,7 @@ import com.cos.halfPizza.domain.order.Order;
 public class OrderRepository {
 	public List<Order> findAll() {
 		List<Order> list = new ArrayList<>();
-		String sql = "SELECT id, userId, name, phone, addr, info, text, impId, merchantId, paidAmount, state, createDate FROM orders";
+		String sql = "SELECT id, userId, name, phone, addr, info, text, impId, merchantId, paidAmount, state, createDate FROM orders order by id desc";
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

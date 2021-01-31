@@ -83,7 +83,6 @@ public class Dispatcher implements Filter {
 								} else {
 									path = (String) method.invoke(controllerInstance);
 								}
-								System.out.println(path);
 								if(path == null) {
 									break;
 								}
