@@ -83,8 +83,8 @@
 
                     <div class="update-form-bottom">
                         <h3>SNS 계정 연동</h3>
-                        <p><span>네이버 계정에 연결된 정보가 없습니다.</span><button><img src="../images/member/ico_login_naver.png" alt=""><b>연결하기</b></button></p>
-                        <p><span>카카오 계정에 연결된 정보가 없습니다.</span><button><img src="../images/member/ico_login_kakako.png" alt=""><b>연결하기</b></button></p>
+                        <p><span>네이버 계정에 연결된 정보가 없습니다.</span><button><img src="${pageContext.request.contextPath}/images/member/ico_login_naver.png" alt=""><b>연결하기</b></button></p>
+                        <p><span>카카오 계정에 연결된 정보가 없습니다.</span><button><img src="${pageContext.request.contextPath}/images/member/ico_login_kakako.png" alt=""><b>연결하기</b></button></p>
                     </div>
                     <a href="#a">회원탈퇴 &gt;</a>
                     <button type="button" id="submitBtn">수정</button>
