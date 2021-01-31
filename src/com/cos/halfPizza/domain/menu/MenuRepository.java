@@ -46,12 +46,13 @@ public class MenuRepository {
 	
 	public List<MenuListRespDto> findAll() {
 		List<MenuListRespDto> list = new ArrayList<>();
-		String sql = "SELECT * FROM menu WHERE gubun = pizza";
+		String sql = "SELECT * FROM menu WHERE gubun = ?";
 		Connection conn = DBConn.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "pizza");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(MenuListRespDto.builder()
@@ -64,6 +65,7 @@ public class MenuRepository {
 							.build()
 						);
 			}
+//			System.out.println(list);
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();

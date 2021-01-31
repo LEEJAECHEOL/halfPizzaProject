@@ -14,10 +14,12 @@ public class IndexController {
 	
 	private MenuService menuService = new MenuService();
 	
-	@RequestMapping("/index")
-	public void index(HttpServletResponse resp, HttpServletRequest req) {
+	@RequestMapping("/")
+	public String index(HttpServletResponse resp, HttpServletRequest req) {
 		System.out.println("실행됨?");
-//		List<MenuListRespDto> menu = menuService.findAll();
-//		req.setAttribute("menu", menu);	
+		List<MenuListRespDto> menu = menuService.findAll();
+		System.out.println(menu);
+		req.setAttribute("menu", menu);	
+		return "index.jsp";
 	}
 }
