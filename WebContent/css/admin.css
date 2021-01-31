@@ -116,7 +116,7 @@ main .container .option-add form button{display: block; margin: 25px auto; width
 .event-add div input[type=file]{width: 350px; height: auto;}
 .event-add div input{width:350px; height: 60px; border-radius: 50px; border: 1px solid #bfbfbf; padding: 0 30px;}
 .event-add div span{display: inline-block; width: 100px;}
-.event-add > button{font-size: 18px; display: block; background: #00a0e9; height: 50px; width: 100px; margin: 0 auto; border-radius: 50px; color: #fff; border: none;}
+.event-add button{font-size: 18px; background: #00a0e9; height: 50px; width: 100px; margin: 0 auto; border-radius: 50px; color: #fff; border: none;}
 
 
 .faq-list{display: grid; grid-template-columns: repeat(1, 1fr); grid-gap: 30px; font-family: NR;}
